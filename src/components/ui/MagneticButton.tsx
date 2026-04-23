@@ -111,17 +111,17 @@ export function MagneticButton({
       <span
         aria-hidden
         className="relative inline-block overflow-hidden"
-        style={{ height: "1.2em" }}
+        style={{ height: "1.4em" }}
       >
         <span
           ref={labelRef}
-          className="inline-flex h-[1.2em] items-center align-baseline leading-none will-change-transform"
+          className="inline-flex h-[1.4em] items-center align-baseline leading-none will-change-transform"
         >
           {children}
         </span>
         <span
           ref={labelAltRef}
-          className="absolute left-0 top-0 inline-flex h-[1.2em] items-center leading-none will-change-transform"
+          className="absolute left-0 top-0 inline-flex h-[1.4em] items-center leading-none will-change-transform"
         >
           {children}
         </span>
