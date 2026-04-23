@@ -118,7 +118,7 @@ export function Stats() {
       <div className="container py-24 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] lg:gap-20">
           <div data-reveal className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-brand-cream/55">
+            <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-brand-cream/55">
               <span className="tabular-nums">04</span>
               <span className="h-px w-8 bg-brand-cream/25" />
               <span>The Campaign</span>
@@ -166,7 +166,7 @@ export function Stats() {
                     "border-b border-brand-cream/15 lg:border-b-0"
                 )}
               >
-                <dt className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-brand-cream/55">
+                <dt className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-brand-cream/55">
                   <span className="font-display italic text-brand-red">
                     {String(i + 1).padStart(2, "0")}
                   </span>

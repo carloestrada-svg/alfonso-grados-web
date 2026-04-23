@@ -80,7 +80,7 @@ export function NewsletterForm() {
     >
       <label
         htmlFor="newsletter-email"
-        className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-white/45"
+        className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-white/45"
       >
         <span className="font-display italic text-brand-red">→</span>
         <span>Email address</span>
@@ -159,7 +159,7 @@ export function NewsletterForm() {
           </span>
         </button>
 
-        <p className="text-[12px] leading-relaxed text-white/40">
+        <p className="text-[13px] leading-relaxed text-white/40">
           No spam. Unsubscribe anytime.
         </p>
       </div>

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 import { Hero } from "@/components/home/Hero";
 import { MissionBand } from "@/components/home/MissionBand";
-import { KeyPolicies } from "@/components/home/KeyPolicies";
+import { Endorsements } from "@/components/home/Endorsements";
 import { Stats } from "@/components/home/Stats";
 import { Testimonials } from "@/components/home/Testimonials";
-import { NewsTeaser } from "@/components/home/NewsTeaser";
+import { UpcomingEvents } from "@/components/home/UpcomingEvents";
 import { CTASection } from "@/components/home/CTASection";
 import { candidate } from "@/lib/data/candidate";
 
@@ -19,10 +19,10 @@ export default function HomePage() {
     <>
       <Hero />
       <MissionBand />
-      <KeyPolicies />
+      <Endorsements />
       <Stats />
       <Testimonials />
-      <NewsTeaser />
+      <UpcomingEvents />
       <CTASection />
     </>
   );

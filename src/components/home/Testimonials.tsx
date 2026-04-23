@@ -97,7 +97,7 @@ export function Testimonials() {
         <div className="flex flex-col gap-6 lg:max-w-3xl">
           <div
             data-reveal
-            className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55"
+            className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55"
           >
             <span className="tabular-nums">05</span>
             <span className="h-px w-8 bg-foreground/25" />
@@ -143,7 +143,7 @@ export function Testimonials() {
                   />
                   <span
                     className={cn(
-                      "mt-0.5 font-display text-[14px] italic tabular-nums transition-colors",
+                      "mt-0.5 font-display text-[15px] italic tabular-nums transition-colors",
                       isActive
                         ? "text-brand-red"
                         : "text-foreground/35 group-hover:text-brand-red/70"
@@ -165,7 +165,7 @@ export function Testimonials() {
                     </span>
                     <span
                       className={cn(
-                        "text-[12px] font-medium uppercase tracking-[0.22em] transition-colors",
+                        "text-[13px] font-medium uppercase tracking-[0.22em] transition-colors",
                         isActive
                           ? "text-foreground/65"
                           : "text-foreground/40"
@@ -178,7 +178,7 @@ export function Testimonials() {
                   <span
                     aria-hidden
                     className={cn(
-                      "mt-1 font-display text-[14px] italic transition-all duration-500",
+                      "mt-1 font-display text-[15px] italic transition-all duration-500",
                       isActive
                         ? "translate-x-0 text-brand-red opacity-100"
                         : "-translate-x-1 text-brand-red/0 opacity-0 group-hover:translate-x-0 group-hover:text-brand-red/70 group-hover:opacity-100"
@@ -211,7 +211,7 @@ export function Testimonials() {
                 </span>
               </blockquote>
 
-              <figcaption className="mt-auto flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-foreground/15 pt-6 text-[12px] font-medium uppercase tracking-[0.24em]">
+              <figcaption className="mt-auto flex flex-wrap items-baseline gap-x-4 gap-y-2 border-t border-foreground/15 pt-6 text-[13px] font-medium uppercase tracking-[0.24em]">
                 <span className="text-foreground/85">— {current.name}</span>
                 <span className="hidden h-px min-w-6 flex-1 bg-foreground/15 sm:block" />
                 <span className="text-foreground/55">{current.role}</span>

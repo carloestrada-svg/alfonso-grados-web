@@ -6,9 +6,9 @@ export type NavItem = {
 export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Policies", href: "/policies" },
-  { label: "News", href: "/news" },
-  { label: "Get Involved", href: "/get-involved" },
+  { label: "Events", href: "/events" },
+  { label: "Volunteer", href: "/volunteer" },
+  { label: "Ask Alex", href: "/ask" },
   { label: "Contact", href: "/contact" }
 ];
 
@@ -17,29 +17,18 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
     heading: "Campaign",
     links: [
       { label: "About Alex", href: "/about" },
-      { label: "Policies", href: "/policies" },
-      { label: "News", href: "/news" },
+      { label: "Events", href: "/events" },
       { label: "Contact", href: "/contact" }
     ]
   },
   {
     heading: "Get Involved",
     links: [
-      { label: "Volunteer", href: "/get-involved#volunteer" },
-      { label: "Donate", href: "/get-involved#donate" },
-      { label: "Events", href: "/get-involved#events" },
-      { label: "Host a House Party", href: "/get-involved#volunteer" }
+      { label: "Volunteer", href: "/volunteer" },
+      { label: "Ask a question", href: "/ask" },
+      { label: "RSVP to events", href: "/events" }
     ]
   },
-  {
-    heading: "Resources",
-    links: [
-      { label: "Press Kit", href: "/news" },
-      { label: "Endorsements", href: "/about" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Accessibility", href: "#" }
-    ]
-  }
 ];
 
 export const timeline: { year: string; title: string; description: string }[] = [

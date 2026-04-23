@@ -56,7 +56,7 @@ function NavLink({ href, label, active }: NavLinkProps) {
       ref={rootRef}
       href={href}
       className={cn(
-        "relative inline-flex items-center gap-2 px-3 py-2 text-[13.5px] font-medium tracking-tight transition-colors",
+        "relative inline-flex items-center gap-2 px-3 py-2 text-[14.5px] font-medium tracking-tight transition-colors",
         active ? "text-white" : "text-white/60 hover:text-white"
       )}
     >
@@ -158,12 +158,12 @@ export function Navbar() {
           />
 
           <MagneticButton
-            href="/get-involved#donate"
+            href="/volunteer"
             variant="invert"
             size="md"
             className="hidden sm:inline-flex"
           >
-            Donate
+            Volunteer
           </MagneticButton>
 
           <div className="lg:hidden">

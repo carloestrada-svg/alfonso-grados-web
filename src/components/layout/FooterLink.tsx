@@ -43,30 +43,50 @@ export function FooterLink({ href, label }: Props) {
     { scope: rootRef }
   );
 
+  const isExternal = href.startsWith("http");
+
+  const content = (
+    <span
+      aria-hidden
+      className="relative inline-block overflow-hidden"
+      style={{ height: "1.2em" }}
+    >
+      <span
+        ref={topRef}
+        className="inline-flex h-[1.2em] items-center will-change-transform"
+      >
+        {label}
+      </span>
+      <span
+        ref={botRef}
+        className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform"
+      >
+        {label}
+      </span>
+    </span>
+  );
+
+  if (isExternal) {
+    return (
+      <a
+        ref={rootRef}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-baseline text-[16px] text-white/70 transition-colors hover:text-white"
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
     <Link
       ref={rootRef}
       href={href}
       className="inline-flex items-baseline text-[16px] text-white/70 transition-colors hover:text-white"
     >
-      <span
-        aria-hidden
-        className="relative inline-block overflow-hidden"
-        style={{ height: "1.2em" }}
-      >
-        <span
-          ref={topRef}
-          className="inline-flex h-[1.2em] items-center will-change-transform"
-        >
-          {label}
-        </span>
-        <span
-          ref={botRef}
-          className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform"
-        >
-          {label}
-        </span>
-      </span>
+      {content}
     </Link>
   );
 }

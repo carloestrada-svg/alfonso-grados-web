@@ -1,71 +1,218 @@
-import { SectionHeader } from "@/components/shared/SectionHeader";
-import { FadeIn } from "@/components/shared/FadeIn";
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { cn } from "@/lib/utils";
 import { timeline } from "@/lib/data/navigation";
 
-export function Timeline() {
-  return (
-    <section className="bg-brand-cream">
-      <div className="container py-20 lg:py-28">
-        <SectionHeader
-          eyebrow="Career"
-          title="A record of results."
-          description="From the line at a Berkeley kitchen to the floor of the California Assembly."
-          align="center"
-        />
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-        <FadeIn
-          staggerSelector="[data-event]"
-          stagger={0.08}
-          className="relative mx-auto mt-16 max-w-3xl"
+type EventProps = {
+  index: number;
+  year: string;
+  title: string;
+  description: string;
+};
+
+function TimelineEvent({ index, year, title, description }: EventProps) {
+  const rootRef = useRef<HTMLLIElement | null>(null);
+  const yearRef = useRef<HTMLSpanElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const barRef = useRef<HTMLSpanElement | null>(null);
+
+  useGSAP(
+    () => {
+      const el = rootRef.current;
+      const y = yearRef.current;
+      const t = titleRef.current;
+      const b = barRef.current;
+      if (!el || !y || !t || !b) return;
+
+      gsap.set(b, { scaleX: 0, transformOrigin: "left center" });
+
+      const onEnter = () => {
+        gsap.to(y, {
+          color: "#C8102E",
+          fontStyle: "italic",
+          duration: 0.5,
+          ease: "expo.out"
+        });
+        gsap.to(t, {
+          x: 6,
+          color: "#C8102E",
+          duration: 0.5,
+          ease: "expo.out"
+        });
+        gsap.to(b, {
+          scaleX: 1,
+          transformOrigin: "left center",
+          duration: 0.7,
+          ease: "power3.out"
+        });
+      };
+      const onLeave = () => {
+        gsap.to(y, {
+          color: "#0A1F44",
+          fontStyle: "normal",
+          duration: 0.5,
+          ease: "expo.out"
+        });
+        gsap.to(t, {
+          x: 0,
+          color: "#0A1F44",
+          duration: 0.5,
+          ease: "expo.out"
+        });
+        gsap.to(b, {
+          scaleX: 0,
+          transformOrigin: "right center",
+          duration: 0.55,
+          ease: "power3.out"
+        });
+      };
+
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+      return () => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
+      };
+    },
+    { scope: rootRef }
+  );
+
+  return (
+    <li
+      ref={rootRef}
+      data-event
+      className="relative grid grid-cols-1 gap-4 border-t border-foreground/15 py-10 last:border-b lg:grid-cols-[minmax(0,1fr)_minmax(0,2.5fr)] lg:gap-x-20 lg:py-12"
+    >
+      <span
+        ref={barRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-red will-change-transform"
+      />
+
+      <div className="flex items-baseline gap-4">
+        <span className="font-display text-[15px] italic text-brand-red">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span
+          ref={yearRef}
+          className="font-display font-normal leading-none tracking-[-0.02em] text-foreground will-change-[color,font-style]"
+          style={{ fontSize: "clamp(1.9rem, 3.8vw, 2.8rem)" }}
         >
-          <div
-            aria-hidden
-            className="absolute left-4 top-0 h-full w-px bg-border md:left-1/2 md:-translate-x-1/2"
-          />
-          <ol className="space-y-10">
-            {timeline.map((t, i) => (
-              <li
-                key={t.year}
-                data-event
-                className="relative grid gap-6 pl-12 md:grid-cols-2 md:pl-0"
+          {year}
+        </span>
+      </div>
+      <div className="flex flex-col gap-3">
+        <h3
+          ref={titleRef}
+          className="font-display font-normal leading-[1.15] tracking-[-0.015em] text-foreground will-change-[transform,color]"
+          style={{ fontSize: "clamp(1.35rem, 2.4vw, 1.8rem)" }}
+        >
+          {title}
+        </h3>
+        <p className="max-w-2xl text-[15px] leading-[1.6] text-foreground/65">
+          {description}
+        </p>
+      </div>
+    </li>
+  );
+}
+
+export function Timeline() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set("[data-reveal], [data-event]", { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.fromTo(
+        "[data-reveal]",
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "expo.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 82%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      gsap.fromTo(
+        "[data-event]",
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "expo.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 78%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    },
+    { scope: ref }
+  );
+
+  return (
+    <section ref={ref} className={cn("relative bg-brand-cream")}>
+      <div className="container py-20 lg:py-28">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] lg:gap-20">
+          <div data-reveal className="flex flex-col gap-6">
+            <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+              <span className="tabular-nums">02</span>
+              <span className="h-px w-8 bg-foreground/25" />
+              <span>Career</span>
+            </div>
+            <p className="max-w-[22rem] text-[15px] leading-[1.6] text-foreground/60">
+              From the line at a Berkeley kitchen to the floor of the
+              California Assembly.
+            </p>
+          </div>
+
+          <div data-reveal>
+            <h2 className="font-display font-normal leading-[1.02] tracking-[-0.02em] text-foreground">
+              <span
+                className="block"
+                style={{ fontSize: "clamp(2rem, 4.8vw, 3.1rem)" }}
               >
-                <span
-                  aria-hidden
-                  className="absolute left-2 top-1 h-5 w-5 rounded-full border-4 border-brand-cream bg-brand-red md:left-1/2 md:-translate-x-1/2"
-                />
-                {i % 2 === 0 ? (
-                  <>
-                    <div className="md:pr-12 md:text-right">
-                      <p className="font-display text-xl font-semibold text-brand-navy">
-                        {t.year}
-                      </p>
-                      <h3 className="mt-1 font-display text-lg font-semibold">
-                        {t.title}
-                      </h3>
-                    </div>
-                    <p className="text-muted-foreground md:pl-12">
-                      {t.description}
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-muted-foreground md:col-start-1 md:pr-12 md:text-right">
-                      {t.description}
-                    </p>
-                    <div className="md:col-start-2 md:pl-12">
-                      <p className="font-display text-xl font-semibold text-brand-navy">
-                        {t.year}
-                      </p>
-                      <h3 className="mt-1 font-display text-lg font-semibold">
-                        {t.title}
-                      </h3>
-                    </div>
-                  </>
-                )}
-              </li>
-            ))}
-          </ol>
-        </FadeIn>
+                A record of{" "}
+                <em className="italic text-brand-red">results</em>.
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <ol className="mt-16 flex flex-col lg:mt-24">
+          {timeline.map((t, i) => (
+            <TimelineEvent
+              key={t.year}
+              index={i}
+              year={t.year}
+              title={t.title}
+              description={t.description}
+            />
+          ))}
+        </ol>
       </div>
     </section>
   );

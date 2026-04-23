@@ -74,7 +74,7 @@ export function CTASection() {
       <div className="container py-24 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] lg:gap-20">
           <div data-reveal className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+            <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">07</span>
               <span className="h-px w-8 bg-foreground/25" />
               <span>Get involved</span>
@@ -112,7 +112,7 @@ export function CTASection() {
               data-reveal
               className="mt-12 border-t border-foreground/15 pt-8"
             >
-              <div className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+              <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                 <span className="font-display italic text-brand-red">01</span>
                 <span className="h-px w-8 bg-foreground/25" />
                 <span>Quick donate</span>
@@ -124,7 +124,7 @@ export function CTASection() {
                 {donationTiers.map((tier) => (
                   <Link
                     key={tier.amount}
-                    href="/get-involved#donate"
+                    href="/volunteer"
                     data-tier
                     className={cn(
                       "group inline-flex h-12 items-center justify-center rounded-full border px-7 font-display text-[16px] transition-colors duration-300",
@@ -143,7 +143,7 @@ export function CTASection() {
               data-reveal
               className="mt-10 border-t border-foreground/15 pt-8"
             >
-              <div className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+              <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                 <span className="font-display italic text-brand-red">02</span>
                 <span className="h-px w-8 bg-foreground/25" />
                 <span>Or lend your voice</span>
@@ -151,14 +151,14 @@ export function CTASection() {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <MagneticButton
-                  href="/get-involved#donate"
+                  href="/volunteer"
                   variant="solid"
                   size="lg"
                 >
                   Chip in now
                 </MagneticButton>
                 <MagneticButton
-                  href="/get-involved#volunteer"
+                  href="/volunteer"
                   variant="ghost"
                   size="lg"
                 >

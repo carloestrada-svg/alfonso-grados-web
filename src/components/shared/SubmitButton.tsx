@@ -1,81 +1,57 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "ghost" | "invert" | "accent";
-type Size = "md" | "lg";
-
 type Props = {
-  href: string;
   children: ReactNode;
   className?: string;
-  external?: boolean;
-  variant?: Variant;
-  size?: Size;
+  theme?: "light" | "dark";
+  dependencies?: unknown[];
 };
 
-const variantClasses: Record<Variant, string> = {
-  solid:
-    "bg-foreground text-background border-foreground hover:bg-primary hover:border-primary",
-  ghost:
-    "bg-transparent text-foreground border-border hover:border-foreground",
-  invert:
-    "bg-background text-foreground border-background hover:bg-accent hover:border-accent",
-  accent:
-    "bg-accent text-foreground border-accent hover:bg-background hover:text-foreground hover:border-background"
-};
-
-const sizeClasses: Record<Size, string> = {
-  md: "px-4 py-2 text-[15px] gap-2.5",
-  lg: "px-5 py-2.5 text-[15px] gap-3"
-};
-
-export function MagneticButton({
-  href,
+export function SubmitButton({
   children,
   className,
-  external,
-  variant = "solid",
-  size = "lg"
+  theme = "light",
+  dependencies
 }: Props) {
-  const rootRef = useRef<HTMLAnchorElement | null>(null);
-  const labelRef = useRef<HTMLSpanElement | null>(null);
-  const labelAltRef = useRef<HTMLSpanElement | null>(null);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
+  const labelTop = useRef<HTMLSpanElement | null>(null);
+  const labelBot = useRef<HTMLSpanElement | null>(null);
   const iconRef = useRef<HTMLSpanElement | null>(null);
   const ringRef = useRef<SVGCircleElement | null>(null);
 
   useGSAP(
     () => {
-      const el = rootRef.current;
-      const label = labelRef.current;
-      const labelAlt = labelAltRef.current;
-      const icon = iconRef.current;
+      const el = btnRef.current;
+      const lt = labelTop.current;
+      const lb = labelBot.current;
+      const ic = iconRef.current;
       const ring = ringRef.current;
-      if (!el || !label || !labelAlt || !icon || !ring) return;
+      if (!el || !lt || !lb || !ic || !ring) return;
 
-      gsap.set(labelAlt, { yPercent: 110 });
+      gsap.set(lb, { yPercent: 110 });
       gsap.set(ring, { strokeDashoffset: 90 });
 
       const onEnter = () => {
-        gsap.to(label, { yPercent: -110, duration: 0.45, ease: "expo.out" });
-        gsap.to(labelAlt, { yPercent: 0, duration: 0.45, ease: "expo.out" });
-        gsap.to(icon, { rotate: 45, duration: 0.5, ease: "back.out(2)" });
+        gsap.to(lt, { yPercent: -110, duration: 0.45, ease: "expo.out" });
+        gsap.to(lb, { yPercent: 0, duration: 0.45, ease: "expo.out" });
+        gsap.to(ic, { rotate: 45, duration: 0.5, ease: "back.out(2)" });
         gsap.to(ring, {
           strokeDashoffset: 0,
           duration: 0.7,
           ease: "power3.out"
         });
       };
-
       const onLeave = () => {
-        gsap.to(label, { yPercent: 0, duration: 0.5, ease: "expo.out" });
-        gsap.to(labelAlt, { yPercent: 110, duration: 0.5, ease: "expo.out" });
-        gsap.to(icon, { rotate: 0, duration: 0.5, ease: "power3.out" });
+        gsap.to(lt, { yPercent: 0, duration: 0.5, ease: "expo.out" });
+        gsap.to(lb, { yPercent: 110, duration: 0.5, ease: "expo.out" });
+        gsap.to(ic, { rotate: 0, duration: 0.5, ease: "power3.out" });
         gsap.to(ring, {
           strokeDashoffset: 90,
           duration: 0.7,
@@ -85,26 +61,25 @@ export function MagneticButton({
 
       el.addEventListener("mouseenter", onEnter);
       el.addEventListener("mouseleave", onLeave);
-
       return () => {
         el.removeEventListener("mouseenter", onEnter);
         el.removeEventListener("mouseleave", onLeave);
       };
     },
-    { scope: rootRef }
+    { scope: btnRef, dependencies: dependencies ?? [] }
   );
 
+  const dark = theme === "dark";
+
   return (
-    <Link
-      ref={rootRef}
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      data-cursor="button"
+    <button
+      ref={btnRef}
+      type="submit"
       className={cn(
-        "group relative inline-flex items-center rounded-full border font-medium tracking-tight transition-colors duration-500",
-        variantClasses[variant],
-        sizeClasses[size],
+        "group relative inline-flex items-center gap-4 rounded-full border pl-6 pr-5 py-2.5 text-[16px] font-medium tracking-tight transition-colors duration-500",
+        dark
+          ? "border-white bg-white text-foreground hover:border-brand-cream hover:bg-brand-cream"
+          : "border-foreground bg-foreground text-background hover:border-[#08182e] hover:bg-[#08182e]",
         className
       )}
     >
@@ -114,13 +89,13 @@ export function MagneticButton({
         style={{ height: "1.2em" }}
       >
         <span
-          ref={labelRef}
-          className="inline-flex h-[1.2em] items-center align-baseline leading-none will-change-transform"
+          ref={labelTop}
+          className="inline-flex h-[1.2em] items-center leading-none will-change-transform"
         >
           {children}
         </span>
         <span
-          ref={labelAltRef}
+          ref={labelBot}
           className="absolute left-0 top-0 inline-flex h-[1.2em] items-center leading-none will-change-transform"
         >
           {children}
@@ -152,7 +127,6 @@ export function MagneticButton({
             strokeDasharray="90"
             strokeDashoffset="90"
             strokeLinecap="round"
-            className="will-change-[stroke-dashoffset]"
           />
         </svg>
         <span
@@ -162,6 +136,6 @@ export function MagneticButton({
           <ArrowUpRight className="h-full w-full" strokeWidth={2} />
         </span>
       </span>
-    </Link>
+    </button>
   );
 }

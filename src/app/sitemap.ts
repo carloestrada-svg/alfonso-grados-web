@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
-import { news } from "@/lib/data/news";
+import { events } from "@/lib/data/events";
 import { absoluteUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "/",
     "/about",
-    "/policies",
-    "/news",
-    "/get-involved",
-    "/contact"
+    "/events",
+    "/volunteer",
+    "/ask",
+    "/contact",
+    "/privacy",
+    "/terms"
   ].map((path) => ({
     url: absoluteUrl(path),
     lastModified: new Date(),
@@ -17,12 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.8
   }));
 
-  const newsRoutes = news.map((item) => ({
-    url: absoluteUrl(`/news/${item.slug}`),
+  const eventRoutes = events.map((item) => ({
+    url: absoluteUrl(`/events/${item.id}`),
     lastModified: new Date(item.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.6
+    changeFrequency: "weekly" as const,
+    priority: 0.7
   }));
 
-  return [...staticRoutes, ...newsRoutes];
+  return [...staticRoutes, ...eventRoutes];
 }

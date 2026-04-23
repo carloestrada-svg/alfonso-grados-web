@@ -99,7 +99,7 @@ export function Hero() {
       <div className="container relative flex flex-col pb-10 pt-5 lg:pb-12 lg:pt-6">
         <div
           data-reveal="meta"
-          className="flex items-center gap-5 text-[12px] font-medium uppercase tracking-[0.24em] text-white/75"
+          className="flex items-center gap-5 text-[13px] font-medium uppercase tracking-[0.24em] text-white/75"
         >
           <span className="tabular-nums">01 / 2026</span>
           <span className="hidden sm:inline">
@@ -141,21 +141,21 @@ export function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <div data-reveal="cta">
               <MagneticButton
-                href="/get-involved#donate"
+                href="/volunteer"
                 variant="invert"
                 size="lg"
               >
-                Chip in $10
+                Join the team
               </MagneticButton>
             </div>
             <div data-reveal="cta">
               <MagneticButton
-                href="/policies"
+                href="/ask"
                 variant="ghost"
                 size="lg"
                 className="!border-white/30 !text-white hover:!border-white"
               >
-                Read the plan
+                Ask Alex a question
               </MagneticButton>
             </div>
           </div>
@@ -163,7 +163,7 @@ export function Hero() {
 
         <div
           data-reveal="scroll"
-          className="pointer-events-none mt-10 flex items-center justify-between border-t border-white/10 pt-5 text-[12px] font-medium uppercase tracking-[0.24em] text-white/55 lg:mt-14"
+          className="pointer-events-none mt-10 flex items-center justify-between border-t border-white/10 pt-5 text-[13px] font-medium uppercase tracking-[0.24em] text-white/55 lg:mt-14"
         >
           <span className="hidden sm:inline">
             {candidate.fullName} · Sacramento, CA

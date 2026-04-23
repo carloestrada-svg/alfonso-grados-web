@@ -128,7 +128,7 @@ export function MissionBand() {
       <div className="container py-20 sm:py-24 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.4fr)] lg:gap-20">
           <div data-reveal className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+            <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">02</span>
               <span className="h-px w-8 bg-foreground/25" />
               <span>The Mission</span>
@@ -168,7 +168,7 @@ export function MissionBand() {
                     />
                     <span
                       className={cn(
-                        "text-[14px] font-medium uppercase tracking-[0.2em] transition-colors",
+                        "text-[15px] font-medium uppercase tracking-[0.2em] transition-colors",
                         isActive
                           ? "text-foreground"
                           : "text-foreground/45 group-hover:text-foreground/75"
@@ -185,7 +185,7 @@ export function MissionBand() {
           <div data-reveal>
             <div ref={slideRef} className="relative min-h-[16rem]">
               <div key={active} data-slide>
-                <div className="flex items-center gap-4 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+                <div className="flex items-center gap-4 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                   <span className="tabular-nums text-foreground/70">
                     {current.index} / {String(pillars.length).padStart(2, "0")}
                   </span>
@@ -219,7 +219,7 @@ export function MissionBand() {
                   </span>
                 </p>
 
-                <div className="mt-10 flex items-center gap-4 text-[12px] font-medium uppercase tracking-[0.24em] text-foreground/55">
+                <div className="mt-10 flex items-center gap-4 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                   <span>Pillar {current.index}</span>
                   <div className="relative h-px flex-1 bg-foreground/15">
                     <div
