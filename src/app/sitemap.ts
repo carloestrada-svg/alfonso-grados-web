@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { events } from "@/lib/data/events";
+import { fetchGHLEvents } from "@/lib/ghl";
 import { absoluteUrl } from "@/lib/utils";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "/",
     "/about",
@@ -20,9 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.8
   }));
 
+  const events = await fetchGHLEvents();
   const eventRoutes = events.map((item) => ({
     url: absoluteUrl(`/events/${item.id}`),
-    lastModified: new Date(item.date),
+    lastModified: item.date.raw ? new Date(item.date.raw) : new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7
   }));

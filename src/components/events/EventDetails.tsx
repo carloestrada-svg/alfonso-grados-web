@@ -10,14 +10,17 @@ import { MapPin, ExternalLink } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { RSVPForm } from "@/components/events/RSVPForm";
 import { cn } from "@/lib/utils";
-import { events, type CampaignEvent } from "@/lib/data/events";
+import type { NormalizedEvent } from "@/lib/ghl";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function formatLong(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
+function formatLong(raw: string): string {
+  if (!raw) return "";
+  const d = new Date(`${raw}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -25,8 +28,10 @@ function formatLong(iso: string) {
   });
 }
 
-function formatShortDay(iso: string) {
-  const d = new Date(iso);
+function formatShortDay(raw: string) {
+  if (!raw) return { month: "", day: "", weekday: "" };
+  const d = new Date(`${raw}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return { month: "", day: "", weekday: "" };
   return {
     month: d.toLocaleDateString("en-US", { month: "short" }),
     day: String(d.getDate()).padStart(2, "0"),
@@ -36,7 +41,7 @@ function formatShortDay(iso: string) {
 
 type RelatedRowProps = {
   index: number;
-  event: CampaignEvent;
+  event: NormalizedEvent;
 };
 
 function RelatedRow({ index, event }: RelatedRowProps) {
@@ -100,7 +105,9 @@ function RelatedRow({ index, event }: RelatedRowProps) {
     { scope: rootRef }
   );
 
-  const { month, day, weekday } = formatShortDay(event.date);
+  const month = event.date.month;
+  const day = event.date.day;
+  const { weekday } = formatShortDay(event.date.raw);
 
   return (
     <Link
@@ -140,7 +147,13 @@ function RelatedRow({ index, event }: RelatedRowProps) {
   );
 }
 
-export function EventDetails({ event }: { event: CampaignEvent }) {
+export function EventDetails({
+  event,
+  otherEvents = []
+}: {
+  event: NormalizedEvent;
+  otherEvents?: NormalizedEvent[];
+}) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
@@ -187,8 +200,10 @@ export function EventDetails({ event }: { event: CampaignEvent }) {
     { scope: ref }
   );
 
-  const otherEvents = events.filter((e) => e.id !== event.id);
-  const mapQuery = encodeURIComponent(`${event.venue}, ${event.city}, CA`);
+  const related = otherEvents.filter((e) => e.id !== event.id);
+  const mapQuery = encodeURIComponent(
+    `${event.venue || event.location}, ${event.city || "California"}`
+  );
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   return (
@@ -253,10 +268,26 @@ export function EventDetails({ event }: { event: CampaignEvent }) {
               className="flex flex-col border-y border-foreground/15"
             >
               {[
-                { index: "01", label: "Date", value: formatLong(event.date) },
-                { index: "02", label: "Time", value: `${event.time} PT` },
-                { index: "03", label: "City", value: event.city },
-                { index: "04", label: "Venue", value: event.venue }
+                {
+                  index: "01",
+                  label: "Date",
+                  value: formatLong(event.date.raw) || "TBA"
+                },
+                {
+                  index: "02",
+                  label: "Time",
+                  value: event.time ? `${event.time} PT` : "TBA"
+                },
+                {
+                  index: "03",
+                  label: "City",
+                  value: event.city || "California"
+                },
+                {
+                  index: "04",
+                  label: "Venue",
+                  value: event.venue || event.location || "TBA"
+                }
               ].map((row, i, arr) => (
                 <div
                   key={row.label}
@@ -358,7 +389,7 @@ export function EventDetails({ event }: { event: CampaignEvent }) {
           </div>
 
           <div data-related-list className="mt-10 flex flex-col lg:mt-14">
-            {otherEvents.map((e, i) => (
+            {related.map((e, i) => (
               <RelatedRow key={e.id} index={i} event={e} />
             ))}
           </div>

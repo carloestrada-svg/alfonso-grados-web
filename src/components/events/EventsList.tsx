@@ -7,23 +7,22 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { events, type CampaignEvent } from "@/lib/data/events";
+import type { NormalizedEvent } from "@/lib/ghl";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function formatEventDate(iso: string) {
-  const date = new Date(iso);
-  const month = date.toLocaleDateString("en-US", { month: "short" });
-  const day = String(date.getDate()).padStart(2, "0");
-  const weekday = date.toLocaleDateString("en-US", { weekday: "short" });
-  return { month, day, weekday };
+function weekdayFor(raw: string): string {
+  if (!raw) return "";
+  const d = new Date(`${raw}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", { weekday: "short" });
 }
 
 type RowProps = {
   index: number;
-  event: CampaignEvent;
+  event: NormalizedEvent;
 };
 
 function EventRow({ index, event }: RowProps) {
@@ -127,7 +126,9 @@ function EventRow({ index, event }: RowProps) {
     { scope: rootRef }
   );
 
-  const { month, day, weekday } = formatEventDate(event.date);
+  const month = event.date.month;
+  const day = event.date.day;
+  const weekday = weekdayFor(event.date.raw);
 
   return (
     <article
@@ -208,7 +209,7 @@ function EventRow({ index, event }: RowProps) {
   );
 }
 
-export function EventsList() {
+export function EventsList({ events }: { events: NormalizedEvent[] }) {
   const ref = useRef<HTMLElement | null>(null);
 
   useGSAP(

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -154,10 +155,12 @@ export function Biography() {
                 className="group relative aspect-[4/5] w-full overflow-hidden bg-foreground/5"
                 style={{ clipPath: "inset(0 0 0 0)" }}
               >
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80"
                   alt={candidate.fullName}
-                  className="h-full w-full object-cover transition-all duration-[1200ms] ease-out group-hover:scale-[1.04] will-change-transform"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover transition-all ease-out group-hover:scale-[1.04] will-change-transform [transition-duration:1200ms]"
                   style={{ filter: "grayscale(20%)" }}
                 />
                 <div

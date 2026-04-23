@@ -8,13 +8,18 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { UpcomingEvents } from "@/components/home/UpcomingEvents";
 import { CTASection } from "@/components/home/CTASection";
 import { candidate } from "@/lib/data/candidate";
+import { fetchGHLEvents } from "@/lib/ghl";
 
 export const metadata: Metadata = {
   title: `${candidate.fullName} for ${candidate.office}`,
   description: candidate.mission
 };
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const events = await fetchGHLEvents();
+
   return (
     <>
       <Hero />
@@ -22,7 +27,7 @@ export default function HomePage() {
       <Endorsements />
       <Stats />
       <Testimonials />
-      <UpcomingEvents />
+      <UpcomingEvents events={events} />
       <CTASection />
     </>
   );

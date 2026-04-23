@@ -1,50 +1,95 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { cn } from "@/lib/utils";
 import {
   FieldLabel,
-  TextField,
-  TextAreaField
+  TextField
 } from "@/components/shared/FormField";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
 import { SubmitButton } from "@/components/shared/SubmitButton";
-import type { CampaignEvent } from "@/lib/data/events";
+import { formatPhoneInput } from "@/lib/phone";
+import type { NormalizedEvent } from "@/lib/ghl";
 
-export function RSVPForm({ event: _event }: { event: CampaignEvent }) {
+export function RSVPForm({ event }: { event: NormalizedEvent }) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [phone, setPhone] = useState("");
+  const [smsUpdates, setSmsUpdates] = useState(false);
+  const [smsPromo, setSmsPromo] = useState(false);
+
+  const hasPhone = phone.trim().length > 0;
+
+  useEffect(() => {
+    if (!hasPhone) {
+      setSmsUpdates(false);
+      setSmsPromo(false);
+    }
+  }, [hasPhone]);
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        setError(null);
         setSubmitting(true);
-        router.push("/thank-you");
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+          const res = await fetch("/api/events/rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName: data.get("firstName"),
+              lastName: data.get("lastName"),
+              email: data.get("email"),
+              phone,
+              eventName: event.title,
+              eventDate: event.date.raw,
+              eventTime: event.time,
+              eventCategory: event.type || event.city,
+              sms_updates: smsUpdates ? "Yes" : "No",
+              sms_promo: smsPromo ? "Yes" : "No"
+            })
+          });
+          if (!res.ok) throw new Error("Submission failed");
+          router.push("/thank-you");
+        } catch {
+          setError("Something went wrong. Please try again.");
+          setSubmitting(false);
+        }
       }}
       className="flex flex-col gap-10"
     >
       <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
         <div className="flex flex-col gap-3">
-          <FieldLabel index="01" label="Full name" htmlFor="rf-name" />
+          <FieldLabel index="01" label="First name" htmlFor="rf-first" />
           <TextField
-            id="rf-name"
-            name="name"
+            id="rf-first"
+            name="firstName"
             type="text"
-            autoComplete="name"
-            placeholder="Alex Morgan"
+            autoComplete="given-name"
+            placeholder="Alex"
             required
           />
         </div>
         <div className="flex flex-col gap-3">
-          <FieldLabel index="02" label="Email" htmlFor="rf-email" />
+          <FieldLabel index="02" label="Last name" htmlFor="rf-last" />
+          <TextField
+            id="rf-last"
+            name="lastName"
+            type="text"
+            autoComplete="family-name"
+            placeholder="Morgan"
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-3">
+          <FieldLabel index="03" label="Email" htmlFor="rf-email" />
           <TextField
             id="rf-email"
             name="email"
@@ -56,8 +101,8 @@ export function RSVPForm({ event: _event }: { event: CampaignEvent }) {
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel
-            index="03"
-            label="Phone"
+            index="04"
+            label="Contact number"
             htmlFor="rf-phone"
             hint="Optional · For event updates only"
           />
@@ -66,40 +111,87 @@ export function RSVPForm({ event: _event }: { event: CampaignEvent }) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="(916) 555-0123"
+            placeholder="+1 (916) 555-0123"
+            value={phone}
+            onChange={(e) => setPhone(formatPhoneInput(e.target.value))}
           />
-        </div>
-        <div className="flex flex-col gap-3">
-          <FieldLabel index="04" label="Guests" htmlFor="rf-guests" />
-          <Select name="guests" required defaultValue="1">
-            <SelectTrigger id="rf-guests">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">Just me</SelectItem>
-              <SelectItem value="2">2 people</SelectItem>
-              <SelectItem value="3">3 people</SelectItem>
-              <SelectItem value="4">4 people</SelectItem>
-              <SelectItem value="5+">5 or more</SelectItem>
-            </SelectContent>
-          </Select>
         </div>
       </div>
 
-      <div className="flex flex-col gap-3">
-        <FieldLabel
-          index="05"
-          label="Questions or accessibility needs?"
-          htmlFor="rf-note"
-          hint="Optional"
-        />
-        <TextAreaField
-          id="rf-note"
-          name="note"
-          rows={4}
-          placeholder="ASL interpreter, parking, dietary, a question for Alex…"
-        />
+      <div className="flex flex-col gap-4">
+        <FieldLabel index="05" label="SMS consent" hint="A2P-compliant" />
+        {!hasPhone ? (
+          <p className="text-[13px] italic text-foreground/45">
+            Enter a phone number above to opt in to SMS messages.
+          </p>
+        ) : null}
+        <label
+          className={cn(
+            "flex items-start gap-3 text-[14px] leading-[1.5]",
+            hasPhone
+              ? "cursor-pointer text-foreground/65"
+              : "cursor-not-allowed text-foreground/35"
+          )}
+        >
+          <input
+            type="checkbox"
+            checked={smsUpdates}
+            onChange={(e) => setSmsUpdates(e.target.checked)}
+            disabled={!hasPhone}
+            required={hasPhone}
+            className="peer sr-only"
+          />
+          <span
+            aria-hidden
+            className={cn(
+              "mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
+              hasPhone
+                ? "border-foreground/35 peer-checked:border-brand-red peer-checked:bg-brand-red"
+                : "border-foreground/20 opacity-40"
+            )}
+          />
+          <span>
+            I consent to receive event updates from Alex Morgan for
+            Senate via automated text messages at the phone number
+            provided. Msg frequency may vary. Msg &amp; data rates may
+            apply. Text STOP to opt out, HELP for help.
+          </span>
+        </label>
+        <label
+          className={cn(
+            "flex items-start gap-3 text-[14px] leading-[1.5]",
+            hasPhone
+              ? "cursor-pointer text-foreground/65"
+              : "cursor-not-allowed text-foreground/35"
+          )}
+        >
+          <input
+            type="checkbox"
+            checked={smsPromo}
+            onChange={(e) => setSmsPromo(e.target.checked)}
+            disabled={!hasPhone}
+            required={hasPhone}
+            className="peer sr-only"
+          />
+          <span
+            aria-hidden
+            className={cn(
+              "mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
+              hasPhone
+                ? "border-foreground/35 peer-checked:border-brand-red peer-checked:bg-brand-red"
+                : "border-foreground/20 opacity-40"
+            )}
+          />
+          <span>
+            I also consent to receive other event invitations and
+            fundraising communications via automated text messages.
+          </span>
+        </label>
       </div>
+
+      {error ? (
+        <p className="text-[14px] text-brand-red">{error}</p>
+      ) : null}
 
       <div className="flex flex-col gap-6 border-t border-foreground/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/45">

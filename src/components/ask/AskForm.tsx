@@ -20,13 +20,37 @@ import { SubmitButton } from "@/components/shared/SubmitButton";
 export function AskForm() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
+        setError(null);
         setSubmitting(true);
-        router.push("/thank-you");
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        try {
+          const res = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: data.get("name"),
+              email: data.get("email"),
+              city: data.get("city"),
+              topic: data.get("topic"),
+              subject: data.get("subject"),
+              question: data.get("question")
+            })
+          });
+          if (!res.ok) throw new Error("Submission failed");
+          router.push("/thank-you");
+        } catch {
+          setError("Something went wrong. Please try again.");
+          setSubmitting(false);
+        }
       }}
       className="flex flex-col gap-10"
     >
@@ -58,7 +82,7 @@ export function AskForm() {
             index="03"
             label="City"
             htmlFor="af-city"
-            hint="Where you&rsquo;re writing from"
+            hint="Where you're writing from"
           />
           <TextField
             id="af-city"
@@ -76,14 +100,14 @@ export function AskForm() {
               <SelectValue placeholder="Choose a topic" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="housing">Housing</SelectItem>
-              <SelectItem value="education">Education</SelectItem>
-              <SelectItem value="healthcare">Healthcare</SelectItem>
-              <SelectItem value="climate">Climate</SelectItem>
-              <SelectItem value="economy">Jobs &amp; wages</SelectItem>
-              <SelectItem value="democracy">Democracy</SelectItem>
-              <SelectItem value="personal">A personal story</SelectItem>
-              <SelectItem value="other">Something else</SelectItem>
+              <SelectItem value="Housing">Housing</SelectItem>
+              <SelectItem value="Education">Education</SelectItem>
+              <SelectItem value="Healthcare">Healthcare</SelectItem>
+              <SelectItem value="Climate">Climate</SelectItem>
+              <SelectItem value="Jobs & Wages">Jobs &amp; wages</SelectItem>
+              <SelectItem value="Democracy">Democracy</SelectItem>
+              <SelectItem value="Personal Story">A personal story</SelectItem>
+              <SelectItem value="Other">Something else</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -92,6 +116,22 @@ export function AskForm() {
       <div className="flex flex-col gap-3">
         <FieldLabel
           index="05"
+          label="Subject"
+          htmlFor="af-subject"
+          hint="One line — what's your question about?"
+        />
+        <TextField
+          id="af-subject"
+          name="subject"
+          type="text"
+          placeholder="Affordable housing near transit"
+          required
+        />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <FieldLabel
+          index="06"
           label="Your question"
           htmlFor="af-question"
           hint="No wrong questions. Direct is best."
@@ -104,6 +144,10 @@ export function AskForm() {
           placeholder="What do you want to ask?"
         />
       </div>
+
+      {error ? (
+        <p className="text-[14px] text-brand-red">{error}</p>
+      ) : null}
 
       <div className="flex flex-col gap-6 border-t border-foreground/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/45">

@@ -7,22 +7,20 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { events, type CampaignEvent } from "@/lib/data/events";
+import type { NormalizedEvent } from "@/lib/ghl";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function formatDate(iso: string) {
-  const d = new Date(iso);
-  return {
-    month: d.toLocaleDateString("en-US", { month: "short" }),
-    day: String(d.getDate()).padStart(2, "0"),
-    weekday: d.toLocaleDateString("en-US", { weekday: "short" })
-  };
+function weekdayFor(raw: string): string {
+  if (!raw) return "";
+  const d = new Date(`${raw}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", { weekday: "short" });
 }
 
-type RowProps = { index: number; event: CampaignEvent };
+type RowProps = { index: number; event: NormalizedEvent };
 
 function EventRow({ index, event }: RowProps) {
   const rootRef = useRef<HTMLAnchorElement | null>(null);
@@ -109,7 +107,9 @@ function EventRow({ index, event }: RowProps) {
     { scope: rootRef }
   );
 
-  const { month, day, weekday } = formatDate(event.date);
+  const month = event.date.month;
+  const day = event.date.day;
+  const weekday = weekdayFor(event.date.raw);
 
   return (
     <Link
@@ -173,7 +173,7 @@ function EventRow({ index, event }: RowProps) {
   );
 }
 
-export function UpcomingEvents() {
+export function UpcomingEvents({ events }: { events: NormalizedEvent[] }) {
   const ref = useRef<HTMLElement | null>(null);
   const upcoming = events.slice(0, 3);
 

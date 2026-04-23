@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -87,10 +88,13 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 -z-10 will-change-transform"
       >
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1800&q=80"
           alt=""
-          className="h-full w-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
           style={{ filter: "grayscale(100%) contrast(1.15) brightness(0.75)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/20" />
