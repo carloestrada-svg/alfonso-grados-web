@@ -75,9 +75,9 @@ function OrgRow({ name }: OrgProps) {
         });
         gsap.to(bar, {
           scaleX: 1,
-          transformOrigin: "left center",
           duration: 0.65,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
       const onLeave = () => {
@@ -89,9 +89,9 @@ function OrgRow({ name }: OrgProps) {
         });
         gsap.to(bar, {
           scaleX: 0,
-          transformOrigin: "right center",
           duration: 0.55,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
 

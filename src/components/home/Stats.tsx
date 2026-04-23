@@ -98,7 +98,6 @@ export function Stats() {
           scaleX: 1,
           duration: 1.3,
           ease: "expo.out",
-          transformOrigin: "left center",
           scrollTrigger: {
             trigger: ref.current,
             start: "top 78%",

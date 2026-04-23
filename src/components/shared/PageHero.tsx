@@ -62,9 +62,9 @@ function MetaRow({ index, label, value }: MetaRowProps) {
         });
         gsap.to(bar, {
           scaleX: 1,
-          transformOrigin: "left center",
           duration: 0.7,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
 
@@ -88,9 +88,9 @@ function MetaRow({ index, label, value }: MetaRowProps) {
         });
         gsap.to(bar, {
           scaleX: 0,
-          transformOrigin: "right center",
           duration: 0.55,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
 

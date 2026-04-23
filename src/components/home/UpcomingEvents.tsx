@@ -68,9 +68,9 @@ function EventRow({ index, event }: RowProps) {
         });
         gsap.to(bar, {
           scaleX: 1,
-          transformOrigin: "left center",
           duration: 0.8,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
       const onLeave = () => {
@@ -93,9 +93,9 @@ function EventRow({ index, event }: RowProps) {
         gsap.to(ix, { scale: 1, duration: 0.55, ease: "power3.out" });
         gsap.to(bar, {
           scaleX: 0,
-          transformOrigin: "right center",
           duration: 0.6,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
 

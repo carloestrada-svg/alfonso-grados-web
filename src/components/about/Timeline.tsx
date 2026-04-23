@@ -50,9 +50,9 @@ function TimelineEvent({ index, year, title, description }: EventProps) {
         });
         gsap.to(b, {
           scaleX: 1,
-          transformOrigin: "left center",
           duration: 0.7,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
       const onLeave = () => {
@@ -70,9 +70,9 @@ function TimelineEvent({ index, year, title, description }: EventProps) {
         });
         gsap.to(b, {
           scaleX: 0,
-          transformOrigin: "right center",
           duration: 0.55,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         });
       };
 
