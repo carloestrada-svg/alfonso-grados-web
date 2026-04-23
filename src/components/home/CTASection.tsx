@@ -124,16 +124,18 @@ export function CTASection() {
                 {donationTiers.map((tier) => (
                   <Link
                     key={tier.amount}
-                    href="/volunteer"
+                    href="/donate"
                     data-tier
                     className={cn(
-                      "group inline-flex h-12 items-center justify-center rounded-full border px-7 font-display text-[16px] transition-colors duration-300",
+                      "group inline-flex h-12 items-center justify-center rounded-full border px-7 font-display text-[16px] leading-none transition-colors duration-300",
                       tier.featured
                         ? "border-foreground bg-foreground text-brand-cream"
                         : "border-foreground/20 bg-transparent text-foreground hover:border-foreground hover:bg-foreground/[0.04]"
                     )}
                   >
-                    {tier.amount}
+                    <span className="block translate-y-[1px] leading-none">
+                      {tier.amount}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -151,7 +153,7 @@ export function CTASection() {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <MagneticButton
-                  href="/volunteer"
+                  href="/donate"
                   variant="solid"
                   size="lg"
                 >

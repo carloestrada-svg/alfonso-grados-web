@@ -5,6 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MapPin, ExternalLink } from "lucide-react";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { RSVPForm } from "@/components/events/RSVPForm";
@@ -285,11 +286,21 @@ export function EventDetails({ event }: { event: CampaignEvent }) {
                 href={mapsHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/70 transition-colors hover:text-brand-red"
+                className="group inline-flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/70 transition-colors hover:text-brand-red"
               >
-                <span className="font-display italic text-brand-red">—</span>
+                <MapPin
+                  className="h-4 w-4 text-brand-red"
+                  strokeWidth={1.8}
+                />
                 <span>Open in Google Maps</span>
-                <span aria-hidden className="h-px w-8 bg-foreground/25" />
+                <span
+                  aria-hidden
+                  className="h-px w-8 bg-foreground/25 transition-colors group-hover:bg-brand-red/50"
+                />
+                <ExternalLink
+                  className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  strokeWidth={1.8}
+                />
               </Link>
             </div>
           </div>

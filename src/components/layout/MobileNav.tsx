@@ -74,10 +74,10 @@ export function MobileNav() {
         <div className="mt-auto pt-6">
           <SheetClose asChild>
             <Link
-              href="/volunteer"
+              href="/donate"
               className="group flex h-12 w-full items-center justify-between rounded-full bg-brand-navy pl-6 pr-2 text-[15px] font-medium text-white transition-colors hover:bg-brand-red"
             >
-              Volunteer
+              Donate
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5">
                 <ArrowRight className="h-4 w-4" />
               </span>

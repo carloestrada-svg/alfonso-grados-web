@@ -43,23 +43,48 @@ export function VolunteerForm() {
       <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
         <div className="flex flex-col gap-3">
           <FieldLabel index="01" label="Full name" htmlFor="vf-name" />
-          <TextField id="vf-name" name="name" type="text" required />
+          <TextField
+            id="vf-name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            placeholder="Alex Morgan"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel index="02" label="Email" htmlFor="vf-email" />
-          <TextField id="vf-email" name="email" type="email" required />
+          <TextField
+            id="vf-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel
             index="03"
             label="Phone"
             htmlFor="vf-phone"
-            hint="Optional"
+            hint="Optional · For shift reminders"
           />
-          <TextField id="vf-phone" name="phone" type="tel" />
+          <TextField
+            id="vf-phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="(916) 555-0123"
+          />
         </div>
         <div className="flex flex-col gap-3">
-          <FieldLabel index="04" label="Zip code" htmlFor="vf-zip" />
+          <FieldLabel
+            index="04"
+            label="Zip code"
+            htmlFor="vf-zip"
+            hint="So we match you to your neighborhood"
+          />
           <TextField
             id="vf-zip"
             name="zip"
@@ -67,6 +92,8 @@ export function VolunteerForm() {
             inputMode="numeric"
             pattern="[0-9]{5}"
             maxLength={5}
+            autoComplete="postal-code"
+            placeholder="95814"
             required
           />
         </div>

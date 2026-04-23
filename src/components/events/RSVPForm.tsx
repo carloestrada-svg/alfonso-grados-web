@@ -34,20 +34,40 @@ export function RSVPForm({ event: _event }: { event: CampaignEvent }) {
       <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
         <div className="flex flex-col gap-3">
           <FieldLabel index="01" label="Full name" htmlFor="rf-name" />
-          <TextField id="rf-name" name="name" type="text" required />
+          <TextField
+            id="rf-name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            placeholder="Alex Morgan"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel index="02" label="Email" htmlFor="rf-email" />
-          <TextField id="rf-email" name="email" type="email" required />
+          <TextField
+            id="rf-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel
             index="03"
             label="Phone"
             htmlFor="rf-phone"
-            hint="For event updates only"
+            hint="Optional · For event updates only"
           />
-          <TextField id="rf-phone" name="phone" type="tel" />
+          <TextField
+            id="rf-phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="(916) 555-0123"
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel index="04" label="Guests" htmlFor="rf-guests" />

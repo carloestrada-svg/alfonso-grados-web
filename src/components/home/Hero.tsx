@@ -4,6 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowDown } from "lucide-react";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { candidate } from "@/lib/data/candidate";
@@ -170,7 +171,11 @@ export function Hero() {
           </span>
           <span className="flex items-center gap-3">
             Scroll
-            <span aria-hidden className="h-px w-10 bg-white/40" />
+            <span aria-hidden className="h-px w-8 bg-white/40" />
+            <ArrowDown
+              className="h-4 w-4 animate-bounce text-white/70"
+              strokeWidth={1.6}
+            />
           </span>
         </div>
       </div>

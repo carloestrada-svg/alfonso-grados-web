@@ -33,15 +33,41 @@ export function AskForm() {
       <div className="grid gap-8 sm:grid-cols-2 sm:gap-10">
         <div className="flex flex-col gap-3">
           <FieldLabel index="01" label="Your name" htmlFor="af-name" />
-          <TextField id="af-name" name="name" type="text" required />
+          <TextField
+            id="af-name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            placeholder="Maria Delgado"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel index="02" label="Email" htmlFor="af-email" />
-          <TextField id="af-email" name="email" type="email" required />
+          <TextField
+            id="af-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
-          <FieldLabel index="03" label="City" htmlFor="af-city" />
-          <TextField id="af-city" name="city" type="text" required />
+          <FieldLabel
+            index="03"
+            label="City"
+            htmlFor="af-city"
+            hint="Where you&rsquo;re writing from"
+          />
+          <TextField
+            id="af-city"
+            name="city"
+            type="text"
+            autoComplete="address-level2"
+            placeholder="Oakland"
+            required
+          />
         </div>
         <div className="flex flex-col gap-3">
           <FieldLabel index="04" label="Topic" htmlFor="af-topic" />
