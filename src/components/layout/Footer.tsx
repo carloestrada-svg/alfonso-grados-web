@@ -136,6 +136,15 @@ export function Footer() {
             <p>
               © {new Date().getFullYear()} {candidate.lastName} for Senate.
             </p>
+            <span aria-hidden className="h-px w-4 bg-white/15" />
+            <a
+              href="https://op1776.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+            >
+              Powered by Operation 1776
+            </a>
           </div>
         </div>
       </div>

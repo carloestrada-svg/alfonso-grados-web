@@ -96,6 +96,11 @@ export default function PrivacyPage() {
           donors of over $200 are reported publicly as required.
         </p>
         <p>We do not sell your information. We do not trade donor lists.</p>
+        <p>
+          Text Messaging Opt-In Data: We will not share or sell your text
+          messaging opt-in data, consent, or related personal information
+          with any third parties, unless required by law.
+        </p>
       </LegalSection>
 
       <LegalSection index="05" label="Cookies" title="Cookies and tracking.">
