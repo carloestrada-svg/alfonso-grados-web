@@ -9,7 +9,6 @@ export const primaryNav: NavItem[] = [
   { label: "Events", href: "/events" },
   { label: "Volunteer", href: "/volunteer" },
   { label: "Ask Alex", href: "/ask" },
-  { label: "Donate", href: "/donate" },
   { label: "Contact", href: "/contact" }
 ];
 
@@ -25,7 +24,6 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
   {
     heading: "Get Involved",
     links: [
-      { label: "Donate", href: "/donate" },
       { label: "Volunteer", href: "/volunteer" },
       { label: "Ask a question", href: "/ask" },
       { label: "RSVP to events", href: "/events" }

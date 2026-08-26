@@ -1,26 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-const donationTiers = [
-  { amount: "$10", featured: false },
-  { amount: "$25", featured: true },
-  { amount: "$50", featured: false },
-  { amount: "$100", featured: false },
-  { amount: "$250", featured: false },
-  { amount: "Other", featured: false }
-];
 
 export function CTASection() {
   const ref = useRef<HTMLElement | null>(null);
@@ -28,7 +17,7 @@ export function CTASection() {
   useGSAP(
     () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set("[data-reveal], [data-tier]", { opacity: 1, y: 0 });
+        gsap.set("[data-reveal]", { opacity: 1, y: 0 });
         return;
       }
 
@@ -44,23 +33,6 @@ export function CTASection() {
           scrollTrigger: {
             trigger: ref.current,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-
-      gsap.fromTo(
-        "[data-tier]",
-        { opacity: 0, y: 14 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "expo.out",
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 72%",
             toggleActions: "play none none none"
           }
         }
@@ -94,8 +66,8 @@ export function CTASection() {
                 className="block"
                 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
               >
-                Campaigns are won at the{" "}
-                <em className="italic text-brand-red">door</em>.
+                Súmate a construir el futuro de{" "}
+                <em className="italic text-brand-red">Yanahuara</em>.
               </span>
             </h2>
 
@@ -103,68 +75,34 @@ export function CTASection() {
               data-reveal
               className="mt-8 max-w-xl text-[18px] leading-[1.55] text-foreground/70"
             >
-              Every volunteer shift. Every $5 contribution. Every
-              conversation with a neighbor. That&rsquo;s how we win this
-              seat.
+              Every volunteer shift. Every conversation with a neighbor.
+              That&rsquo;s how we win this seat.
             </p>
-
-            <div
-              data-reveal
-              className="mt-12 border-t border-foreground/15 pt-8"
-            >
-              <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
-                <span className="font-display italic text-brand-red">01</span>
-                <span className="h-px w-8 bg-foreground/25" />
-                <span>Quick donate</span>
-                <span className="hidden h-px flex-1 bg-foreground/15 sm:block" />
-                <span className="hidden sm:inline">Secure · ActBlue</span>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-2.5 sm:gap-3">
-                {donationTiers.map((tier) => (
-                  <Link
-                    key={tier.amount}
-                    href="/donate"
-                    data-tier
-                    className={cn(
-                      "group inline-flex h-12 items-center justify-center rounded-full border px-7 font-display text-[16px] leading-none transition-colors duration-300",
-                      tier.featured
-                        ? "border-foreground bg-foreground text-brand-cream"
-                        : "border-foreground/20 bg-transparent text-foreground hover:border-foreground hover:bg-foreground/[0.04]"
-                    )}
-                  >
-                    <span className="block translate-y-[1px] leading-none">
-                      {tier.amount}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
 
             <div
               data-reveal
               className="mt-10 border-t border-foreground/15 pt-8"
             >
               <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
-                <span className="font-display italic text-brand-red">02</span>
+                <span className="font-display italic text-brand-red">01</span>
                 <span className="h-px w-8 bg-foreground/25" />
-                <span>Or lend your voice</span>
+                <span>Participa</span>
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <MagneticButton
-                  href="/donate"
+                  href="/volunteer"
                   variant="solid"
                   size="lg"
                 >
-                  Chip in now
+                  Quiero sumarme
                 </MagneticButton>
                 <MagneticButton
-                  href="/volunteer"
+                  href="/ask"
                   variant="ghost"
                   size="lg"
                 >
-                  Volunteer
+                  Quiero hacer una pregunta
                 </MagneticButton>
               </div>
             </div>

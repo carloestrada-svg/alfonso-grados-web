@@ -158,12 +158,12 @@ export function Navbar() {
           />
 
           <MagneticButton
-            href="/donate"
+            href="/volunteer"
             variant="invert"
             size="md"
             className="hidden sm:inline-flex"
           >
-            Donate
+            Súmate
           </MagneticButton>
 
           <div className="lg:hidden">
