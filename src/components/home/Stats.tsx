@@ -123,8 +123,8 @@ export function Stats() {
               <span>The Campaign</span>
             </div>
             <p className="max-w-[22rem] text-[15px] leading-[1.6] text-brand-cream/60">
-              No corporate PACs. No Super PAC coordination. Just people
-              chipping in what they can — average donation $28.
+              A grassroots movement powered by volunteers, neighbors, and
+              community members working together across the state.
             </p>
           </div>
 
@@ -151,18 +151,15 @@ export function Stats() {
             className="absolute inset-x-0 top-0 h-px origin-left bg-brand-cream/20"
           />
 
-          <dl className="grid grid-cols-2 lg:grid-cols-4">
+          <dl className="grid grid-cols-1 sm:grid-cols-3">
             {candidate.stats.map((s, i) => (
               <div
                 key={s.label}
                 data-stat
                 className={cn(
                   "flex flex-col gap-6 px-6 py-10 lg:px-8 lg:py-14",
-                  (i === 0 || i === 2) &&
-                    "border-r border-brand-cream/15",
-                  i !== 3 && "lg:border-r lg:border-brand-cream/15",
-                  (i === 0 || i === 1) &&
-                    "border-b border-brand-cream/15 lg:border-b-0"
+                  i !== candidate.stats.length - 1 &&
+                    "border-b border-brand-cream/15 sm:border-b-0 sm:border-r"
                 )}
               >
                 <dt className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-brand-cream/55">

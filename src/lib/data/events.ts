@@ -37,17 +37,6 @@ export const events: CampaignEvent[] = [
     rsvpUrl: "#rsvp"
   },
   {
-    id: "sf-fundraiser",
-    title: "San Francisco Grassroots Fundraiser",
-    date: "2026-05-16",
-    time: "7:00 PM",
-    city: "San Francisco",
-    venue: "The Chapel, 777 Valencia Street",
-    description:
-      "Grassroots fundraiser with special guests. Suggested contribution $50 — no one turned away for lack of funds.",
-    rsvpUrl: "#rsvp"
-  },
-  {
     id: "fresno-roundtable",
     title: "Central Valley Farmworker Roundtable",
     date: "2026-05-22",
@@ -78,17 +67,6 @@ export const events: CampaignEvent[] = [
     venue: "Embarcadero Marina Park North",
     description:
       "Outdoor rally with local leaders, union members, and special musical guests. Bring friends, family, and sunscreen.",
-    rsvpUrl: "#rsvp"
-  },
-  {
-    id: "long-beach-fundraiser",
-    title: "Long Beach House Party",
-    date: "2026-06-11",
-    time: "7:00 PM",
-    city: "Long Beach",
-    venue: "Private residence (address on RSVP)",
-    description:
-      "Intimate living-room fundraiser hosted by the Delgado family. Suggested contribution $100 — no one turned away.",
     rsvpUrl: "#rsvp"
   },
   {

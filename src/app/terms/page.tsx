@@ -7,7 +7,7 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Terms of service for morganforsenate.com — campaign site usage, donations, and user content."
+    "Terms of service for morganforsenate.com — campaign site usage and user content."
 };
 
 const heroMeta = [
@@ -25,7 +25,7 @@ export default function TermsPage() {
         index="00"
         title="Terms & Conditions."
         emphasis="Conditions"
-        description="The rules of the road for using this campaign site — donations, user-submitted content, and the fine print."
+        description="The rules of the road for using this campaign site — user-submitted content and the fine print."
         subtitle="By using morganforsenate.com, you agree to these terms. If anything's unclear, email us."
         meta={heroMeta}
       />
@@ -51,7 +51,7 @@ export default function TermsPage() {
         <p>
           You may use the site for personal, non-commercial purposes related
           to the campaign: reading about Alex, signing up to volunteer,
-          RSVP&rsquo;ing to events, submitting questions, and donating.
+          RSVP&rsquo;ing to events, and submitting questions.
         </p>
         <p>
           You may not attempt to disrupt the site, submit false information,
@@ -62,26 +62,8 @@ export default function TermsPage() {
 
       <LegalSection
         index="03"
-        label="Donations"
-        title="About campaign contributions."
-      >
-        <p>
-          Donations are processed through ActBlue. By donating you certify
-          that you are a U.S. citizen or permanent resident, at least 18
-          years old, using personal funds (not reimbursed by another
-          person), and not a federal contractor.
-        </p>
-        <p>
-          Donations are subject to federal election law. Contributions to
-          political campaigns are not tax-deductible.
-        </p>
-      </LegalSection>
-
-      <LegalSection
-        index="04"
         label="Your content"
         title="What you submit through our forms."
-        bg="cream"
       >
         <p>
           When you submit a question, message, volunteer application, or
@@ -93,9 +75,10 @@ export default function TermsPage() {
       </LegalSection>
 
       <LegalSection
-        index="05"
+        index="04"
         label="Content on the site"
         title="Copyright and marks."
+        bg="cream"
       >
         <p>
           All content on this site — text, photos, logos, graphics, and
@@ -107,10 +90,9 @@ export default function TermsPage() {
       </LegalSection>
 
       <LegalSection
-        index="06"
+        index="05"
         label="Disclaimers"
         title="What we can't guarantee."
-        bg="cream"
       >
         <p>
           The site is provided &ldquo;as is&rdquo;. We work hard to keep it
@@ -122,9 +104,10 @@ export default function TermsPage() {
       </LegalSection>
 
       <LegalSection
-        index="07"
+        index="06"
         label="Changes"
         title="We may update these terms."
+        bg="cream"
       >
         <p>
           We may update these terms from time to time. Material changes will
@@ -135,10 +118,9 @@ export default function TermsPage() {
       </LegalSection>
 
       <LegalSection
-        index="08"
+        index="07"
         label="Contact"
         title="Questions about these terms."
-        bg="cream"
       >
         <p>
           For questions, write to us at{" "}

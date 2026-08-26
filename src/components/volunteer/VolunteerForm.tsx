@@ -21,7 +21,6 @@ import { CA_COUNTIES, CA_REGIONS } from "@/lib/data/california";
 import { formatPhoneInput } from "@/lib/phone";
 
 const helpChoices = [
-  { value: "Host a Fundraiser", label: "Host a fundraiser" },
   { value: "Phone Banking", label: "Phone banking" },
   { value: "Volunteer Coordination", label: "Volunteer coordination" },
   { value: "Digital/Social Media", label: "Digital / social media" },

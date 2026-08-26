@@ -83,7 +83,7 @@ export const SMS_CONSENT_UPDATES =
   "By checking this box, I consent to receive campaign updates from Alex Morgan for Senate via automated text messages at the phone number provided. Message frequency may vary. Message and data rates may apply. Text STOP to opt out or HELP for help. View our Privacy Policy and Terms of Service.";
 
 export const SMS_CONSENT_PROMO =
-  "By checking this box, I consent to receive promotional messages, event invitations, and fundraising communications from Alex Morgan for Senate via automated text messages. Message frequency may vary. Message and data rates may apply. Text STOP to opt out or HELP for help.";
+  "By checking this box, I consent to receive promotional messages and event invitations from Alex Morgan for Senate via automated text messages. Message frequency may vary. Message and data rates may apply. Text STOP to opt out or HELP for help.";
 
 // ------------------------------------------------------------------
 // Events — GHL Custom Object (custom_objects.events)

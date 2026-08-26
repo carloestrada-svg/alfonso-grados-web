@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           {candidate.fullName} for {candidate.office} (&ldquo;we&rdquo;,
           &ldquo;the campaign&rdquo;) respects your privacy. We collect only
           the information we need to run a campaign — contact you about
-          events, process donations, and match volunteers with shifts.
+          events and match volunteers with shifts.
         </p>
         <p>
           We do not sell your personal information. We do not share it with
@@ -58,8 +58,7 @@ export default function PrivacyPage() {
             "Name and email address",
             "Phone number and zip code (for field organizing)",
             "City and availability (for volunteer matching)",
-            "Questions, notes, or messages you submit",
-            "Donation amount and billing information (processed via ActBlue)"
+            "Questions, notes, or messages you submit"
           ].map((item) => (
             <li key={item} className="flex items-start gap-3">
               <span className="mt-[0.7em] h-px w-4 shrink-0 bg-brand-red" />
@@ -72,8 +71,7 @@ export default function PrivacyPage() {
       <LegalSection index="03" label="How we use it" title="What we do with your data.">
         <p>
           Information is used to run the campaign: to contact you about
-          events and volunteer opportunities, to answer your questions, to
-          process donations in compliance with federal election law, and to
+          events and volunteer opportunities, to answer your questions, and to
           match volunteers with field shifts in their area.
         </p>
         <p>
@@ -90,12 +88,10 @@ export default function PrivacyPage() {
       >
         <p>
           We share information with service providers who help us run the
-          campaign (ActBlue for donations, email providers, hosting) under
-          strict confidentiality agreements. Federal law may require us to
-          report donor information to the Federal Election Commission —
-          donors of over $200 are reported publicly as required.
+          campaign (email providers, hosting) under strict confidentiality
+          agreements.
         </p>
-        <p>We do not sell your information. We do not trade donor lists.</p>
+        <p>We do not sell your information.</p>
         <p>
           Text Messaging Opt-In Data: We will not share or sell your text
           messaging opt-in data, consent, or related personal information

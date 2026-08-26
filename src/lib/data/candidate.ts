@@ -31,8 +31,7 @@ export const candidate = {
   stats: [
     { value: "120K+", label: "Doors knocked" },
     { value: "58", label: "Counties visited" },
-    { value: "14,200", label: "Volunteers" },
-    { value: "$6.4M", label: "Grassroots-raised" }
+    { value: "14,200", label: "Volunteers" }
   ]
 } as const;
 
