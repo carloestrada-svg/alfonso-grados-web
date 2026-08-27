@@ -61,12 +61,9 @@ export function NewsletterForm() {
 
   if (submitted) {
     return (
-      <div className="flex items-center gap-3 border-b border-brand-red/50 pb-5 text-[15px] text-white/85">
+      <div className="flex items-center gap-3 border-b border-brand-red/50 pb-5 text-[15px] text-foreground/85">
         <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-red" />
-        <span>
-          You&rsquo;re in — watch your inbox for the next dispatch from the
-          trail.
-        </span>
+        <span>Listo. Revisa tu correo para recibir las próximas novedades.</span>
       </div>
     );
   }
@@ -80,21 +77,21 @@ export function NewsletterForm() {
     >
       <label
         htmlFor="newsletter-email"
-        className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-white/45"
+        className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55"
       >
         <span className="font-display italic text-brand-red">→</span>
-        <span>Email address</span>
+        <span>Correo electrónico</span>
       </label>
 
-      <div className="mt-3 flex items-end border-b border-white/25 pb-3 transition-colors focus-within:border-white">
+      <div className="mt-3 flex items-end border-b border-foreground/20 pb-3 transition-colors focus-within:border-foreground">
         <input
           id="newsletter-email"
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          className="flex-1 bg-transparent font-display text-[1.3rem] leading-none text-white placeholder:text-white/30 outline-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 sm:text-[1.5rem]"
+          placeholder="tu@correo.com"
+          className="flex-1 bg-transparent font-display text-[1.3rem] leading-none text-foreground placeholder:text-foreground/30 outline-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 sm:text-[1.5rem]"
         />
       </div>
 
@@ -102,7 +99,7 @@ export function NewsletterForm() {
         <button
           ref={btnRef}
           type="submit"
-          className="group relative inline-flex items-center gap-4 rounded-full border border-white bg-white pl-6 pr-5 py-2.5 text-[16px] font-medium tracking-tight text-brand-navy transition-colors duration-500 hover:border-brand-cream hover:bg-brand-cream"
+          className="group relative inline-flex items-center gap-4 rounded-full border border-brand-black bg-brand-black pl-6 pr-5 py-2.5 text-[16px] font-medium tracking-tight text-white transition-colors duration-500 hover:border-black/85 hover:bg-black/85"
         >
           <span
             aria-hidden
@@ -113,13 +110,13 @@ export function NewsletterForm() {
               ref={labelTop}
               className="inline-flex h-[1.4em] items-center leading-none will-change-transform"
             >
-              Subscribe
+              Suscribirme
             </span>
             <span
               ref={labelBot}
               className="absolute left-0 top-0 inline-flex h-[1.4em] items-center leading-none will-change-transform"
             >
-              Subscribe
+              Suscribirme
             </span>
           </span>
 
@@ -159,8 +156,8 @@ export function NewsletterForm() {
           </span>
         </button>
 
-        <p className="text-[13px] leading-relaxed text-white/40">
-          No spam. Unsubscribe anytime.
+        <p className="text-[13px] leading-relaxed text-foreground/50">
+          Sin spam. Puedes cancelar cuando quieras.
         </p>
       </div>
     </form>

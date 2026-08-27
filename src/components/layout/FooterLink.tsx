@@ -53,13 +53,13 @@ export function FooterLink({ href, label }: Props) {
     >
       <span
         ref={topRef}
-        className="inline-flex h-[1.2em] items-center will-change-transform"
+        className="inline-flex h-[1.2em] items-center will-change-transform font-medium"
       >
         {label}
       </span>
       <span
         ref={botRef}
-        className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform"
+        className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform font-medium text-brand-red"
       >
         {label}
       </span>
@@ -73,7 +73,7 @@ export function FooterLink({ href, label }: Props) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-baseline text-[16px] text-white/70 transition-colors hover:text-white"
+        className="inline-flex items-baseline text-[15px] font-medium text-black/75 transition-colors hover:text-brand-red"
       >
         {content}
       </a>
@@ -84,7 +84,7 @@ export function FooterLink({ href, label }: Props) {
     <Link
       ref={rootRef}
       href={href}
-      className="inline-flex items-baseline text-[16px] text-white/70 transition-colors hover:text-white"
+      className="inline-flex items-baseline text-[15px] font-medium text-black/75 transition-colors hover:text-brand-red"
     >
       {content}
     </Link>
