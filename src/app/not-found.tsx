@@ -3,10 +3,10 @@ import Link from "next/link";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const suggestions = [
-  { label: "Home", href: "/" },
-  { label: "Events", href: "/events" },
-  { label: "Volunteer", href: "/volunteer" },
-  { label: "Contact", href: "/contact" }
+  { label: "Inicio", href: "/" },
+  { label: "Agenda", href: "/events" },
+  { label: "Súmate", href: "/volunteer" },
+  { label: "Contacto", href: "/contact" }
 ];
 
 export default function NotFound() {
@@ -27,12 +27,11 @@ export default function NotFound() {
               className="font-display font-normal leading-[1] tracking-[-0.02em] text-foreground"
               style={{ fontSize: "clamp(2rem, 4.2vw, 3rem)" }}
             >
-              Not found.
+              Página no encontrada.
             </h2>
 
             <p className="max-w-[22rem] text-[16px] leading-[1.6] text-foreground/65">
-              The page you&rsquo;re looking for either moved or never
-              existed. No campaign is perfect.
+              La página que buscas cambió de dirección o ya no está disponible.
             </p>
           </div>
 
@@ -42,27 +41,27 @@ export default function NotFound() {
                 className="block"
                 style={{ fontSize: "clamp(2.5rem, 6.5vw, 4.75rem)" }}
               >
-                Can&rsquo;t find{" "}
-                <em className="italic text-brand-red">that one</em>.
+                No encontramos{" "}
+                <em className="italic text-brand-red">esa página</em>.
               </span>
             </h1>
 
             <p className="max-w-xl text-[18px] leading-[1.55] text-foreground/65">
-              Head back to the homepage, or try one of the pages below.
+              Vuelve al inicio o visita una de estas secciones.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
               <MagneticButton href="/" variant="solid" size="lg">
-                Back to home
+                Volver al inicio
               </MagneticButton>
               <MagneticButton href="/events" variant="ghost" size="lg">
-                See upcoming events
+                Ver agenda
               </MagneticButton>
             </div>
 
             <div className="flex flex-col gap-4 border-t border-foreground/15 pt-8">
               <span className="text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
-                Or try —
+                También puedes visitar —
               </span>
               <ul className="flex flex-wrap gap-x-8 gap-y-3">
                 {suggestions.map((s, i) => (
