@@ -52,33 +52,36 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${candidate.fullName} for ${candidate.office} — ${candidate.tagline}`,
-    template: `%s · ${candidate.lastName} for Senate`
+    default: `${candidate.fullName} · ${candidate.office} — ${candidate.tagline}`,
+    template: `%s · ${candidate.fullName}`
   },
   description: candidate.mission,
-  applicationName: `${candidate.lastName} for Senate`,
+  applicationName: `${candidate.fullName} · ${candidate.office}`,
   keywords: [
     candidate.fullName,
     candidate.office,
-    candidate.state,
-    "election",
-    "campaign",
-    "senate",
-    "democrat",
-    "progressive"
+    candidate.district,
+    candidate.region,
+    candidate.country,
+    "alcalde",
+    "municipalidad",
+    "Yanahuara",
+    "Arequipa",
+    "elecciones",
+    "campaña"
   ],
   authors: [{ name: candidate.fullName }],
   openGraph: {
-    title: `${candidate.fullName} for ${candidate.office}`,
+    title: `${candidate.fullName} · ${candidate.office}`,
     description: candidate.mission,
     url: siteUrl,
-    siteName: `${candidate.lastName} for Senate`,
+    siteName: `${candidate.fullName} · ${candidate.office}`,
     locale: "es_PE",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: `${candidate.fullName} for ${candidate.office}`,
+    title: `${candidate.fullName} · ${candidate.office}`,
     description: candidate.mission
   },
   robots: {

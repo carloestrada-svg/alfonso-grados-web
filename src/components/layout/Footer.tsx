@@ -68,8 +68,8 @@ export function Footer() {
             </Link>
 
             <p className="max-w-sm text-[15px] leading-[1.6] text-white/60">
-              {candidate.fullName}, candidate for {candidate.office} ·{" "}
-              {candidate.state}. {candidate.contact.address}
+              {candidate.fullName}, candidato a {candidate.office} ·{" "}
+              {candidate.region}, {candidate.country}.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-[15px] text-white/70">

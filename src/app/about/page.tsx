@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 const heroMeta = [
-  { label: "Role", value: "Candidate" },
-  { label: "Office", value: "U.S. Senate" },
-  { label: "State", value: candidate.state },
-  { label: "Cycle", value: "2026" }
+  { label: "Cargo", value: "Candidato" },
+  { label: "Puesto", value: candidate.office },
+  { label: "Distrito", value: candidate.district },
+  { label: "Elecciones", value: "2026" }
 ];
 
 export default function AboutPage() {
