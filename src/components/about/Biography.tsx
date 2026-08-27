@@ -12,8 +12,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const pullQuote =
-  "Washington has forgotten the people who built this country.";
+const pullQuote = "El Sol volverá a brillar en Yanahuara.";
 
 export function Biography() {
   const ref = useRef<HTMLElement | null>(null);
@@ -131,7 +130,7 @@ export function Biography() {
           >
             <span className="tabular-nums">01</span>
             <span className="h-px w-8 bg-foreground/25" />
-            <span>Biography</span>
+            <span>Biografía</span>
           </div>
 
           <div data-reveal>
@@ -140,8 +139,8 @@ export function Biography() {
                 className="block"
                 style={{ fontSize: "clamp(2rem, 4.8vw, 3.1rem)" }}
               >
-                Twenty years of{" "}
-                <em className="italic text-brand-red">showing up</em>.
+                Una vida ligada a{" "}
+                <em className="italic text-brand-red">Yanahuara</em>.
               </span>
             </h2>
           </div>
@@ -156,12 +155,11 @@ export function Biography() {
                 style={{ clipPath: "inset(0 0 0 0)" }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80"
-                  alt={candidate.fullName}
+                  src="/images/campaign/alfonso-retrato-web.webp"
+                  alt="Alfonso Grados, candidato a alcalde de Yanahuara"
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover transition-all ease-out group-hover:scale-[1.04] will-change-transform [transition-duration:1200ms]"
-                  style={{ filter: "grayscale(20%)" }}
+                  className="object-cover object-top transition-all ease-out group-hover:scale-[1.04] will-change-transform [transition-duration:1200ms]"
                 />
                 <div
                   aria-hidden
@@ -185,7 +183,7 @@ export function Biography() {
                   <span className="font-display italic text-brand-red">01</span>
                   <span>{candidate.fullName}</span>
                 </span>
-                <span>Sacramento · 2026</span>
+                <span>Yanahuara · 2026</span>
               </figcaption>
             </figure>
           </aside>
@@ -225,7 +223,7 @@ export function Biography() {
             >
               <span className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                 <span className="font-display italic text-brand-red">—</span>
-                <span>In her own words</span>
+                <span>Lema de campaña</span>
               </span>
               <p
                 className="font-display font-normal italic leading-[1.18] tracking-[-0.01em] text-foreground"

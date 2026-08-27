@@ -33,32 +33,50 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
 
 export const timeline: { year: string; title: string; description: string }[] = [
   {
-    year: "2026",
-    title: "Alcalde de Yanahuara",
+    year: "Yanahuara",
+    title: "Vecino de toda la vida",
     description:
-      "Candidatura comprometida con el desarrollo, la seguridad y el bienestar de los vecinos de Yanahuara."
+      "Nació, creció, estudió y ha desarrollado su vida en Yanahuara."
+  },
+  {
+    year: "14 años",
+    title: "Comunicación al servicio de Arequipa",
+    description:
+      "Fue conductor de noticias de Panamericana Televisión en Arequipa, en espacios como Buenos Días Perú y 24 Horas — Edición Central."
+  },
+  {
+    year: "Gestión pública",
+    title: "Experiencia en el sector público",
+    description:
+      "Se desempeñó como asesor, conociendo de cerca la gestión y los desafíos que enfrentan los ciudadanos."
+  },
+  {
+    year: "2026",
+    title: "Candidato a alcalde de Yanahuara",
+    description:
+      "Postula con el compromiso de poner su experiencia, preparación y vocación de servicio al trabajo por el distrito."
   }
 ];
 
 export const values: { title: string; description: string }[] = [
   {
-    title: "Cercanía",
+    title: "Integridad",
     description:
-      "Una gestión de puertas abiertas para escuchar y atender a cada vecino de Yanahuara."
+      "Actuar con honestidad, transparencia y coherencia en cada decisión."
   },
   {
-    title: "Transparencia",
+    title: "Preparación",
     description:
-      "Cuentas claras y honestidad en cada acción por el bienestar de nuestro distrito."
+      "Poner la experiencia profesional y el conocimiento de la gestión pública al servicio del distrito."
   },
   {
-    title: "Compromiso",
+    title: "Responsabilidad",
     description:
-      "Trabajo constante y dedicación para que Yanahuara recupere su brillo y tranquilidad."
+      "Cumplir los compromisos, cuidar los recursos municipales y responder ante los vecinos."
   },
   {
     title: "Vocación de servicio",
     description:
-      "El Sol volverá a brillar en Yanahuara con un liderazgo al servicio de toda la comunidad."
+      "Escuchar, atender y trabajar por el bienestar de todos los vecinos de Yanahuara."
   }
 ];

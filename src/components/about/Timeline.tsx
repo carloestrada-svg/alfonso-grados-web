@@ -37,14 +37,14 @@ function TimelineEvent({ index, year, title, description }: EventProps) {
 
       const onEnter = () => {
         gsap.to(y, {
-          color: "#C8102E",
+          color: "#E4221E",
           fontStyle: "italic",
           duration: 0.5,
           ease: "expo.out"
         });
         gsap.to(t, {
           x: 6,
-          color: "#C8102E",
+          color: "#E4221E",
           duration: 0.5,
           ease: "expo.out"
         });
@@ -57,14 +57,14 @@ function TimelineEvent({ index, year, title, description }: EventProps) {
       };
       const onLeave = () => {
         gsap.to(y, {
-          color: "#0A1F44",
+          color: "#0A0A0A",
           fontStyle: "normal",
           duration: 0.5,
           ease: "expo.out"
         });
         gsap.to(t, {
           x: 0,
-          color: "#0A1F44",
+          color: "#0A0A0A",
           duration: 0.5,
           ease: "expo.out"
         });
@@ -181,11 +181,10 @@ export function Timeline() {
             <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">02</span>
               <span className="h-px w-8 bg-foreground/25" />
-              <span>Career</span>
+              <span>Trayectoria</span>
             </div>
             <p className="max-w-[22rem] text-[15px] leading-[1.6] text-foreground/60">
-              From the line at a Berkeley kitchen to the floor of the
-              California Assembly.
+              Comunicación, experiencia pública y compromiso con Yanahuara.
             </p>
           </div>
 
@@ -195,8 +194,8 @@ export function Timeline() {
                 className="block"
                 style={{ fontSize: "clamp(2rem, 4.8vw, 3.1rem)" }}
               >
-                A record of{" "}
-                <em className="italic text-brand-red">results</em>.
+                Experiencia puesta al{" "}
+                <em className="italic text-brand-red">servicio del distrito</em>.
               </span>
             </h2>
           </div>

@@ -43,7 +43,7 @@ function CommitmentCard({ title, description, columnIndex }: CardProps) {
         });
         gsap.to(r, {
           x: 8,
-          color: "#C8102E",
+          color: "#E4221E",
           duration: 0.6,
           ease: "expo.out"
         });
@@ -63,7 +63,7 @@ function CommitmentCard({ title, description, columnIndex }: CardProps) {
         });
         gsap.to(r, {
           x: 0,
-          color: "#0A1F44",
+          color: "#0A0A0A",
           duration: 0.6,
           ease: "expo.out"
         });
@@ -86,7 +86,6 @@ function CommitmentCard({ title, description, columnIndex }: CardProps) {
   );
 
   const isRightCol = columnIndex === 1 || columnIndex === 3;
-  const predicate = title.charAt(0).toLowerCase() + title.slice(1);
 
   return (
     <article
@@ -112,13 +111,13 @@ function CommitmentCard({ title, description, columnIndex }: CardProps) {
           ref={pronounRef}
           className="mr-[0.18em] inline-block origin-right italic text-brand-red will-change-transform"
         >
-          I
+          —
         </span>
         <span
           ref={restRef}
           className="inline-block will-change-[transform,color]"
         >
-          {predicate}.
+          {title}.
         </span>
       </h3>
 
@@ -184,23 +183,19 @@ export function Values() {
             <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">03</span>
               <span className="h-px w-8 bg-foreground/25" />
-              <span>Principles</span>
+              <span>Valores</span>
             </div>
             <p className="max-w-[22rem] text-[15px] leading-[1.6] text-foreground/60">
-              Four commitments. Twenty years of public service behind them.
-              Hold me to them.
+              Cuatro principios que orientan su forma de trabajar y servir.
             </p>
           </div>
 
           <div data-reveal className="flex flex-col gap-2 self-end">
-            <span className="text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/45">
-              In her own words,
-            </span>
             <span
               className="font-display italic leading-none text-foreground/80"
               style={{ fontSize: "clamp(1.65rem, 2.8vw, 2.2rem)" }}
             >
-              Alex Morgan
+              Compromiso con Yanahuara
             </span>
           </div>
         </div>
