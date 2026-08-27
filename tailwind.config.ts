@@ -55,20 +55,31 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))"
         },
         brand: {
-          navy: "#0A1F44",
-          red: "#C8102E",
-          cream: "#F4F1EA",
-          gold: "#C9A227"
+          yellow: "#F9D500",
+          red: "#E4221E",
+          "yellow-light": "#EEEC98",
+          black: "#0A0A0A",
+          white: "#FFFFFF",
+          navy: "#0A0A0A",
+          cream: "#FAFAF5",
+          gold: "#F9D500"
         }
       },
       fontFamily: {
         sans: [
-          "var(--font-sans)",
+          "var(--font-myriad)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif"
         ],
-        display: ["var(--font-display)", "Georgia", "serif"]
+        display: [
+          "var(--font-gotham)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif"
+        ],
+        gotham: ["var(--font-gotham)", "ui-sans-serif", "sans-serif"],
+        myriad: ["var(--font-myriad)", "ui-sans-serif", "sans-serif"]
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,11 +88,11 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-pattern":
-          "linear-gradient(to right, rgba(10,31,68,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(10,31,68,0.06) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(10,10,10,0.06) 1px, transparent 1px)",
         "radial-fade":
-          "radial-gradient(ellipse at top, rgba(200,16,46,0.15), transparent 60%)",
+          "radial-gradient(ellipse at top, rgba(228,34,30,0.15), transparent 60%)",
         "mesh":
-          "radial-gradient(at 12% 18%, rgba(10,31,68,0.22) 0px, transparent 45%), radial-gradient(at 88% 12%, rgba(200,16,46,0.18) 0px, transparent 50%), radial-gradient(at 72% 82%, rgba(201,162,39,0.18) 0px, transparent 45%)"
+          "radial-gradient(at 12% 18%, rgba(10,10,10,0.15) 0px, transparent 45%), radial-gradient(at 88% 12%, rgba(228,34,30,0.18) 0px, transparent 50%), radial-gradient(at 72% 82%, rgba(249,213,0,0.2) 0px, transparent 45%)"
       },
       keyframes: {
         "accordion-down": {

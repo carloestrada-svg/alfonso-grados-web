@@ -4,65 +4,65 @@
 
 @layer base {
   :root {
-    --background: 40 27% 96%;
-    --foreground: 222 47% 11%;
+    --background: 59 30% 98%;
+    --foreground: 0 0% 6%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 6%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 6%;
 
-    --primary: 222 68% 15%;
-    --primary-foreground: 40 27% 96%;
+    --primary: 51 100% 49%;
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 51 100% 96%;
+    --secondary-foreground: 0 0% 6%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 40%;
+    --muted: 59 20% 94%;
+    --muted-foreground: 0 0% 38%;
 
-    --accent: 210 40% 94%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 51 90% 92%;
+    --accent-foreground: 0 0% 6%;
 
-    --destructive: 352 79% 43%;
+    --destructive: 1 78% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 88%;
-    --input: 220 13% 88%;
-    --ring: 352 79% 43%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 1 78% 51%;
 
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222 47% 8%;
-    --foreground: 40 27% 96%;
+    --background: 0 0% 4%;
+    --foreground: 59 30% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 40 27% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 59 30% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 40 27% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 59 30% 98%;
 
-    --primary: 40 27% 96%;
-    --primary-foreground: 222 68% 15%;
+    --primary: 51 100% 49%;
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 40 27% 96%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 59 30% 98%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 40 27% 96%;
+    --accent: 0 0% 14%;
+    --accent-foreground: 59 30% 98%;
 
-    --destructive: 352 79% 48%;
+    --destructive: 1 78% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 352 79% 48%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 1 78% 51%;
   }
 }
 
@@ -84,7 +84,7 @@
     letter-spacing: -0.015em;
   }
   ::selection {
-    background-color: hsl(352 79% 43% / 0.2);
+    background-color: hsl(1 78% 51% / 0.2);
   }
   :focus-visible {
     @apply outline-none ring-2 ring-brand-red ring-offset-2 ring-offset-background;
@@ -108,9 +108,9 @@
   .text-gradient-brand {
     background-image: linear-gradient(
       90deg,
-      #0a1f44 0%,
-      #c8102e 45%,
-      #c9a227 100%
+      #0a0a0a 0%,
+      #e4221e 45%,
+      #f9d500 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -120,9 +120,9 @@
   .text-gradient-shimmer {
     background-image: linear-gradient(
       90deg,
-      #0a1f44 0%,
-      #c8102e 50%,
-      #0a1f44 100%
+      #0a0a0a 0%,
+      #e4221e 50%,
+      #0a0a0a 100%
     );
     background-size: 200% 100%;
     -webkit-background-clip: text;
@@ -131,19 +131,19 @@
   }
 
   .bento-gradient-navy {
-    background: linear-gradient(135deg, #0a1f44 0%, #14325f 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   }
 
   .bento-gradient-red {
-    background: linear-gradient(135deg, #c8102e 0%, #9e0c24 100%);
+    background: linear-gradient(135deg, #e4221e 0%, #b81512 100%);
   }
 
   .bento-gradient-cream {
-    background: linear-gradient(135deg, #f8f5ee 0%, #efe9dc 100%);
+    background: linear-gradient(135deg, #fdfdf8 0%, #f7f6e8 100%);
   }
 
   .bento-gradient-gold {
-    background: linear-gradient(135deg, #c9a227 0%, #a8871a 100%);
+    background: linear-gradient(135deg, #f9d500 0%, #d8b800 100%);
   }
 
   .noise-overlay {

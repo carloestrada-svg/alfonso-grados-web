@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,16 +8,42 @@ import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
 
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const gotham = localFont({
+  src: [
+    {
+      path: "../../public/fonts/gotham-bold.otf",
+      weight: "700",
+      style: "normal"
+    },
+    {
+      path: "../../public/fonts/gotham-ultra.otf",
+      weight: "900",
+      style: "normal"
+    }
+  ],
+  variable: "--font-gotham",
   display: "swap"
 });
 
-const display = Source_Serif_4({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
+const myriadPro = localFont({
+  src: [
+    {
+      path: "../../public/fonts/myriad-pro-regular.otf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "../../public/fonts/myriad-pro-semibold-semicondensed-italic.otf",
+      weight: "600",
+      style: "italic"
+    },
+    {
+      path: "../../public/fonts/myriad-pro-black.otf",
+      weight: "900",
+      style: "normal"
+    }
+  ],
+  variable: "--font-myriad",
   display: "swap"
 });
 
@@ -47,7 +73,7 @@ export const metadata: Metadata = {
     description: candidate.mission,
     url: siteUrl,
     siteName: `${candidate.lastName} for Senate`,
-    locale: "en_US",
+    locale: "es_PE",
     type: "website"
   },
   twitter: {
@@ -67,8 +93,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F4F1EA" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A1F44" }
+    { media: "(prefers-color-scheme: light)", color: "#F9D500" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" }
   ],
   width: "device-width",
   initialScale: 1
@@ -80,7 +106,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable}`}>
+    <html lang="es" className={`${myriadPro.variable} ${gotham.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <a
           href="#main-content"

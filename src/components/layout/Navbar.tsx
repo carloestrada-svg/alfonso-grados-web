@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -10,7 +11,6 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MobileNav } from "./MobileNav";
 import { cn } from "@/lib/utils";
 import { primaryNav } from "@/lib/data/navigation";
-import { candidate } from "@/lib/data/candidate";
 
 type NavLinkProps = {
   href: string;
@@ -56,14 +56,14 @@ function NavLink({ href, label, active }: NavLinkProps) {
       ref={rootRef}
       href={href}
       className={cn(
-        "relative inline-flex items-center gap-2 px-3 py-2 text-[14.5px] font-medium tracking-tight transition-colors",
-        active ? "text-white" : "text-white/60 hover:text-white"
+        "relative inline-flex items-center gap-2 px-3 py-2 text-[14.5px] font-bold tracking-tight transition-colors",
+        active ? "text-brand-black" : "text-brand-black/75 hover:text-brand-black"
       )}
     >
       <span
         aria-hidden
         className={cn(
-          "h-1 w-1 rounded-full transition-all duration-300",
+          "h-1.5 w-1.5 rounded-full transition-all duration-300",
           active ? "bg-brand-red opacity-100" : "bg-brand-red opacity-0"
         )}
       />
@@ -74,13 +74,13 @@ function NavLink({ href, label, active }: NavLinkProps) {
       >
         <span
           ref={topRef}
-          className="inline-flex h-[1.2em] items-center will-change-transform"
+          className="inline-flex h-[1.2em] items-center will-change-transform font-bold"
         >
           {label}
         </span>
         <span
           ref={bottomRef}
-          className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform"
+          className="absolute left-0 top-0 inline-flex h-[1.2em] items-center will-change-transform font-bold text-brand-red"
         >
           {label}
         </span>
@@ -104,37 +104,42 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full bg-brand-navy text-white transition-all duration-300",
+        "sticky top-0 z-40 w-full bg-brand-yellow text-brand-black transition-all duration-300",
         scrolled
-          ? "shadow-[0_8px_40px_-12px_rgba(10,31,68,0.5)]"
+          ? "shadow-[0_6px_24px_-4px_rgba(0,0,0,0.12)]"
           : "shadow-none"
       )}
     >
       <div
         aria-hidden
         className={cn(
-          "absolute inset-x-0 bottom-0 h-px bg-white/10 transition-opacity",
+          "absolute inset-x-0 bottom-0 h-px bg-black/10 transition-opacity",
           scrolled ? "opacity-100" : "opacity-0"
         )}
       />
 
       <div
         className={cn(
-          "container flex items-center justify-between gap-10 transition-[height] duration-300",
-          scrolled ? "h-[68px]" : "h-[84px]"
+          "container flex items-center justify-between gap-6 transition-[height] duration-300",
+          scrolled ? "h-[70px]" : "h-[86px]"
         )}
       >
         <Link
           href="/"
-          aria-label={`${candidate.fullName} homepage`}
-          className="group flex items-baseline gap-[3px]"
+          aria-label="Alfonso Grados - Alcalde de Yanahuara"
+          className="group flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.02]"
         >
-          <span className="font-display text-[1.8rem] leading-none tracking-tight text-white">
-            {candidate.lastName}
-          </span>
-          <span className="font-display text-[1.8rem] leading-none text-brand-red">
-            .
-          </span>
+          <Image
+            src="/images/campaign/alfonso-grados-logo.png"
+            alt="Alfonso Grados - Alcalde de Yanahuara"
+            width={390}
+            height={147}
+            priority
+            className={cn(
+              "w-auto object-contain transition-all duration-300",
+              scrolled ? "h-11 sm:h-12" : "h-12 sm:h-14"
+            )}
+          />
         </Link>
 
         <div className="flex items-center gap-6 lg:gap-8">
@@ -154,14 +159,14 @@ export function Navbar() {
 
           <span
             aria-hidden
-            className="hidden h-6 w-px bg-white/15 lg:block"
+            className="hidden h-6 w-px bg-black/15 lg:block"
           />
 
           <MagneticButton
             href="/volunteer"
-            variant="invert"
+            variant="solid"
             size="md"
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex !bg-brand-red !text-white !border-brand-red hover:!bg-[#c81915] font-bold shadow-sm"
           >
             Súmate
           </MagneticButton>
