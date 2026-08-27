@@ -5,16 +5,16 @@ import { LegalSection } from "@/components/shared/LegalSection";
 import { candidate } from "@/lib/data/candidate";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Política de privacidad",
   description:
-    "How the Morgan for Senate campaign collects, uses, and protects your information."
+    `Política de privacidad y protección de datos personales de la campaña de ${candidate.fullName}, candidato a ${candidate.office}.`
 };
 
 const heroMeta = [
-  { label: "Effective", value: "April 22, 2026" },
-  { label: "Last updated", value: "April 22, 2026" },
-  { label: "Contact", value: candidate.contact.email },
-  { label: "Covers", value: "morganforsenate.com" }
+  { label: "Responsable", value: "Campaña Alfonso Grados – Alcalde de Yanahuara" },
+  { label: "Cargo", value: candidate.office },
+  { label: "Distrito", value: candidate.district },
+  { label: "Actualización", value: "Agosto 2026" }
 ];
 
 export default function PrivacyPage() {
@@ -23,42 +23,129 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Legal"
         index="00"
-        title="Privacy Policy."
-        emphasis="Privacy"
-        description="How the campaign collects, uses, stores, and protects your information — written in plain language."
-        subtitle="We only ask for what we need. We never sell your data. Short version up top, full policy below."
+        title="Política de privacidad."
+        emphasis="privacidad"
+        description="Cómo la campaña gestiona la información personal de los ciudadanos que se comunican con nosotros — explicado en lenguaje claro."
+        subtitle="No recopilamos formularios en este sitio. No vendemos datos personales. Esta política explica qué ocurre cuando decides contactarnos."
         meta={heroMeta}
       />
 
-      <LegalSection index="01" label="Overview" title="The short version.">
+      <LegalSection index="01" label="Alcance" title="¿A quién aplica esta política?">
         <p>
-          {candidate.fullName} for {candidate.office} (&ldquo;we&rdquo;,
-          &ldquo;the campaign&rdquo;) respects your privacy. We collect only
-          the information we need to run a campaign — contact you about
-          events and match volunteers with shifts.
+          La presente política de privacidad aplica al sitio web oficial de la
+          campaña <strong>Campaña {candidate.fullName} – {candidate.office}</strong> y
+          describe cómo tratamos la información personal de los ciudadanos que
+          interactúan voluntariamente con nosotros a través de WhatsApp o de las
+          redes sociales de la campaña.
         </p>
         <p>
-          We do not sell your personal information. We do not share it with
-          outside political organizations without consent.
+          La campaña actúa de conformidad con la{" "}
+          <strong>Ley N.º 29733, Ley de Protección de Datos Personales</strong>,
+          y su{" "}
+          <strong>
+            Reglamento aprobado por el Decreto Supremo N.º 016-2024-JUS
+          </strong>
+          .
         </p>
       </LegalSection>
 
       <LegalSection
         index="02"
-        label="What we collect"
-        title="Information we ask you for."
+        label="Qué recibimos"
+        title="Este sitio no recibe ni almacena formularios."
         bg="cream"
       >
         <p>
-          When you sign up, volunteer, RSVP to an event, contact us, or
-          submit a question, we may ask for:
+          Las páginas de voluntariado, preguntas, contacto y novedades de este
+          sitio web <strong>no solicitan ni almacenan datos mediante formularios</strong>.
+        </p>
+        <p>
+          Al navegar por el sitio, los servicios de alojamiento web podrían generar
+          registros técnicos estándar (como dirección IP, tipo de navegador, fecha y
+          hora de acceso) necesarios exclusivamente para garantizar el funcionamiento,
+          rendimiento y la seguridad del sitio. Estos registros no se utilizan para
+          identificar políticamente a los visitantes ni para elaborar perfiles comerciales.
+        </p>
+        <p>
+          Los botones de acción disponibles en las distintas secciones dirigen
+          voluntariamente al usuario a <strong>WhatsApp</strong>, con un mensaje
+          precompletado que el propio ciudadano puede revisar, modificar o cancelar
+          antes de enviarlo. La decisión de iniciar la comunicación es siempre tuya.
+        </p>
+      </LegalSection>
+
+      <LegalSection index="03" label="Servicios externos" title="WhatsApp y redes sociales.">
+        <p>
+          Al pulsar un botón de WhatsApp o al acceder a nuestras redes sociales
+          (Facebook, Instagram, TikTok), el usuario abandona este sitio y accede
+          a plataformas de terceros sujetas a sus propias políticas de privacidad
+          y condiciones de uso, que la campaña no controla ni puede modificar.
+        </p>
+        <p>
+          Te recomendamos revisar las políticas de privacidad de WhatsApp y de
+          cada plataforma social antes de compartir información personal.
+        </p>
+      </LegalSection>
+
+      <LegalSection
+        index="04"
+        label="Finalidades"
+        title="Para qué usamos tu información."
+        bg="cream"
+      >
+        <p>
+          Cuando un ciudadano decide escribirnos por WhatsApp, la información
+          compartida (nombre, número de teléfono y contenido del mensaje) se
+          utiliza exclusivamente para:
         </p>
         <ul className="flex list-none flex-col gap-2 pl-0">
           {[
-            "Name and email address",
-            "Phone number and zip code (for field organizing)",
-            "City and availability (for volunteer matching)",
-            "Questions, notes, or messages you submit"
+            "Responder consultas y preguntas sobre la campaña o el distrito.",
+            "Coordinar la participación de voluntarios que lo soliciten.",
+            "Compartir información sobre actividades y propuestas cuando el ciudadano lo pida."
+          ].map((item) => (
+            <li key={item} className="flex items-start gap-3">
+              <span className="mt-[0.7em] h-px w-4 shrink-0 bg-brand-red" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p>
+          La campaña <strong>no vende datos personales</strong> ni los comparte
+          con terceros para fines comerciales o ajenos a los descritos
+          anteriormente.
+        </p>
+      </LegalSection>
+
+      <LegalSection index="05" label="Conservación" title="¿Cuánto tiempo guardamos tu información?">
+        <p>
+          La campaña conservará la información recibida voluntariamente por WhatsApp
+          únicamente mientras sea necesaria para atender la comunicación solicitada
+          o para cumplir obligaciones legales aplicables.
+        </p>
+        <p>
+          Ten en cuenta que WhatsApp opera como un servicio externo e independiente,
+          por lo que gestiona sus propios plazos, copias de seguridad y políticas
+          de almacenamiento sobre las conversaciones mantenidas en su plataforma.
+        </p>
+      </LegalSection>
+
+      <LegalSection
+        index="06"
+        label="Tus derechos"
+        title="Derechos de los titulares."
+        bg="cream"
+      >
+        <p>
+          De conformidad con la Ley N.º 29733 y su Reglamento, tienes derecho a:
+        </p>
+        <ul className="flex list-none flex-col gap-2 pl-0">
+          {[
+            "Información: conocer si tratamos datos personales sobre ti.",
+            "Acceso: obtener una copia de los datos que tengamos.",
+            "Rectificación: corregir datos inexactos o incompletos.",
+            "Cancelación: solicitar la eliminación de tus datos.",
+            "Oposición: oponerte al tratamiento de tus datos en los casos que la ley lo permita."
           ].map((item) => (
             <li key={item} className="flex items-start gap-3">
               <span className="mt-[0.7em] h-px w-4 shrink-0 bg-brand-red" />
@@ -68,74 +155,24 @@ export default function PrivacyPage() {
         </ul>
       </LegalSection>
 
-      <LegalSection index="03" label="How we use it" title="What we do with your data.">
+      <LegalSection index="07" label="Contacto" title="Consultas sobre privacidad.">
         <p>
-          Information is used to run the campaign: to contact you about
-          events and volunteer opportunities, to answer your questions, and to
-          match volunteers with field shifts in their area.
+          Para ejercer tus derechos o formular cualquier consulta relacionada con
+          la protección de datos personales, escríbenos directamente por WhatsApp:
         </p>
         <p>
-          Aggregate, anonymized data may be used to analyze campaign
-          performance. It never identifies you personally.
-        </p>
-      </LegalSection>
-
-      <LegalSection
-        index="04"
-        label="Sharing"
-        title="Who we share with."
-        bg="cream"
-      >
-        <p>
-          We share information with service providers who help us run the
-          campaign (email providers, hosting) under strict confidentiality
-          agreements.
-        </p>
-        <p>We do not sell your information.</p>
-        <p>
-          Text Messaging Opt-In Data: We will not share or sell your text
-          messaging opt-in data, consent, or related personal information
-          with any third parties, unless required by law.
-        </p>
-      </LegalSection>
-
-      <LegalSection index="05" label="Cookies" title="Cookies and tracking.">
-        <p>
-          Our site uses essential cookies for functionality and anonymous
-          analytics cookies to understand how visitors use the site. You
-          can disable cookies in your browser settings without losing core
-          functionality.
-        </p>
-      </LegalSection>
-
-      <LegalSection
-        index="06"
-        label="Your rights"
-        title="What you can ask us to do."
-        bg="cream"
-      >
-        <p>
-          You can email us at any time to request a copy of the data we
-          hold on you, ask us to correct or delete it, or unsubscribe from
-          our communications.
-        </p>
-        <p>
-          Every email we send includes a one-click unsubscribe link at the
-          bottom.
-        </p>
-      </LegalSection>
-
-      <LegalSection index="07" label="Contact" title="Questions or requests.">
-        <p>
-          For privacy-related questions, write to us at{" "}
           <a
-            href={`mailto:${candidate.contact.email}`}
+            href="https://wa.me/51991506516?text=Hola%2C%20tengo%20una%20consulta%20sobre%20privacidad%20y%20protecci%C3%B3n%20de%20datos."
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-brand-red underline-offset-4 hover:underline"
           >
-            {candidate.contact.email}
-          </a>{" "}
-          with &ldquo;Privacy&rdquo; in the subject line. We respond within
-          five business days.
+            Consulta de privacidad por WhatsApp
+          </a>
+        </p>
+        <p>
+          Esta política puede actualizarse cuando sea necesario. La fecha de la
+          última revisión se indica en el encabezado de esta página.
         </p>
       </LegalSection>
     </>

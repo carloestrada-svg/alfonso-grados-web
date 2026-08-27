@@ -1,15 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+const WA_URL =
+  "https://wa.me/51991506516?text=Hola%2C%20quiero%20recibir%20novedades%20de%20la%20campa%C3%B1a%20de%20Alfonso%20Grados.";
 
 export function NewsletterForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [email, setEmail] = useState("");
-
-  const btnRef = useRef<HTMLButtonElement | null>(null);
+  const btnRef = useRef<HTMLAnchorElement | null>(null);
   const labelTop = useRef<HTMLSpanElement | null>(null);
   const labelBot = useRef<HTMLSpanElement | null>(null);
   const iconRef = useRef<HTMLSpanElement | null>(null);
@@ -56,49 +57,26 @@ export function NewsletterForm() {
         el.removeEventListener("mouseleave", onLeave);
       };
     },
-    { scope: btnRef, dependencies: [submitted] }
+    { scope: btnRef }
   );
 
-  if (submitted) {
-    return (
-      <div className="flex items-center gap-3 border-b border-brand-red/50 pb-5 text-[15px] text-foreground/85">
-        <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-red" />
-        <span>Listo. Revisa tu correo para recibir las próximas novedades.</span>
-      </div>
-    );
-  }
-
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
-    >
-      <label
-        htmlFor="newsletter-email"
-        className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55"
-      >
+    <div>
+      <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
         <span className="font-display italic text-brand-red">→</span>
-        <span>Correo electrónico</span>
-      </label>
-
-      <div className="mt-3 flex items-end border-b border-foreground/20 pb-3 transition-colors focus-within:border-foreground">
-        <input
-          id="newsletter-email"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="tu@correo.com"
-          className="flex-1 bg-transparent font-display text-[1.3rem] leading-none text-foreground placeholder:text-foreground/30 outline-none ring-0 ring-offset-0 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 sm:text-[1.5rem]"
-        />
+        <span>Novedades de campaña</span>
       </div>
+
+      <p className="mt-4 text-[15px] leading-relaxed text-foreground/60">
+        Conoce las próximas actividades, propuestas y novedades de la campaña.
+      </p>
 
       <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
-        <button
+        <Link
           ref={btnRef}
-          type="submit"
+          href={WA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="group relative inline-flex items-center gap-4 rounded-full border border-brand-black bg-brand-black pl-6 pr-5 py-2.5 text-[16px] font-medium tracking-tight text-white transition-colors duration-500 hover:border-black/85 hover:bg-black/85"
         >
           <span
@@ -110,13 +88,13 @@ export function NewsletterForm() {
               ref={labelTop}
               className="inline-flex h-[1.4em] items-center leading-none will-change-transform"
             >
-              Suscribirme
+              Recibir novedades por WhatsApp
             </span>
             <span
               ref={labelBot}
               className="absolute left-0 top-0 inline-flex h-[1.4em] items-center leading-none will-change-transform"
             >
-              Suscribirme
+              Recibir novedades por WhatsApp
             </span>
           </span>
 
@@ -154,12 +132,12 @@ export function NewsletterForm() {
               <ArrowUpRight className="h-full w-full" strokeWidth={2} />
             </span>
           </span>
-        </button>
+        </Link>
 
         <p className="text-[13px] leading-relaxed text-foreground/50">
-          Sin spam. Puedes cancelar cuando quieras.
+          Te llevaremos a WhatsApp. Tú decides si envías el mensaje.
         </p>
       </div>
-    </form>
+    </div>
   );
 }

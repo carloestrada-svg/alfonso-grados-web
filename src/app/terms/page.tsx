@@ -5,16 +5,16 @@ import { LegalSection } from "@/components/shared/LegalSection";
 import { candidate } from "@/lib/data/candidate";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: "Términos y condiciones",
   description:
-    "Terms of service for morganforsenate.com — campaign site usage and user content."
+    `Términos y condiciones de uso del sitio web oficial de la campaña de ${candidate.fullName}, candidato a ${candidate.office}.`
 };
 
 const heroMeta = [
-  { label: "Effective", value: "April 22, 2026" },
-  { label: "Last updated", value: "April 22, 2026" },
-  { label: "Jurisdiction", value: "California, USA" },
-  { label: "Contact", value: candidate.contact.email }
+  { label: "Sitio", value: `Campaña ${candidate.fullName}` },
+  { label: "Cargo", value: candidate.office },
+  { label: "Legislación", value: "Peruana" },
+  { label: "Actualización", value: "Agosto 2026" }
 ];
 
 export default function TermsPage() {
@@ -23,114 +23,150 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Legal"
         index="00"
-        title="Terms & Conditions."
-        emphasis="Conditions"
-        description="The rules of the road for using this campaign site — user-submitted content and the fine print."
-        subtitle="By using morganforsenate.com, you agree to these terms. If anything's unclear, email us."
+        title="Términos y condiciones."
+        emphasis="condiciones"
+        description="Condiciones de uso del sitio web oficial de la campaña de Alfonso Grados, candidato a Alcalde de Yanahuara."
+        subtitle="Al navegar por este sitio, aceptas estas condiciones. Son breves y están escritas en lenguaje claro."
         meta={heroMeta}
       />
 
       <LegalSection
         index="01"
-        label="Acceptance"
-        title="Your agreement with us."
+        label="Sobre este sitio"
+        title="¿Qué es esta página?"
       >
         <p>
-          By accessing or using morganforsenate.com (&ldquo;the site&rdquo;),
-          you agree to these Terms & Conditions. If you do not agree, please
-          do not use the site.
+          Este es el sitio web informativo oficial de la campaña de{" "}
+          <strong>{candidate.fullName}</strong>, candidato a{" "}
+          <strong>{candidate.office}</strong>, {candidate.district},{" "}
+          {candidate.region}, {candidate.country}.
+        </p>
+        <p>
+          Este sitio <strong>no es</strong> una página de la Municipalidad
+          Distrital de Yanahuara ni de ninguna otra entidad pública. Su
+          único propósito es informar a la ciudadanía sobre la candidatura, las
+          propuestas y las actividades de la campaña.
         </p>
       </LegalSection>
 
       <LegalSection
         index="02"
-        label="Use of the site"
-        title="What you may and may not do."
+        label="Contenidos"
+        title="Actualización de información."
         bg="cream"
       >
         <p>
-          You may use the site for personal, non-commercial purposes related
-          to the campaign: reading about Alex, signing up to volunteer,
-          RSVP&rsquo;ing to events, and submitting questions.
+          Los contenidos publicados en este sitio — propuestas, actividades,
+          cronogramas y textos — son de carácter informativo y pueden actualizarse
+          en cualquier momento conforme avance la campaña.
         </p>
         <p>
-          You may not attempt to disrupt the site, submit false information,
-          impersonate others, attempt to gain unauthorized access, or use
-          the site for commercial scraping.
+          La campaña procura mantener la información disponible y correcta, pero
+          no garantiza disponibilidad ininterrumpida ni que todos los datos sean
+          precisos en todo momento. Las redes sociales y WhatsApp son los canales
+          más actualizados.
         </p>
       </LegalSection>
 
       <LegalSection
         index="03"
-        label="Your content"
-        title="What you submit through our forms."
+        label="Uso del sitio"
+        title="Uso lícito y responsable."
       >
         <p>
-          When you submit a question, message, volunteer application, or
-          event RSVP, you grant the campaign a non-exclusive license to
-          read, store, and respond to your submission. Selected questions
-          may be answered publicly in the weekly dispatch (without
-          identifying personal details).
+          Puedes navegar libremente por este sitio con fines personales e
+          informativos. Al hacerlo, te comprometes a utilizarlo de manera lícita y
+          a no realizar ninguna de las siguientes acciones:
         </p>
+        <ul className="flex list-none flex-col gap-2 pl-0">
+          {[
+            "Intentar interrumpir, dañar o alterar el funcionamiento del sitio.",
+            "Suplantar la identidad del candidato, la campaña o sus colaboradores.",
+            "Usar el sitio o sus contenidos para fines comerciales no autorizados.",
+            "Acceder sin autorización a sistemas o información restringida."
+          ].map((item) => (
+            <li key={item} className="flex items-start gap-3">
+              <span className="mt-[0.7em] h-px w-4 shrink-0 bg-brand-red" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </LegalSection>
 
       <LegalSection
         index="04"
-        label="Content on the site"
-        title="Copyright and marks."
+        label="Propiedad intelectual"
+        title="Materiales de campaña."
         bg="cream"
       >
         <p>
-          All content on this site — text, photos, logos, graphics, and
-          code — is owned by or licensed to the campaign and protected
-          under U.S. and international copyright law. You may not copy or
-          redistribute site content without written permission, except for
-          personal, non-commercial reference.
+          Los elementos de identidad visual, textos, fotografías, logotipos,
+          videos y demás materiales publicados en este sitio pertenecen a la
+          campaña o se usan con la autorización correspondiente.
+        </p>
+        <p>
+          Puedes compartirlos con fines informativos y no comerciales, respetando
+          la autoría y sin modificarlos de manera que pueda inducir a engaño o
+          tergiversar el mensaje original. No está permitida su reutilización con
+          fines distintos a los informativos sin autorización expresa.
         </p>
       </LegalSection>
 
       <LegalSection
         index="05"
-        label="Disclaimers"
-        title="What we can't guarantee."
+        label="Servicios externos"
+        title="WhatsApp y redes sociales."
       >
         <p>
-          The site is provided &ldquo;as is&rdquo;. We work hard to keep it
-          accurate, secure, and available, but we don&rsquo;t guarantee
-          uninterrupted service, error-free content, or that information is
-          current at every moment. Third-party links are provided for
-          convenience and we&rsquo;re not responsible for their content.
+          Este sitio contiene enlaces a WhatsApp, Facebook, Instagram y TikTok.
+          Al acceder a cualquiera de estos servicios, el usuario sale de este
+          sitio y queda sujeto a las condiciones de uso y políticas de privacidad
+          de cada plataforma, que la campaña no controla.
+        </p>
+        <p>
+          Los botones de WhatsApp abren una conversación con un mensaje
+          precompletado. El usuario siempre puede modificar o cancelar el mensaje
+          antes de enviarlo.
         </p>
       </LegalSection>
 
       <LegalSection
         index="06"
-        label="Changes"
-        title="We may update these terms."
+        label="Modificaciones"
+        title="Actualizaciones de estos términos."
         bg="cream"
       >
         <p>
-          We may update these terms from time to time. Material changes will
-          be noted on this page with a new &ldquo;Last updated&rdquo; date.
-          Continued use of the site after changes means you accept the
-          revised terms.
+          La campaña puede actualizar estos términos cuando sea necesario. La
+          fecha de la última revisión se indica en el encabezado de esta página.
+          Continuar usando el sitio tras una actualización implica la aceptación
+          de los nuevos términos.
         </p>
       </LegalSection>
 
       <LegalSection
         index="07"
-        label="Contact"
-        title="Questions about these terms."
+        label="Legislación"
+        title="Ley aplicable."
       >
         <p>
-          For questions, write to us at{" "}
+          Estos términos y condiciones se rigen por la legislación de la
+          República del Perú. Cualquier controversia derivada del uso de este
+          sitio se someterá a los tribunales competentes conforme a la
+          normativa peruana vigente.
+        </p>
+        <p>
+          Para cualquier consulta sobre estos términos, puedes comunicarte con
+          la campaña a través de WhatsApp:{" "}
           <a
-            href={`mailto:${candidate.contact.email}`}
+            href="https://wa.me/51991506516?text=Hola%2C%20quiero%20comunicarme%20con%20la%20campa%C3%B1a%20de%20Alfonso%20Grados."
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-brand-red underline-offset-4 hover:underline"
           >
-            {candidate.contact.email}
-          </a>{" "}
-          with &ldquo;Terms&rdquo; in the subject line.
+            Escribir por WhatsApp
+          </a>
+          .
         </p>
       </LegalSection>
     </>
