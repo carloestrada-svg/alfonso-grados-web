@@ -4,8 +4,8 @@ import {
   Facebook,
   Instagram,
   Mail,
-  Twitter,
-  Youtube
+  MessageCircle,
+  Music2
 } from "lucide-react";
 
 import { candidate } from "@/lib/data/candidate";
@@ -13,11 +13,11 @@ import { footerNav } from "@/lib/data/navigation";
 import { NewsletterForm } from "./NewsletterForm";
 import { FooterLink } from "./FooterLink";
 
-const socialIcons: Record<string, typeof Twitter> = {
-  Twitter,
+const socialIcons: Record<string, typeof Facebook> = {
   Facebook,
   Instagram,
-  YouTube: Youtube
+  TikTok: Music2,
+  WhatsApp: MessageCircle
 };
 
 export function Footer() {
@@ -101,7 +101,8 @@ export function Footer() {
               {candidate.socials.length > 0 ? (
                 <div className="mt-2 flex flex-wrap gap-2">
                   {candidate.socials.map((s) => {
-                    const Icon = socialIcons[s.label] ?? Twitter;
+                    const Icon = socialIcons[s.label];
+                    if (!Icon) return null;
                     return (
                       <a
                         key={s.label}

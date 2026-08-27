@@ -21,10 +21,15 @@ export const candidate = {
   ],
   contact: {
     email: "",
-    phone: "",
+    phone: "+51 991 506 516",
     address: "Yanahuara, Arequipa, Perú"
   },
-  socials: [] as Array<{ label: string; href: string }>,
+  socials: [
+    { label: "Facebook", href: "https://www.facebook.com/alfonsogradosr" },
+    { label: "Instagram", href: "https://www.instagram.com/alfonsogrados.candidato/" },
+    { label: "TikTok", href: "https://www.tiktok.com/@alfonso.180grados" },
+    { label: "WhatsApp", href: "https://wa.me/51991506516" }
+  ],
   stats: [
     { value: "120K+", label: "Puertas visitadas" },
     { value: "58", label: "Zonas recorridas" },
