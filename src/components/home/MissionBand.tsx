@@ -15,24 +15,28 @@ if (typeof window !== "undefined") {
 const pillars = [
   {
     index: "01",
-    label: "Housing",
-    prefix: "Every family can",
-    hook: "afford",
-    suffix: "a home."
+    label: "Patrimonio e identidad",
+    body: "Protegeremos las fachadas de sillar, la zona monumental y los espacios que representan la identidad de Yanahuara."
   },
   {
     index: "02",
-    label: "Education",
-    prefix: "Every child gets a",
-    hook: "great",
-    suffix: "public school."
+    label: "Seguridad ciudadana",
+    body: "Fortaleceremos el Serenazgo, el patrullaje preventivo, la videovigilancia y la respuesta ante emergencias."
   },
   {
     index: "03",
-    label: "Wages",
-    prefix: "Every worker earns a",
-    hook: "living",
-    suffix: "wage."
+    label: "Limpieza y cuidado ambiental",
+    body: "Mejoraremos las rutas de recolección, los contenedores, la fiscalización, la segregación y el reciclaje."
+  },
+  {
+    index: "04",
+    label: "Espacio público y ornato",
+    body: "Recuperaremos parques, jardines, veredas, luminarias y mobiliario urbano con mantenimiento permanente."
+  },
+  {
+    index: "05",
+    label: "Recuperación de Magnopata",
+    body: "Trabajaremos para que Magnopata vuelva a ser un espacio de recreación, deporte y encuentro para las familias."
   }
 ] as const;
 
@@ -107,16 +111,6 @@ export function MissionBand() {
         { opacity: 0, y: 18 },
         { opacity: 1, y: 0, duration: 0.75, ease: "expo.out" }
       );
-      gsap.fromTo(
-        "[data-hook]",
-        { clipPath: "inset(0 100% 0 0)" },
-        {
-          clipPath: "inset(0 0% 0 0)",
-          duration: 1,
-          ease: "expo.out",
-          delay: 0.25
-        }
-      );
     },
     { scope: slideRef, dependencies: [active] }
   );
@@ -131,14 +125,15 @@ export function MissionBand() {
             <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">02</span>
               <span className="h-px w-8 bg-foreground/25" />
-              <span>The Mission</span>
+              <span>Prioridades</span>
             </div>
 
             <p className="max-w-[20rem] text-[15px] leading-relaxed text-foreground/60">
-              Three pillars. One promise. What {candidate.firstName} is fighting for.
+              Cinco prioridades. Un solo compromiso.<br />
+              <span className="text-foreground/45">Soluciones concretas para un distrito que merece más.</span>
             </p>
 
-            <div className="mt-3 flex flex-col gap-3">
+            <div className="mt-3 flex flex-col gap-2.5">
               {pillars.map((p, i) => {
                 const isActive = i === active;
                 return (
@@ -146,13 +141,13 @@ export function MissionBand() {
                     key={p.index}
                     type="button"
                     onClick={() => setActive(i)}
-                    aria-label={`Show pillar ${p.index} — ${p.label}`}
+                    aria-label={`Ver eje ${p.index} — ${p.label}`}
                     aria-current={isActive ? "true" : undefined}
-                    className="group flex items-center gap-4 text-left"
+                    className="group flex items-center gap-3 text-left"
                   >
                     <span
                       className={cn(
-                        "font-display text-[15px] italic transition-colors",
+                        "font-display text-[13px] italic transition-colors",
                         isActive ? "text-brand-red" : "text-foreground/40"
                       )}
                     >
@@ -162,13 +157,13 @@ export function MissionBand() {
                       className={cn(
                         "h-px transition-all duration-500",
                         isActive
-                          ? "w-14 bg-brand-red"
-                          : "w-6 bg-foreground/25 group-hover:w-10 group-hover:bg-foreground/50"
+                          ? "w-10 bg-brand-red"
+                          : "w-5 bg-foreground/25 group-hover:w-8 group-hover:bg-foreground/50"
                       )}
                     />
                     <span
                       className={cn(
-                        "text-[15px] font-medium uppercase tracking-[0.2em] transition-colors",
+                        "text-[13px] font-medium uppercase tracking-[0.18em] transition-colors leading-tight",
                         isActive
                           ? "text-foreground"
                           : "text-foreground/45 group-hover:text-foreground/75"
@@ -183,7 +178,7 @@ export function MissionBand() {
           </div>
 
           <div data-reveal>
-            <div ref={slideRef} className="relative min-h-[16rem]">
+            <div ref={slideRef} className="relative min-h-[14rem]">
               <div key={active} data-slide>
                 <div className="flex items-center gap-4 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                   <span className="tabular-nums text-foreground/70">
@@ -193,34 +188,15 @@ export function MissionBand() {
                   <span className="text-foreground/70">{current.label}</span>
                 </div>
 
-                <p className="mt-7 font-display font-normal leading-[1.18] tracking-[-0.015em] text-foreground">
-                  <span
-                    className="block"
-                    style={{ fontSize: "clamp(1.85rem, 4.2vw, 3rem)" }}
-                  >
-                    {current.prefix}{" "}
-                    <span className="relative inline-block">
-                      <span
-                        data-hook
-                        className="relative z-10 italic text-brand-red"
-                        style={{
-                          clipPath: "inset(0 100% 0 0)",
-                          display: "inline-block"
-                        }}
-                      >
-                        {current.hook}
-                      </span>
-                      <span
-                        aria-hidden
-                        className="absolute inset-x-0 bottom-[0.12em] z-0 h-[0.08em] bg-brand-red/25"
-                      />
-                    </span>{" "}
-                    {current.suffix}
-                  </span>
+                <p
+                  className="mt-7 font-display font-normal leading-[1.22] tracking-[-0.012em] text-foreground"
+                  style={{ fontSize: "clamp(1.65rem, 3.6vw, 2.6rem)" }}
+                >
+                  {current.body}
                 </p>
 
                 <div className="mt-10 flex items-center gap-4 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
-                  <span>Pillar {current.index}</span>
+                  <span>Eje {current.index}</span>
                   <div className="relative h-px flex-1 bg-foreground/15">
                     <div
                       key={active}

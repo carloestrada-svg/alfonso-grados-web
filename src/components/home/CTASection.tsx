@@ -49,11 +49,10 @@ export function CTASection() {
             <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
               <span className="tabular-nums">07</span>
               <span className="h-px w-8 bg-foreground/25" />
-              <span>Get involved</span>
+              <span>Súmate al Giro 180°</span>
             </div>
             <p className="max-w-[22rem] text-[15px] leading-[1.6] text-foreground/60">
-              Join the 58,000+ Californians who&rsquo;ve already signed on —
-              this campaign is only as strong as the people behind it.
+              El cambio necesita vecinos comprometidos que quieran aportar sus ideas, experiencia y energía.
             </p>
           </div>
 
@@ -66,8 +65,8 @@ export function CTASection() {
                 className="block"
                 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
               >
-                Súmate a construir el futuro de{" "}
-                <em className="italic text-brand-red">Yanahuara</em>.
+                Tu tiempo, tu voz y tus ideas pueden ser{" "}
+                <em className="italic text-brand-red">parte del cambio</em>.
               </span>
             </h2>
 
@@ -75,8 +74,7 @@ export function CTASection() {
               data-reveal
               className="mt-8 max-w-xl text-[18px] leading-[1.55] text-foreground/70"
             >
-              Every volunteer shift. Every conversation with a neighbor.
-              That&rsquo;s how we win this seat.
+              El cambio necesita vecinos comprometidos que quieran aportar sus ideas, experiencia y energía.
             </p>
 
             <div
