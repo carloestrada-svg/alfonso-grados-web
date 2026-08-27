@@ -1,51 +1,80 @@
 import type { Metadata } from "next";
 
 import { PageHero } from "@/components/shared/PageHero";
-import { AskForm } from "@/components/ask/AskForm";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { candidate } from "@/lib/data/candidate";
 
 export const metadata: Metadata = {
-  title: `Ask ${candidate.fullName}`,
-  description: `Ask ${candidate.fullName} a direct question about the campaign, the issues, or life on the trail.`
+  title: "Pregúntale a Alfonso",
+  description:
+    `Hazle una pregunta o comparte tus propuestas directamente con ${candidate.fullName}, candidato a Alcalde de Yanahuara.`
 };
 
 const heroMeta = [
-  { label: "Cadence", value: "Weekly dispatch" },
-  { label: "Answered by", value: candidate.fullName },
-  { label: "Format", value: "Written reply" },
-  { label: "Cost", value: "Free" }
+  { label: "Candidato", value: candidate.fullName },
+  { label: "Distrito", value: candidate.district },
+  { label: "Canal", value: "WhatsApp" },
+  { label: "Diálogo", value: "Directo" }
 ];
 
 export default function AskPage() {
   return (
     <>
       <PageHero
-        eyebrow={`Ask ${candidate.firstName}`}
+        eyebrow="Pregúntale a Alfonso"
         index="00"
-        title={`Ask ${candidate.fullName}.`}
-        emphasis={candidate.fullName}
-        description={`Direct questions from Californians get answered in the weekly dispatch. No staffers, no talking points — just ${candidate.firstName}'s reply.`}
-        subtitle="Housing, healthcare, climate, the trail itself — nothing's off-limits."
+        title="Tu pregunta merece ser escuchada."
+        emphasis="ser escuchada"
+        description="Queremos escuchar tus preguntas, propuestas e inquietudes sobre Yanahuara. Escríbenos directamente por WhatsApp para mantener un diálogo abierto y transparente."
+        subtitle="Un canal directo para que todos los vecinos compartan su visión para el distrito."
         meta={heroMeta}
-      />
+      >
+        <div className="flex flex-wrap items-center gap-3">
+          <MagneticButton
+            href="https://wa.me/51991506516?text=Hola%2C%20quiero%20hacerle%20una%20pregunta%20a%20Alfonso%20Grados."
+            external
+            variant="solid"
+            size="lg"
+          >
+            Quiero hacer una pregunta
+          </MagneticButton>
+        </div>
+      </PageHero>
 
       <section className="relative bg-background">
-        <div className="container py-20 lg:py-28">
+        <div className="container py-16 sm:py-20 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] lg:gap-20">
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3 text-[13px] font-medium uppercase tracking-[0.24em] text-foreground/55">
                 <span className="tabular-nums">01</span>
                 <span className="h-px w-8 bg-foreground/25" />
-                <span>Ask a question</span>
+                <span>Canal de diálogo</span>
               </div>
               <p className="max-w-[22rem] text-[15px] leading-[1.6] text-foreground/60">
-                Every Sunday, {candidate.firstName} reads through the week&rsquo;s
-                questions and answers a selection in Monday&rsquo;s dispatch.
+                Tus consultas y sugerencias orientan las prioridades de trabajo para Yanahuara.
               </p>
             </div>
 
-            <div>
-              <AskForm />
+            <div className="flex flex-col gap-8 rounded-2xl border border-foreground/10 bg-card p-8 sm:p-12">
+              <div className="space-y-4">
+                <h2 className="font-display text-2xl sm:text-3xl text-foreground">
+                  Preguntas y propuestas para el distrito
+                </h2>
+                <p className="text-[16px] leading-[1.65] text-foreground/75">
+                  Si tienes dudas sobre el plan de trabajo, propuestas para tu zona o inquietudes sobre los servicios del distrito, te invitamos a enviarlas a través de nuestro canal de WhatsApp.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <MagneticButton
+                  href="https://wa.me/51991506516?text=Hola%2C%20quiero%20hacerle%20una%20pregunta%20a%20Alfonso%20Grados."
+                  external
+                  variant="solid"
+                  size="lg"
+                >
+                  Quiero hacer una pregunta
+                </MagneticButton>
+              </div>
             </div>
           </div>
         </div>
