@@ -43,7 +43,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: "paragraph",
-        text: "La acción propuesta incluye trabajar con el Ministerio de Cultura y el Gobierno Regional de Arequipa para activar mecanismos de conservación, ordenar la publicidad en la zona monumental, coordinar con las empresas distribuidoras el soterramiento progresivo del cableado, e implementar iluminación monumental y señalización turística que valore el entorno sin saturarlo."
+        text: "La acción propuesta incluye plantear coordinación con el Ministerio de Cultura y el Gobierno Regional de Arequipa para activar mecanismos de conservación, ordenar la publicidad en la zona monumental, promover gestiones con las empresas distribuidoras para el soterramiento progresivo del cableado, e implementar iluminación monumental y señalización turística que valore el entorno sin saturarlo."
       },
       {
         type: "heading",
@@ -71,7 +71,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: "paragraph",
-        text: "Las plazas, bermas, veredas y áreas verdes de Yanahuara son espacios de encuentro que merecen cuidado permanente. El ornato no es un lujo: es parte de la dignidad del distrito. La propuesta contempla un plan de mantenimiento continuo, con presupuesto asignado y responsables identificados, así como la participación de los vecinos en el cuidado de su entorno inmediato."
+        text: "Las plazas, bermas, veredas y áreas verdes de Yanahuara son espacios de encuentro que merecen cuidado permanente. El ornato no es un lujo: es parte de la dignidad del distrito. La propuesta contempla un plan de mantenimiento continuo con responsables identificados, así como la participación de los vecinos en el cuidado de su entorno inmediato."
       },
       {
         type: "heading",
@@ -83,11 +83,11 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: "heading",
-        text: "Compromiso de transparencia"
+        text: "Transparencia como principio"
       },
       {
         type: "paragraph",
-        text: "Para cada una de estas cinco prioridades, la gestión de Alfonso Grados se compromete a informar públicamente: el problema identificado, la acción en curso, la coordinación con otras entidades, el plazo estimado, el origen del financiamiento, el indicador de avance y el estado de cada etapa. Yanahuara merece una gestión que rinda cuentas."
+        text: "Para cada una de estas cinco prioridades, la propuesta de Alfonso Grados plantea informar públicamente sobre el problema identificado, las acciones impulsadas, la coordinación con otras entidades y los avances alcanzados. Yanahuara merece una gestión que rinda cuentas."
       }
     ]
   },
@@ -153,7 +153,7 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: "paragraph",
-        text: "Uno de los problemas recurrentes en los parques municipales es que se inauguran con entusiasmo pero se deterioran por falta de mantenimiento continuo. Magnopata necesita un plan de mantenimiento permanente, con presupuesto asignado, personal responsable y mecanismos de reporte ciudadano cuando algo se deteriora o requiere atención."
+        text: "Uno de los problemas recurrentes en los parques municipales es que se inauguran con entusiasmo pero se deterioran por falta de mantenimiento continuo. La propuesta plantea desarrollar un plan de mantenimiento permanente con personal responsable y mecanismos de reporte ciudadano cuando algo se deteriora o requiere atención."
       },
       {
         type: "heading",
@@ -165,16 +165,16 @@ export const newsArticles: NewsArticle[] = [
       },
       {
         type: "heading",
-        text: "Objetivos e indicadores públicos por etapa"
+        text: "Transparencia e información pública"
       },
       {
         type: "list",
         items: [
-          "Publicar la evaluación técnica de infraestructura en el primer trimestre de gestión.",
-          "Informar el plan de intervención por zonas con plazos y presupuesto.",
-          "Reportar mensualmente el avance de obras y mantenimiento.",
-          "Medir la satisfacción de los vecinos con el parque de forma periódica.",
-          "Publicar los criterios de uso y los mecanismos de reporte ciudadano desde el inicio."
+          "Se propone publicar la evaluación técnica de infraestructura en una etapa temprana de la gestión.",
+          "Se plantea informar el plan de intervención por zonas con criterios de priorización claros.",
+          "Se informarán los avances de las obras y el mantenimiento de forma accesible para los vecinos.",
+          "Se considera generar espacios de participación ciudadana para conocer la percepción sobre el parque.",
+          "Se publicarán los criterios de uso y los mecanismos de reporte ciudadano."
         ]
       }
     ]

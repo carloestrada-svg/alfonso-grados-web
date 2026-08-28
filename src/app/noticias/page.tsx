@@ -18,8 +18,8 @@ export default function NoticiasPage() {
       <PageHero
         index="06"
         eyebrow="Noticias"
-        title="Lo que Alfonso"
-        emphasis="propone"
+        title={"Lo que Alfonso\u00A0propone"}
+        emphasis={"\u00A0propone"}
         description="Propuestas, explicaciones y novedades de la campaña. Aquí puedes leer, en detalle, el plan de trabajo para Yanahuara."
       />
 
@@ -40,7 +40,7 @@ export default function NoticiasPage() {
             <p className="mb-6 text-[11px] font-semibold uppercase tracking-widest text-foreground/45">
               Más artículos
             </p>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
               {rest.map((article) => (
                 <NewsCard key={article.slug} article={article} />
               ))}
