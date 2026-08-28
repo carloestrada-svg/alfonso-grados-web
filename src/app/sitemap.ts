@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/utils";
+import { newsArticles } from "@/lib/data/news";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "/",
     "/about",
     "/events",
+    "/noticias",
     "/volunteer",
     "/ask",
     "/contact",
@@ -18,6 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.8
   }));
 
+  const articleRoutes = newsArticles.map((article) => ({
+    url: absoluteUrl(`/noticias/${article.slug}`),
+    lastModified: new Date(article.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7
+  }));
+
   // Individual event URLs are omitted until real events exist.
-  return staticRoutes;
+  return [...staticRoutes, ...articleRoutes];
 }

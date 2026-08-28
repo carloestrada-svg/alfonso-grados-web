@@ -7,6 +7,7 @@ export const primaryNav: NavItem[] = [
   { label: "Inicio", href: "/" },
   { label: "Conoce a Alfonso", href: "/about" },
   { label: "Agenda", href: "/events" },
+  { label: "Noticias", href: "/noticias" },
   { label: "Súmate", href: "/volunteer" },
   { label: "Pregúntale a Alfonso", href: "/ask" },
   { label: "Contacto", href: "/contact" }
@@ -18,6 +19,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
     links: [
       { label: "Conoce a Alfonso", href: "/about" },
       { label: "Agenda", href: "/events" },
+      { label: "Noticias", href: "/noticias" },
       { label: "Contacto", href: "/contact" }
     ]
   },
