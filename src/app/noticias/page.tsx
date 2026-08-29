@@ -39,7 +39,7 @@ export default function NoticiasPage() {
         description="Propuestas, explicaciones y novedades de la campaña. Aquí puedes leer, en detalle, el plan de trabajo para Yanahuara."
       />
 
-      <main id="main-content" className="container py-16 sm:py-20 lg:py-24">
+      <div className="container py-16 sm:py-20 lg:py-24">
         {/* Artículo destacado */}
         {featured && (
           <section aria-label="Artículo destacado" className="mb-16">
@@ -69,7 +69,7 @@ export default function NoticiasPage() {
             Próximamente publicaremos nuevos artículos.
           </p>
         )}
-      </main>
+      </div>
     </>
   );
 }

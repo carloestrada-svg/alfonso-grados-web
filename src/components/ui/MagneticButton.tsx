@@ -108,6 +108,7 @@ export function MagneticButton({
         className
       )}
     >
+      <span className="sr-only">{children}</span>
       <span
         aria-hidden
         className="relative inline-block overflow-hidden"

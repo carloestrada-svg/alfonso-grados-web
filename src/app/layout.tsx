@@ -170,7 +170,9 @@ export default function RootLayout({
           Saltar al contenido
         </a>
         <Navbar />
-        <main id="main-content">{children}</main>
+        <main id="main-content" tabIndex={-1} className="focus:outline-none">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

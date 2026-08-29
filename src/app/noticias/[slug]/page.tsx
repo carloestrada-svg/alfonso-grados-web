@@ -139,7 +139,7 @@ export default async function ArticlePage({
         ]}
       />
 
-      <main id="main-content" className="container py-16 sm:py-20 lg:py-24">
+      <div className="container py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[72rem]">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
             {/* Cuerpo del artículo */}
@@ -228,7 +228,7 @@ export default async function ArticlePage({
             </aside>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

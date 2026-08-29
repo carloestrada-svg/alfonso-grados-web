@@ -55,6 +55,7 @@ function NavLink({ href, label, active }: NavLinkProps) {
     <Link
       ref={rootRef}
       href={href}
+      aria-label={label}
       className={cn(
         "relative inline-flex items-center gap-2 px-3 py-2 text-[14.5px] font-bold tracking-tight transition-colors",
         active ? "text-brand-black" : "text-brand-black/75 hover:text-brand-black"
