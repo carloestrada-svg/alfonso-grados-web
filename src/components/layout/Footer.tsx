@@ -72,7 +72,7 @@ export function Footer() {
                 className="group flex items-center shrink-0 transition-transform duration-300 hover:scale-[1.02]"
               >
                 <Image
-                  src="/images/campaign/alfonso-grados-logo.png"
+                  src="/images/campaign/alfonso-grados-logo.webp"
                   alt="Alfonso Grados - Alcalde de Yanahuara"
                   width={390}
                   height={147}

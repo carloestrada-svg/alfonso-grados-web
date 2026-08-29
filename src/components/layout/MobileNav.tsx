@@ -35,7 +35,7 @@ export function MobileNav() {
       <SheetContent side="right" className="flex flex-col bg-brand-yellow border-black/15 text-brand-black">
         <div className="mt-2 flex items-center">
           <Image
-            src="/images/campaign/alfonso-grados-logo.png"
+            src="/images/campaign/alfonso-grados-logo.webp"
             alt="Alfonso Grados - Alcalde de Yanahuara"
             width={390}
             height={147}
