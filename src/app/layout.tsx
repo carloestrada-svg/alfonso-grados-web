@@ -11,12 +11,12 @@ import "./globals.css";
 const gotham = localFont({
   src: [
     {
-      path: "../../public/fonts/gotham-bold.otf",
+      path: "../../public/fonts/gotham-bold.woff2",
       weight: "700",
       style: "normal"
     },
     {
-      path: "../../public/fonts/gotham-ultra.otf",
+      path: "../../public/fonts/gotham-ultra.woff2",
       weight: "900",
       style: "normal"
     }
@@ -28,17 +28,17 @@ const gotham = localFont({
 const myriadPro = localFont({
   src: [
     {
-      path: "../../public/fonts/myriad-pro-regular.otf",
+      path: "../../public/fonts/myriad-pro-regular.woff2",
       weight: "400",
       style: "normal"
     },
     {
-      path: "../../public/fonts/myriad-pro-semibold-semicondensed-italic.otf",
+      path: "../../public/fonts/myriad-pro-semibold-semicondensed-italic.woff2",
       weight: "600",
       style: "italic"
     },
     {
-      path: "../../public/fonts/myriad-pro-black.otf",
+      path: "../../public/fonts/myriad-pro-black.woff2",
       weight: "900",
       style: "normal"
     }
