@@ -21,8 +21,22 @@ export async function generateMetadata({
   if (!article) return {};
 
   return {
-    title: `${article.title} — Alfonso Grados, Alcalde de Yanahuara`,
-    description: article.excerpt
+    title: article.title,
+    description: article.excerpt,
+    alternates: {
+      canonical: `/noticias/${article.slug}`
+    },
+    openGraph: {
+      title: `${article.title} · Alfonso Grados`,
+      description: article.excerpt,
+      url: `/noticias/${article.slug}`,
+      images: ["/opengraph-image.png"]
+    },
+    twitter: {
+      title: `${article.title} · Alfonso Grados`,
+      description: article.excerpt,
+      images: ["/twitter-image.png"]
+    }
   };
 }
 

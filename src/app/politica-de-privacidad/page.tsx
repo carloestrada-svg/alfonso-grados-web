@@ -7,7 +7,23 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Política de privacidad",
   description:
-    `Política de privacidad y protección de datos personales de la campaña de ${candidate.fullName}, candidato a ${candidate.office}.`
+    "Política de privacidad y protección de datos personales del sitio oficial de la campaña de Alfonso Grados.",
+  alternates: {
+    canonical: "/politica-de-privacidad"
+  },
+  openGraph: {
+    title: "Política de privacidad · Alfonso Grados",
+    description:
+      "Política de privacidad y protección de datos personales del sitio oficial de la campaña de Alfonso Grados.",
+    url: "/politica-de-privacidad",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Política de privacidad · Alfonso Grados",
+    description:
+      "Política de privacidad y protección de datos personales del sitio oficial de la campaña de Alfonso Grados.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [

@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { candidate } from "@/lib/data/candidate";
-import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
 
@@ -52,11 +51,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${candidate.fullName} · ${candidate.office} — ${candidate.tagline}`,
-    template: `%s · ${candidate.fullName}`
+    default: "Alfonso Grados · Alcalde de Yanahuara",
+    template: "%s · Alfonso Grados"
   },
   description: candidate.mission,
-  applicationName: `${candidate.fullName} · ${candidate.office}`,
+  applicationName: "Alfonso Grados · Alcalde de Yanahuara",
   keywords: [
     candidate.fullName,
     candidate.office,
@@ -65,32 +64,27 @@ export const metadata: Metadata = {
     candidate.country,
     "alcalde",
     "municipalidad",
-    "Yanahuara",
-    "Arequipa",
     "elecciones",
     "campaña"
   ],
   authors: [{ name: candidate.fullName }],
   openGraph: {
-    title: `${candidate.fullName} · ${candidate.office}`,
+    title: "Alfonso Grados · Alcalde de Yanahuara",
     description: candidate.mission,
     url: siteUrl,
-    siteName: `${candidate.fullName} · ${candidate.office}`,
+    siteName: "Alfonso Grados · Alcalde de Yanahuara",
     locale: "es_PE",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: `${candidate.fullName} · ${candidate.office}`,
+    title: "Alfonso Grados · Alcalde de Yanahuara",
     description: candidate.mission
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" }
-  },
-  alternates: {
-    canonical: absoluteUrl("/")
   }
 };
 

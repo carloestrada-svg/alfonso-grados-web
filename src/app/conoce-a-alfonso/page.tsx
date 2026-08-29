@@ -10,7 +10,24 @@ import { candidate } from "@/lib/data/candidate";
 
 export const metadata: Metadata = {
   title: "Conoce a Alfonso",
-  description: candidate.shortBio
+  description:
+    "Alfonso Grados es abogado, comunicador y vecino de Yanahuara de toda la vida. Conoce su trayectoria, valores y vocación de servicio por el distrito.",
+  alternates: {
+    canonical: "/conoce-a-alfonso"
+  },
+  openGraph: {
+    title: "Conoce a Alfonso · Alfonso Grados",
+    description:
+      "Alfonso Grados es abogado, comunicador y vecino de Yanahuara de toda la vida. Conoce su trayectoria, valores y vocación de servicio por el distrito.",
+    url: "/conoce-a-alfonso",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Conoce a Alfonso · Alfonso Grados",
+    description:
+      "Alfonso Grados es abogado, comunicador y vecino de Yanahuara de toda la vida. Conoce su trayectoria, valores y vocación de servicio por el distrito.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [

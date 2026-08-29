@@ -4,9 +4,25 @@ import { NewsCard } from "@/components/news/NewsCard";
 import { PageHero } from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Noticias — Alfonso Grados, Alcalde de Yanahuara",
+  title: "Noticias",
   description:
-    "Propuestas, explicaciones y novedades de la campaña de Alfonso Grados a la Alcaldía de Yanahuara. Mantente informado sobre el plan de trabajo."
+    "Propuestas, explicaciones y novedades de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+  alternates: {
+    canonical: "/noticias"
+  },
+  openGraph: {
+    title: "Noticias · Alfonso Grados",
+    description:
+      "Propuestas, explicaciones y novedades de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+    url: "/noticias",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Noticias · Alfonso Grados",
+    description:
+      "Propuestas, explicaciones y novedades de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 export default function NoticiasPage() {

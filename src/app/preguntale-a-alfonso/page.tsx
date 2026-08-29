@@ -7,7 +7,23 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Pregúntale a Alfonso",
   description:
-    `Hazle una pregunta o comparte tus propuestas directamente con ${candidate.fullName}, candidato a Alcalde de Yanahuara.`
+    "Comparte tus consultas, inquietudes y propuestas para Yanahuara directamente con Alfonso Grados.",
+  alternates: {
+    canonical: "/preguntale-a-alfonso"
+  },
+  openGraph: {
+    title: "Pregúntale a Alfonso · Alfonso Grados",
+    description:
+      "Comparte tus consultas, inquietudes y propuestas para Yanahuara directamente con Alfonso Grados.",
+    url: "/preguntale-a-alfonso",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Pregúntale a Alfonso · Alfonso Grados",
+    description:
+      "Comparte tus consultas, inquietudes y propuestas para Yanahuara directamente con Alfonso Grados.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [

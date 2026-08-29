@@ -7,7 +7,23 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Términos y condiciones",
   description:
-    `Términos y condiciones de uso del sitio web oficial de la campaña de ${candidate.fullName}, candidato a ${candidate.office}.`
+    "Términos y condiciones de uso del sitio web oficial de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+  alternates: {
+    canonical: "/terminos-y-condiciones"
+  },
+  openGraph: {
+    title: "Términos y condiciones · Alfonso Grados",
+    description:
+      "Términos y condiciones de uso del sitio web oficial de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+    url: "/terminos-y-condiciones",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Términos y condiciones · Alfonso Grados",
+    description:
+      "Términos y condiciones de uso del sitio web oficial de la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [

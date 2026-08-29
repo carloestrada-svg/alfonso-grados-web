@@ -7,7 +7,23 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Súmate",
   description:
-    `Súmate al equipo de campaña de ${candidate.fullName} en ${candidate.district}, ${candidate.region}.`
+    "Súmate al equipo de campaña de Alfonso Grados y participa activamente como voluntario por el cambio en Yanahuara.",
+  alternates: {
+    canonical: "/sumate"
+  },
+  openGraph: {
+    title: "Súmate · Alfonso Grados",
+    description:
+      "Súmate al equipo de campaña de Alfonso Grados y participa activamente como voluntario por el cambio en Yanahuara.",
+    url: "/sumate",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Súmate · Alfonso Grados",
+    description:
+      "Súmate al equipo de campaña de Alfonso Grados y participa activamente como voluntario por el cambio en Yanahuara.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [

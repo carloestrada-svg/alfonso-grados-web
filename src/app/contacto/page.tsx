@@ -8,7 +8,23 @@ import { candidate } from "@/lib/data/candidate";
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    `Canales oficiales de comunicación para la campaña de ${candidate.fullName} en ${candidate.district}, ${candidate.region}.`
+    "Canales oficiales de comunicación para contactar al equipo de campaña de Alfonso Grados en Yanahuara, Arequipa.",
+  alternates: {
+    canonical: "/contacto"
+  },
+  openGraph: {
+    title: "Contacto · Alfonso Grados",
+    description:
+      "Canales oficiales de comunicación para contactar al equipo de campaña de Alfonso Grados en Yanahuara, Arequipa.",
+    url: "/contacto",
+    images: ["/opengraph-image.png"]
+  },
+  twitter: {
+    title: "Contacto · Alfonso Grados",
+    description:
+      "Canales oficiales de comunicación para contactar al equipo de campaña de Alfonso Grados en Yanahuara, Arequipa.",
+    images: ["/twitter-image.png"]
+  }
 };
 
 const heroMeta = [
