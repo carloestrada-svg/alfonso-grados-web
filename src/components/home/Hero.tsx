@@ -153,7 +153,7 @@ export function Hero() {
             <div className="mt-5 flex flex-wrap items-center gap-3 sm:mt-6">
               <div data-reveal="cta">
                 <MagneticButton
-                  href="/volunteer"
+                  href="/sumate"
                   variant="solid"
                   size="lg"
                   className="!bg-brand-red !text-white !border-brand-red hover:!bg-[#c81915] font-bold shadow-md"
@@ -163,7 +163,7 @@ export function Hero() {
               </div>
               <div data-reveal="cta">
                 <MagneticButton
-                  href="/about"
+                  href="/conoce-a-alfonso"
                   variant="ghost"
                   size="lg"
                   className="!border-brand-black/40 !text-brand-black hover:!border-brand-black hover:!bg-black/5 font-bold"

@@ -4,9 +4,9 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const suggestions = [
   { label: "Inicio", href: "/" },
-  { label: "Agenda", href: "/events" },
-  { label: "Súmate", href: "/volunteer" },
-  { label: "Contacto", href: "/contact" }
+  { label: "Agenda", href: "/agenda" },
+  { label: "Súmate", href: "/sumate" },
+  { label: "Contacto", href: "/contacto" }
 ];
 
 export default function NotFound() {
@@ -54,7 +54,7 @@ export default function NotFound() {
               <MagneticButton href="/" variant="solid" size="lg">
                 Volver al inicio
               </MagneticButton>
-              <MagneticButton href="/events" variant="ghost" size="lg">
+              <MagneticButton href="/agenda" variant="ghost" size="lg">
                 Ver agenda
               </MagneticButton>
             </div>

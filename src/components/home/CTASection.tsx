@@ -89,14 +89,14 @@ export function CTASection() {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <MagneticButton
-                  href="/volunteer"
+                  href="/sumate"
                   variant="solid"
                   size="lg"
                 >
                   Quiero sumarme
                 </MagneticButton>
                 <MagneticButton
-                  href="/ask"
+                  href="/preguntale-a-alfonso"
                   variant="ghost"
                   size="lg"
                 >

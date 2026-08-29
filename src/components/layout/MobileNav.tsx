@@ -75,7 +75,7 @@ export function MobileNav() {
         <div className="mt-auto pt-6">
           <SheetClose asChild>
             <Link
-              href="/volunteer"
+              href="/sumate"
               className="group flex h-12 w-full items-center justify-between rounded-full bg-brand-red pl-6 pr-2 text-[15px] font-bold text-white transition-colors hover:bg-brand-red/90 shadow-md"
             >
               Súmate

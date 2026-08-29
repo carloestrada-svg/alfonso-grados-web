@@ -5,30 +5,30 @@ export type NavItem = {
 
 export const primaryNav: NavItem[] = [
   { label: "Inicio", href: "/" },
-  { label: "Conoce a Alfonso", href: "/about" },
-  { label: "Agenda", href: "/events" },
+  { label: "Conoce a Alfonso", href: "/conoce-a-alfonso" },
+  { label: "Agenda", href: "/agenda" },
   { label: "Noticias", href: "/noticias" },
-  { label: "Súmate", href: "/volunteer" },
-  { label: "Pregúntale a Alfonso", href: "/ask" },
-  { label: "Contacto", href: "/contact" }
+  { label: "Súmate", href: "/sumate" },
+  { label: "Pregúntale a Alfonso", href: "/preguntale-a-alfonso" },
+  { label: "Contacto", href: "/contacto" }
 ];
 
 export const footerNav: { heading: string; links: NavItem[] }[] = [
   {
     heading: "Campaña",
     links: [
-      { label: "Conoce a Alfonso", href: "/about" },
-      { label: "Agenda", href: "/events" },
+      { label: "Conoce a Alfonso", href: "/conoce-a-alfonso" },
+      { label: "Agenda", href: "/agenda" },
       { label: "Noticias", href: "/noticias" },
-      { label: "Contacto", href: "/contact" }
+      { label: "Contacto", href: "/contacto" }
     ]
   },
   {
     heading: "Participa",
     links: [
-      { label: "Súmate", href: "/volunteer" },
-      { label: "Pregúntale a Alfonso", href: "/ask" },
-      { label: "Asistir a eventos", href: "/events" }
+      { label: "Súmate", href: "/sumate" },
+      { label: "Pregúntale a Alfonso", href: "/preguntale-a-alfonso" },
+      { label: "Asistir a eventos", href: "/agenda" }
     ]
   }
 ];

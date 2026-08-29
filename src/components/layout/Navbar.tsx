@@ -163,7 +163,7 @@ export function Navbar() {
           />
 
           <MagneticButton
-            href="/volunteer"
+            href="/sumate"
             variant="solid"
             size="md"
             className="hidden sm:inline-flex !bg-brand-red !text-white !border-brand-red hover:!bg-[#c81915] font-bold shadow-sm"

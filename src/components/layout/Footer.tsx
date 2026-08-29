@@ -143,11 +143,11 @@ export function Footer() {
               Campaña oficial de {candidate.fullName} · {candidate.office}. Yanahuara, Arequipa.
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-              <Link href="/privacy" className="transition-colors hover:text-brand-red">
+              <Link href="/politica-de-privacidad" className="transition-colors hover:text-brand-red">
                 Política de Privacidad
               </Link>
               <span aria-hidden className="h-px w-4 bg-black/15" />
-              <Link href="/terms" className="transition-colors hover:text-brand-red">
+              <Link href="/terminos-y-condiciones" className="transition-colors hover:text-brand-red">
                 Términos y Condiciones
               </Link>
               <span aria-hidden className="h-px w-4 bg-black/15" />

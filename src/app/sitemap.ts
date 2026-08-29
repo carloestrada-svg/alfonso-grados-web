@@ -5,14 +5,14 @@ import { newsArticles } from "@/lib/data/news";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "/",
-    "/about",
-    "/events",
+    "/conoce-a-alfonso",
+    "/agenda",
     "/noticias",
-    "/volunteer",
-    "/ask",
-    "/contact",
-    "/privacy",
-    "/terms"
+    "/sumate",
+    "/preguntale-a-alfonso",
+    "/contacto",
+    "/politica-de-privacidad",
+    "/terminos-y-condiciones"
   ].map((path) => ({
     url: absoluteUrl(path),
     lastModified: new Date(),

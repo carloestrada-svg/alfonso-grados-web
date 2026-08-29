@@ -33,10 +33,10 @@ export default function AboutPage() {
         meta={heroMeta}
       >
         <div className="flex flex-wrap items-center gap-3">
-          <MagneticButton href="/volunteer" variant="solid" size="lg">
+          <MagneticButton href="/sumate" variant="solid" size="lg">
             Quiero sumarme
           </MagneticButton>
-          <MagneticButton href="/ask" variant="ghost" size="lg">
+          <MagneticButton href="/preguntale-a-alfonso" variant="ghost" size="lg">
             Quiero hacer una pregunta
           </MagneticButton>
         </div>
