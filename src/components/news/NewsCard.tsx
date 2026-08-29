@@ -7,6 +7,7 @@ type Props = {
   article: NewsArticle;
   className?: string;
   featured?: boolean;
+  headingLevel?: "h2" | "h3";
 };
 
 function formatDate(iso: string): string {
@@ -19,7 +20,12 @@ function formatDate(iso: string): string {
   });
 }
 
-export function NewsCard({ article, className, featured = false }: Props) {
+export function NewsCard({
+  article,
+  className,
+  featured = false,
+  headingLevel: Heading = "h2"
+}: Props) {
   return (
     <article
       className={cn(
@@ -58,14 +64,14 @@ export function NewsCard({ article, className, featured = false }: Props) {
         </div>
 
         {/* Título */}
-        <h2
+        <Heading
           className={cn(
             "font-display font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-brand-red",
             featured ? "text-2xl" : "text-lg"
           )}
         >
           <Link href={`/noticias/${article.slug}`}>{article.title}</Link>
-        </h2>
+        </Heading>
 
         {/* Extracto */}
         <p className="mt-3 line-clamp-3 flex-1 text-[14px] leading-relaxed text-foreground/60">

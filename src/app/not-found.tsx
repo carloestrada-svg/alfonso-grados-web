@@ -23,12 +23,12 @@ export default function NotFound() {
               404
             </span>
 
-            <h2
+            <p
               className="font-display font-normal leading-[1] tracking-[-0.02em] text-foreground"
               style={{ fontSize: "clamp(2rem, 4.2vw, 3rem)" }}
             >
               Página no encontrada.
-            </h2>
+            </p>
 
             <p className="max-w-[22rem] text-[16px] leading-[1.6] text-foreground/65">
               La página que buscas cambió de dirección o ya no está disponible.

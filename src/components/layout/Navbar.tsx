@@ -146,7 +146,7 @@ export function Navbar() {
         <div className="flex items-center gap-6 lg:gap-8">
           <nav
             className="hidden items-center lg:flex"
-            aria-label="Primary"
+            aria-label="Navegación principal"
           >
             {navItems.map((item) => (
               <NavLink

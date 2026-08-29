@@ -36,7 +36,7 @@ export function LatestNews() {
         {/* Grilla: 1 col móvil, 2 cols tableta, 3 cols escritorio */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
-            <NewsCard key={article.slug} article={article} />
+            <NewsCard key={article.slug} article={article} headingLevel="h3" />
           ))}
         </div>
 

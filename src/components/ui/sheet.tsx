@@ -61,14 +61,16 @@ const SheetContent = React.forwardRef<
       className={cn(sheetVariants({ side }), className)}
       {...props}
     >
-      <DialogPrimitive.Title className="sr-only">Menu</DialogPrimitive.Title>
+      <DialogPrimitive.Title className="sr-only">
+        Menú de navegación
+      </DialogPrimitive.Title>
       <DialogPrimitive.Description className="sr-only">
-        Navigate the campaign website
+        Navega por las secciones de la campaña de Alfonso Grados
       </DialogPrimitive.Description>
       {children}
       <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
         <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
+        <span className="sr-only">Cerrar menú</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </SheetPortal>
