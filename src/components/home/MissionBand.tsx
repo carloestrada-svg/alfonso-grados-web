@@ -46,13 +46,23 @@ export function MissionBand() {
   const ref = useRef<HTMLElement | null>(null);
   const slideRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) return;
     const id = window.setTimeout(() => {
       setActive((i) => (i + 1) % pillars.length);
     }, AUTO_MS);
     return () => window.clearTimeout(id);
-  }, [active]);
+  }, [active, reducedMotion]);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -200,10 +210,12 @@ export function MissionBand() {
                   <div className="relative h-px flex-1 bg-foreground/15">
                     <div
                       key={active}
-                      className="absolute inset-y-0 left-0 h-px w-full origin-left bg-brand-red"
+                      className="absolute inset-y-0 left-0 h-px w-full origin-left bg-brand-red motion-reduce:[animation:none]"
                       style={{
                         transformOrigin: "left",
-                        animation: `mission-progress ${AUTO_MS}ms linear forwards`
+                        animation: reducedMotion
+                          ? "none"
+                          : `mission-progress ${AUTO_MS}ms linear forwards`
                       }}
                     />
                   </div>

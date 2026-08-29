@@ -204,7 +204,7 @@ export function Hero() {
             Scroll
             <span aria-hidden className="h-px w-8 bg-black/30" />
             <ArrowDown
-              className="h-4 w-4 animate-bounce text-brand-black/70"
+              className="h-4 w-4 motion-safe:animate-bounce text-brand-black/70"
               strokeWidth={2}
             />
           </span>

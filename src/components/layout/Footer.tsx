@@ -99,7 +99,7 @@ export function Footer() {
               ) : null}
 
               {candidate.socials.length > 0 ? (
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-0">
                   {candidate.socials.map((s) => {
                     const Icon = socialIcons[s.label];
                     if (!Icon) return null;
@@ -110,9 +110,11 @@ export function Footer() {
                         aria-label={s.label}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/80 transition-colors hover:border-black hover:bg-black/[0.05] hover:text-brand-red"
+                        className="group flex h-11 w-11 items-center justify-center"
                       >
-                        <Icon className="h-4 w-4" />
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/80 transition-colors group-hover:border-black group-hover:bg-black/[0.05] group-hover:text-brand-red">
+                          <Icon className="h-4 w-4" />
+                        </span>
                       </a>
                     );
                   })}

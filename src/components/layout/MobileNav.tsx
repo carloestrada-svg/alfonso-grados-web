@@ -27,7 +27,7 @@ export function MobileNav() {
           variant="ghost"
           size="icon"
           aria-label="Abrir menú"
-          className="text-brand-black hover:bg-black/10 hover:text-brand-black"
+          className="h-11 w-11 text-brand-black hover:bg-black/10 hover:text-brand-black"
         >
           <Menu className="h-6 w-6" />
         </Button>
