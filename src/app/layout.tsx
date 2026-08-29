@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { candidate } from "@/lib/data/candidate";
 
 import "./globals.css";
@@ -47,6 +48,62 @@ const myriadPro = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+const globalSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Alfonso Grados",
+      description:
+        "Conoce las propuestas, prioridades, noticias y formas de participar en la campaña de Alfonso Grados para la Alcaldía de Yanahuara.",
+      inLanguage: "es-PE",
+      publisher: {
+        "@id": `${siteUrl}/#organization`
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#alfonso-grados`,
+      name: candidate.fullName,
+      jobTitle: "Candidato a Alcalde de Yanahuara",
+      description: candidate.shortBio,
+      image: `${siteUrl}/images/campaign/alfonso-retrato-web.webp`,
+      sameAs: [
+        "https://www.facebook.com/alfonsogradosr",
+        "https://www.instagram.com/alfonsogrados.candidato/",
+        "https://www.tiktok.com/@alfonso.180grados"
+      ],
+      worksFor: {
+        "@id": `${siteUrl}/#organization`
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Campaña Alfonso Grados – Alcalde de Yanahuara",
+      url: siteUrl,
+      logo: `${siteUrl}/images/campaign/alfonso-grados-logo.png`,
+      telephone: candidate.contact.phone,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: candidate.contact.phone,
+          contactType: "WhatsApp",
+          availableLanguage: ["es"]
+        }
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: candidate.district,
+        addressRegion: candidate.region,
+        addressCountry: "PE"
+      }
+    }
+  ]
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -105,6 +162,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${myriadPro.variable} ${gotham.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <JsonLd data={globalSchema} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-navy focus:px-4 focus:py-2 focus:text-white"

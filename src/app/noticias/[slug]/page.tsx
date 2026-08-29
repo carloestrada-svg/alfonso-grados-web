@@ -4,6 +4,7 @@ import Link from "next/link";
 import { newsArticles, getArticleBySlug, type NewsSection } from "@/lib/data/news";
 import { NewsCover } from "@/components/news/NewsCover";
 import { PageHero } from "@/components/shared/PageHero";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 type Params = { slug: string };
 
@@ -92,8 +93,40 @@ export default async function ArticlePage({
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.date,
+    inLanguage: "es-PE",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/noticias/${article.slug}`
+    },
+    url: `${siteUrl}/noticias/${article.slug}`,
+    image: `${siteUrl}/opengraph-image.png`,
+    author: {
+      "@type": "Organization",
+      name: article.author,
+      url: siteUrl
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Campaña Alfonso Grados – Alcalde de Yanahuara",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/images/campaign/alfonso-grados-logo.png`
+      }
+    }
+  };
+
   return (
     <>
+      <JsonLd data={articleSchema} />
       <PageHero
         index="06"
         eyebrow={article.category}
