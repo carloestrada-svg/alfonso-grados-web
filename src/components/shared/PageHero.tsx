@@ -153,37 +153,52 @@ export function PageHero({
 
   useGSAP(
     () => {
+      const root = ref.current;
+      if (!root) return;
+
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(
-          "[data-reveal], [data-title] > span > span, [data-meta-row]",
-          { opacity: 1, y: 0, yPercent: 0 }
+        // Reveal everything instantly — query only elements that actually exist.
+        const always = root.querySelectorAll(
+          "[data-reveal], [data-title] > span > span, [data-meta-row]"
         );
+        if (always.length) gsap.set(always, { opacity: 1, y: 0, yPercent: 0 });
         return;
       }
+
+      // Resolve optional targets once so we only animate what is in the DOM.
+      const descEls = root.querySelectorAll("[data-reveal='desc']");
+      const metaRows = root.querySelectorAll("[data-meta-row]");
+
       const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
       tl.fromTo(
         "[data-reveal='meta']",
         { opacity: 0, y: 14 },
         { opacity: 1, y: 0, duration: 0.7 }
-      )
-        .fromTo(
-          "[data-title] > span > span",
-          { yPercent: 115 },
-          { yPercent: 0, duration: 1.05, stagger: 0.09 },
-          "-=0.3"
-        )
-        .fromTo(
-          "[data-reveal='desc']",
+      ).fromTo(
+        "[data-title] > span > span",
+        { yPercent: 115 },
+        { yPercent: 0, duration: 1.05, stagger: 0.09 },
+        "-=0.3"
+      );
+
+      if (descEls.length) {
+        tl.fromTo(
+          descEls,
           { opacity: 0, y: 16 },
           { opacity: 1, y: 0, duration: 0.75 },
           "-=0.55"
-        )
-        .fromTo(
-          "[data-meta-row]",
+        );
+      }
+
+      if (metaRows.length) {
+        tl.fromTo(
+          metaRows,
           { opacity: 0, y: 14 },
           { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
           "-=0.55"
         );
+      }
     },
     { scope: ref }
   );
