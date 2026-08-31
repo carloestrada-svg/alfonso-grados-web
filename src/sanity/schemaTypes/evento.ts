@@ -90,6 +90,8 @@ export const eventoType = defineType({
     defineField({
       name: "mainImage",
       title: "Imagen del evento",
+      description:
+        "Imagen horizontal del evento. Recomendado: 1600 × 900 px (proporción 16:9), formato WebP o JPG y peso máximo recomendado de 1 MB. Mantén personas, logos y texto importante cerca del centro porque la imagen puede recortarse según el dispositivo.",
       type: "image",
       options: { hotspot: true },
       fields: [
