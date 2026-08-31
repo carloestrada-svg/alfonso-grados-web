@@ -75,6 +75,8 @@ export const noticiaType = defineType({
     defineField({
       name: "mainImage",
       title: "Imagen principal",
+      description:
+        "Imagen horizontal principal de la noticia. Recomendado: 1600 × 900 px (proporción 16:9), formato WebP o JPG y peso máximo recomendado de 1 MB. Mantén rostros, logos y elementos importantes cerca del centro porque la imagen puede recortarse según el dispositivo.",
       type: "image",
       options: { hotspot: true },
       fields: [
@@ -168,6 +170,9 @@ export const noticiaType = defineType({
         },
         {
           type: "image",
+          title: "Imagen dentro del artículo",
+          description:
+            "Recomendado: 1600 px de ancho, formato WebP o JPG y peso máximo recomendado de 1 MB. La proporción puede variar. Evita imágenes demasiado pequeñas o borrosas.",
           options: { hotspot: true },
           fields: [
             defineField({
@@ -185,7 +190,8 @@ export const noticiaType = defineType({
     defineField({
       name: "socialMedia",
       title: "Videos y publicaciones",
-      description: "Enlaces a videos, transmisiones en vivo o publicaciones de redes sociales.",
+      description:
+        "Enlaces a videos, transmisiones en vivo o publicaciones de redes sociales. Máximo 10 elementos por noticia.",
       type: "array",
       validation: (rule) => rule.max(10),
       of: [
@@ -252,7 +258,8 @@ export const noticiaType = defineType({
             defineField({
               name: "thumbnail",
               title: "Portada / Miniatura",
-              description: "Imagen de portada opcional.",
+              description:
+                "Portada opcional para la tarjeta. Recomendado: 1280 × 720 px (proporción 16:9), formato WebP o JPG y peso máximo recomendado de 800 KB. Mantén el elemento principal centrado porque la miniatura puede recortarse.",
               type: "image",
               options: { hotspot: true },
               fields: [
@@ -297,7 +304,8 @@ export const noticiaType = defineType({
     defineField({
       name: "attachments",
       title: "Documentos adjuntos",
-      description: "Archivos PDF relacionados con la noticia.",
+      description:
+        "Archivos PDF relacionados con la noticia. Máximo 10 archivos PDF por noticia.",
       type: "array",
       validation: (rule) => rule.max(10),
       of: [
@@ -324,6 +332,8 @@ export const noticiaType = defineType({
             defineField({
               name: "file",
               title: "Archivo PDF",
+              description:
+                "Adjunta únicamente archivos PDF. Peso máximo recomendado: 10 MB. Usa un nombre de archivo claro y evita documentos escaneados innecesariamente pesados.",
               type: "file",
               options: {
                 accept: "application/pdf",
