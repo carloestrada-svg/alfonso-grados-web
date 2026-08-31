@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { newsArticles, getArticleBySlug, type NewsSection } from "@/lib/data/news";
+import { type NewsSection } from "@/lib/data/news";
+import { getNoticiaSlugs, getArticleBySlug } from "@/sanity/lib/news";
 import { NewsCover } from "@/components/news/NewsCover";
 import { PageHero } from "@/components/shared/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PortableTextRenderer } from "@/components/news/PortableTextRenderer";
+import { SocialMediaSection } from "@/components/news/SocialMediaSection";
+import { AttachmentsSection } from "@/components/news/AttachmentsSection";
 
 type Params = { slug: string };
 
 export async function generateStaticParams(): Promise<Params[]> {
-  return newsArticles.map((a) => ({ slug: a.slug }));
+  const slugs = await getNoticiaSlugs();
+  return slugs.map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({
@@ -18,25 +23,30 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return {};
 
+  const title = article.seoTitle || article.title;
+  const description = article.seoDescription || article.excerpt;
+  const ogImages = article.mainImage?.url ? [article.mainImage.url] : ["/opengraph-image.png"];
+  const twitterImages = article.mainImage?.url ? [article.mainImage.url] : ["/twitter-image.png"];
+
   return {
-    title: article.title,
-    description: article.excerpt,
+    title,
+    description,
     alternates: {
       canonical: `/noticias/${article.slug}`
     },
     openGraph: {
-      title: `${article.title} · Alfonso Grados`,
-      description: article.excerpt,
+      title: `${title} · Alfonso Grados`,
+      description,
       url: `/noticias/${article.slug}`,
-      images: ["/opengraph-image.png"]
+      images: ogImages
     },
     twitter: {
-      title: `${article.title} · Alfonso Grados`,
-      description: article.excerpt,
-      images: ["/twitter-image.png"]
+      title: `${title} · Alfonso Grados`,
+      description,
+      images: twitterImages
     }
   };
 }
@@ -87,13 +97,14 @@ export default async function ArticlePage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     notFound();
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const imageUrl = article.mainImage?.url ?? `${siteUrl}/opengraph-image.png`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -107,7 +118,7 @@ export default async function ArticlePage({
       "@id": `${siteUrl}/noticias/${article.slug}`
     },
     url: `${siteUrl}/noticias/${article.slug}`,
-    image: `${siteUrl}/opengraph-image.png`,
+    image: imageUrl,
     author: {
       "@type": "Organization",
       name: article.author,
@@ -149,12 +160,24 @@ export default async function ArticlePage({
                 <NewsCover article={article} className="h-52 w-full" />
               </div>
 
-              {/* Secciones de contenido */}
-              <div>
-                {article.sections.map((section, i) => (
-                  <RenderSection key={i} section={section} />
-                ))}
-              </div>
+              {/* Secciones de contenido: PortableText de Sanity o respaldo estático */}
+              {article.body && article.body.length > 0 ? (
+                <div className="text-foreground">
+                  <PortableTextRenderer value={article.body} />
+                </div>
+              ) : article.sections && article.sections.length > 0 ? (
+                <div>
+                  {article.sections.map((section, i) => (
+                    <RenderSection key={i} section={section} />
+                  ))}
+                </div>
+              ) : null}
+
+              {/* Videos y publicaciones */}
+              <SocialMediaSection items={article.socialMedia} />
+
+              {/* Documentos adjuntos */}
+              <AttachmentsSection items={article.attachments} />
 
               {/* Volver al listado */}
               <div className="mt-12 border-t border-foreground/10 pt-8">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { type NewsArticle } from "@/lib/data/news";
 import { cn } from "@/lib/utils";
 
@@ -5,6 +6,7 @@ type Props = {
   article: NewsArticle;
   className?: string;
   sizes?: string;
+  priority?: boolean;
 };
 
 /**
@@ -60,7 +62,32 @@ const VARIANTS: Record<
   }
 };
 
-export function NewsCover({ article, className, sizes }: Props) {
+export function NewsCover({ article, className, sizes, priority }: Props) {
+  if (article.mainImage?.url) {
+    const width = article.mainImage.dimensions?.width || 800;
+    const height = article.mainImage.dimensions?.height || 500;
+    const alt = article.mainImage.alt || article.title;
+
+    return (
+      <div
+        className={cn(
+          "relative flex overflow-hidden rounded-xl bg-foreground/5",
+          className
+        )}
+      >
+        <Image
+          src={article.mainImage.url}
+          alt={alt}
+          width={width}
+          height={height}
+          priority={priority}
+          sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+    );
+  }
+
   const v = VARIANTS[article.coverVariant];
 
   return (

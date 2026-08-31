@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { newsArticles, getFeaturedArticle } from "@/lib/data/news";
+import { getNewsArticles } from "@/sanity/lib/news";
 import { NewsCard } from "@/components/news/NewsCard";
 import { PageHero } from "@/components/shared/PageHero";
 
@@ -25,9 +25,11 @@ export const metadata: Metadata = {
   }
 };
 
-export default function NoticiasPage() {
-  const featured = getFeaturedArticle();
-  const rest = newsArticles.filter((a) => !a.featured);
+export default async function NoticiasPage() {
+  const articles = await getNewsArticles();
+  const featuredIndex = articles.findIndex((a) => a.featured);
+  const featured = featuredIndex !== -1 ? articles[featuredIndex] : null;
+  const rest = featured ? articles.filter((_, idx) => idx !== featuredIndex) : articles;
 
   return (
     <>
@@ -64,7 +66,7 @@ export default function NoticiasPage() {
           </section>
         )}
 
-        {newsArticles.length === 0 && (
+        {articles.length === 0 && (
           <p className="text-center text-foreground/50">
             Próximamente publicaremos nuevos artículos.
           </p>

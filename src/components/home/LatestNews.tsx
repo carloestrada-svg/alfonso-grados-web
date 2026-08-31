@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { newsArticles } from "@/lib/data/news";
+import { getLatestNewsArticles } from "@/sanity/lib/news";
 import { NewsCard } from "@/components/news/NewsCard";
 
-export function LatestNews() {
-  const articles = newsArticles.slice(0, 3);
+export async function LatestNews() {
+  const articles = await getLatestNewsArticles(3);
+
+  if (!articles || articles.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative bg-background border-t border-foreground/10 py-20 sm:py-24 lg:py-28">

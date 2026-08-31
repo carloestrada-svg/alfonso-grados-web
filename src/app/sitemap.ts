@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { newsArticles } from "@/lib/data/news";
+import { getNoticiaSlugs } from "@/sanity/lib/news";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "/",
     "/conoce-a-alfonso",
@@ -20,9 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "/" ? 1 : 0.8
   }));
 
-  const articleRoutes = newsArticles.map((article) => ({
-    url: absoluteUrl(`/noticias/${article.slug}`),
-    lastModified: new Date(article.date),
+  const slugs = await getNoticiaSlugs();
+  const articleRoutes = slugs.map((item) => ({
+    url: absoluteUrl(`/noticias/${item.slug}`),
+    lastModified: new Date(item.date),
     changeFrequency: "monthly" as const,
     priority: 0.7
   }));

@@ -1,19 +1,57 @@
+import type { PortableTextBlock } from "sanity";
+
 export type NewsSection =
   | { type: "heading"; text: string }
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] };
 
+export type NewsImage = {
+  url: string;
+  alt?: string;
+  dimensions?: {
+    width: number;
+    height: number;
+    aspectRatio: number;
+  };
+};
+
+export type NewsSocialItem = {
+  _key: string;
+  title: string;
+  platform: string;
+  contentType: string;
+  url: string;
+  description?: string;
+  thumbnail?: NewsImage;
+};
+
+export type NewsAttachment = {
+  _key: string;
+  title: string;
+  description?: string;
+  url: string;
+  originalFilename?: string;
+  size?: number;
+};
+
 export type NewsArticle = {
+  _id?: string;
   slug: string;
   title: string;
   excerpt: string;
   date: string;
-  category: "Propuestas" | "Alfonso te explica" | "Campaña" | "Actividades";
+  category: "Propuestas" | "Alfonso te explica" | "Campaña" | "Actividades" | string;
   author: string;
   readTime: string;
   coverVariant: 1 | 2 | 3;
   sections: NewsSection[];
   featured: boolean;
+  mainImage?: NewsImage;
+  body?: PortableTextBlock[];
+  socialMedia?: NewsSocialItem[];
+  attachments?: NewsAttachment[];
+  seoTitle?: string;
+  seoDescription?: string;
 };
 
 export const newsArticles: NewsArticle[] = [
