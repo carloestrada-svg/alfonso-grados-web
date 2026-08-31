@@ -1,0 +1,248 @@
+import { defineField, defineType } from "sanity";
+
+export const noticiaType = defineType({
+  name: "noticia",
+  title: "Noticia",
+  type: "document",
+  fields: [
+    // ─── Básico ────────────────────────────────────────────────────────────────
+    defineField({
+      name: "title",
+      title: "Título",
+      description: "Título principal del artículo. Máximo 120 caracteres.",
+      type: "string",
+      validation: (rule) => rule.required().min(5).max(120),
+    }),
+
+    defineField({
+      name: "slug",
+      title: "URL (slug)",
+      description: "Se genera automáticamente desde el título.",
+      type: "slug",
+      options: { source: "title", maxLength: 100 },
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "excerpt",
+      title: "Extracto",
+      description: "Resumen breve que aparece en listados y tarjetas. Entre 20 y 300 caracteres.",
+      type: "text",
+      rows: 3,
+      validation: (rule) => rule.required().min(20).max(300),
+    }),
+
+    // ─── Clasificación ─────────────────────────────────────────────────────────
+    defineField({
+      name: "date",
+      title: "Fecha de publicación",
+      type: "datetime",
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "category",
+      title: "Categoría",
+      type: "string",
+      options: {
+        list: [
+          { title: "Propuestas", value: "Propuestas" },
+          { title: "Alfonso te explica", value: "Alfonso te explica" },
+          { title: "Campaña", value: "Campaña" },
+          { title: "Actividades", value: "Actividades" },
+        ],
+        layout: "radio",
+      },
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "author",
+      title: "Autor",
+      type: "string",
+      initialValue: "Campaña Alfonso Grados",
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "readTime",
+      title: "Tiempo de lectura",
+      description: 'Por ejemplo: "4 min de lectura".',
+      type: "string",
+    }),
+
+    // ─── Imagen ────────────────────────────────────────────────────────────────
+    defineField({
+      name: "mainImage",
+      title: "Imagen principal",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          description: "Descripción de la imagen para lectores de pantalla.",
+          type: "string",
+          validation: (rule) =>
+            rule.custom((alt, context) => {
+              const parent = context.parent as { asset?: unknown } | undefined;
+              if (parent?.asset && !alt) {
+                return "El texto alternativo es obligatorio cuando se incluye una imagen.";
+              }
+              return true;
+            }),
+        }),
+      ],
+    }),
+
+    defineField({
+      name: "coverVariant",
+      title: "Variante gráfica de respaldo",
+      description: "Se usa cuando no hay imagen principal disponible.",
+      type: "number",
+      options: {
+        list: [
+          { title: "Variante 1 (azul)", value: 1 },
+          { title: "Variante 2 (roja)", value: 2 },
+          { title: "Variante 3 (dorada)", value: 3 },
+        ],
+        layout: "radio",
+      },
+      initialValue: 1,
+    }),
+
+    // ─── Contenido ─────────────────────────────────────────────────────────────
+    defineField({
+      name: "body",
+      title: "Contenido",
+      description: "Cuerpo completo del artículo en texto enriquecido.",
+      type: "array",
+      validation: (rule) =>
+        rule
+          .required()
+          .min(1)
+          .error("El contenido es obligatorio y debe tener al menos un bloque."),
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Encabezado H2", value: "h2" },
+            { title: "Encabezado H3", value: "h3" },
+          ],
+          lists: [
+            { title: "Lista con viñetas", value: "bullet" },
+            { title: "Lista numerada", value: "number" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Negrita", value: "strong" },
+              { title: "Cursiva", value: "em" },
+            ],
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Enlace",
+                fields: [
+                  defineField({
+                    name: "href",
+                    title: "URL",
+                    type: "url",
+                    validation: (rule) =>
+                      rule.uri({
+                        allowRelative: true,
+                        scheme: ["http", "https", "mailto", "tel"],
+                      }),
+                  }),
+                  defineField({
+                    name: "openInNewTab",
+                    title: "Abrir en nueva pestaña",
+                    type: "boolean",
+                    initialValue: false,
+                  }),
+                ],
+              },
+            ],
+          },
+        },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Texto alternativo",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+        },
+      ],
+    }),
+
+    // ─── Destacado ─────────────────────────────────────────────────────────────
+    defineField({
+      name: "featured",
+      title: "Artículo destacado",
+      description: "Aparece en posición destacada en el listado principal.",
+      type: "boolean",
+      initialValue: false,
+    }),
+
+    // ─── SEO ───────────────────────────────────────────────────────────────────
+    defineField({
+      name: "seoTitle",
+      title: "Título SEO",
+      description: "Deja vacío para usar el título principal. Máximo 60 caracteres.",
+      type: "string",
+      validation: (rule) => rule.max(60),
+    }),
+
+    defineField({
+      name: "seoDescription",
+      title: "Descripción SEO",
+      description: "Máximo 160 caracteres recomendado.",
+      type: "text",
+      rows: 2,
+      validation: (rule) => rule.max(160),
+    }),
+  ],
+
+  preview: {
+    select: {
+      title: "title",
+      category: "category",
+      date: "date",
+      media: "mainImage",
+      featured: "featured",
+    },
+    prepare({ title, category, date, media, featured }) {
+      const dateStr = date
+        ? new Date(date).toLocaleDateString("es-PE", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })
+        : "Sin fecha";
+      return {
+        title: featured ? `⭐ ${title}` : title,
+        subtitle: `${category ?? "Sin categoría"} · ${dateStr}`,
+        media,
+      };
+    },
+  },
+
+  orderings: [
+    {
+      title: "Fecha de publicación (más reciente)",
+      name: "dateDesc",
+      by: [{ field: "date", direction: "desc" }],
+    },
+    {
+      title: "Fecha de publicación (más antigua)",
+      name: "dateAsc",
+      by: [{ field: "date", direction: "asc" }],
+    },
+  ],
+});

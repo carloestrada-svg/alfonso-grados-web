@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AppShell } from "@/components/layout/AppShell";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { candidate } from "@/lib/data/candidate";
 
@@ -162,18 +163,13 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${myriadPro.variable} ${gotham.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
-        <JsonLd data={globalSchema} />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-navy focus:px-4 focus:py-2 focus:text-white"
+        <AppShell
+          jsonLd={<JsonLd data={globalSchema} />}
+          navbar={<Navbar />}
+          footer={<Footer />}
         >
-          Saltar al contenido
-        </a>
-        <Navbar />
-        <main id="main-content" tabIndex={-1} className="focus:outline-none">
           {children}
-        </main>
-        <Footer />
+        </AppShell>
       </body>
     </html>
   );
