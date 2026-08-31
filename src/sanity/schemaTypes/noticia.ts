@@ -181,6 +181,172 @@ export const noticiaType = defineType({
       ],
     }),
 
+    // ─── Videos y publicaciones ────────────────────────────────────────────────
+    defineField({
+      name: "socialMedia",
+      title: "Videos y publicaciones",
+      description: "Enlaces a videos, transmisiones en vivo o publicaciones de redes sociales.",
+      type: "array",
+      validation: (rule) => rule.max(10),
+      of: [
+        defineField({
+          name: "socialItem",
+          title: "Publicación o video",
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Título",
+              type: "string",
+              description: "Título visible del contenido. Máximo 120 caracteres.",
+              validation: (rule) => rule.required().max(120),
+            }),
+            defineField({
+              name: "platform",
+              title: "Plataforma",
+              type: "string",
+              options: {
+                list: [
+                  { title: "YouTube", value: "YouTube" },
+                  { title: "Facebook", value: "Facebook" },
+                  { title: "Instagram", value: "Instagram" },
+                  { title: "TikTok", value: "TikTok" },
+                  { title: "X / Twitter", value: "X / Twitter" },
+                  { title: "Otra", value: "Otra" },
+                ],
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "contentType",
+              title: "Tipo de contenido",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Video", value: "Video" },
+                  { title: "Transmisión en vivo", value: "Transmisión en vivo" },
+                  { title: "Publicación", value: "Publicación" },
+                ],
+                layout: "radio",
+              },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "Enlace (URL)",
+              description: "Solo guardar la URL (sin códigos embed, iframes ni HTML).",
+              type: "url",
+              validation: (rule) =>
+                rule.required().uri({
+                  scheme: ["http", "https"],
+                }),
+            }),
+            defineField({
+              name: "description",
+              title: "Descripción",
+              description: "Breve descripción opcional. Máximo 240 caracteres.",
+              type: "text",
+              rows: 2,
+              validation: (rule) => rule.max(240),
+            }),
+            defineField({
+              name: "thumbnail",
+              title: "Portada / Miniatura",
+              description: "Imagen de portada opcional.",
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: "alt",
+                  title: "Texto alternativo",
+                  description: "Obligatorio si se incluye miniatura.",
+                  type: "string",
+                  validation: (rule) =>
+                    rule.custom((alt, context) => {
+                      const parent = context.parent as { asset?: unknown } | undefined;
+                      if (parent?.asset && !alt) {
+                        return "El texto alternativo es obligatorio cuando se incluye una miniatura.";
+                      }
+                      return true;
+                    }),
+                }),
+              ],
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title",
+              platform: "platform",
+              contentType: "contentType",
+              media: "thumbnail",
+            },
+            prepare({ title, platform, contentType, media }) {
+              const meta = [platform, contentType].filter(Boolean).join(" · ");
+              return {
+                title: title || "Sin título",
+                subtitle: meta || "Publicación o video",
+                media,
+              };
+            },
+          },
+        }),
+      ],
+    }),
+
+    // ─── Documentos adjuntos ───────────────────────────────────────────────────
+    defineField({
+      name: "attachments",
+      title: "Documentos adjuntos",
+      description: "Archivos PDF relacionados con la noticia.",
+      type: "array",
+      validation: (rule) => rule.max(10),
+      of: [
+        defineField({
+          name: "attachmentItem",
+          title: "Documento adjunto",
+          type: "object",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Título del documento",
+              type: "string",
+              description: "Máximo 120 caracteres.",
+              validation: (rule) => rule.required().max(120),
+            }),
+            defineField({
+              name: "description",
+              title: "Descripción",
+              description: "Breve descripción opcional. Máximo 240 caracteres.",
+              type: "text",
+              rows: 2,
+              validation: (rule) => rule.max(240),
+            }),
+            defineField({
+              name: "file",
+              title: "Archivo PDF",
+              type: "file",
+              options: {
+                accept: "application/pdf",
+              },
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title",
+              description: "description",
+            },
+            prepare({ title, description }) {
+              return {
+                title: title ? `📄 ${title}` : "Documento sin título",
+                subtitle: description ? `PDF · ${description}` : "Documento PDF",
+              };
+            },
+          },
+        }),
+      ],
+    }),
+
     // ─── Destacado ─────────────────────────────────────────────────────────────
     defineField({
       name: "featured",
