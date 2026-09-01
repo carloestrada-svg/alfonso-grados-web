@@ -44,15 +44,27 @@ function isValidISODate(dateStr: unknown): boolean {
 }
 
 /**
- * Normaliza una fecha ISO válida a formato `YYYY-MM-DD`.
+ * Normaliza una fecha ISO válida a formato `YYYY-MM-DD` usando la fecha
+ * editorial de Perú. Sanity almacena los `datetime` en UTC, por lo que tomar
+ * directamente el segmento anterior a `T` puede adelantar el día para una
+ * publicación realizada por la noche en Lima.
  */
 function normalizeISODate(dateStr: string): string {
-  const [datePart] = dateStr.split("T");
-  if (/^\d{4}-\d{2}-\d{2}$/.test(datePart)) {
-    return datePart;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return dateStr;
   }
-  const d = new Date(dateStr);
-  return d.toISOString().split("T")[0];
+
+  const date = new Date(dateStr);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Lima",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const getPart = (type: "year" | "month" | "day") =>
+    parts.find((part) => part.type === type)?.value;
+
+  return `${getPart("year")}-${getPart("month")}-${getPart("day")}`;
 }
 
 /**
