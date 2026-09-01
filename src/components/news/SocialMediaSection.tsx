@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { ExternalLink, Play } from "lucide-react";
+import { useState } from "react";
 import type { NewsSocialItem } from "@/lib/data/news";
 
 function isValidHttpUrl(urlStr?: string): boolean {
@@ -50,7 +53,44 @@ function extractYouTubeVideoId(urlStr: string): string | null {
   }
 }
 
+/**
+ * Genera la URL oficial del plugin de video de Facebook solo para enlaces que
+ * reconocemos como videos. La URL no se utiliza hasta que el visitante solicita
+ * reproducir el contenido, evitando una conexión automática con Meta.
+ */
+function getFacebookVideoEmbedUrl(urlStr: string): string | null {
+  if (!isValidHttpUrl(urlStr)) return null;
+
+  try {
+    const url = new URL(urlStr);
+    const host = url.hostname.replace(/^www\./, "").toLowerCase();
+    const isFacebookHost =
+      host === "facebook.com" ||
+      host.endsWith(".facebook.com") ||
+      host === "fb.watch";
+    const isVideoPath =
+      host === "fb.watch" ||
+      /^\/(?:.+\/)?(?:videos?|reel|watch)(?:\/|$)/i.test(url.pathname);
+
+    if (!isFacebookHost || !isVideoPath) {
+      return null;
+    }
+
+    const params = new URLSearchParams({
+      href: url.toString(),
+      show_text: "false",
+      width: "1280",
+      autoplay: "true",
+    });
+
+    return `https://www.facebook.com/plugins/video.php?${params.toString()}`;
+  } catch {
+    return null;
+  }
+}
+
 export function SocialMediaSection({ items }: { items?: NewsSocialItem[] }) {
+  const [activeEmbeds, setActiveEmbeds] = useState<Set<string>>(() => new Set());
   const validItems = (items || []).filter((item) => isValidHttpUrl(item.url));
   if (validItems.length === 0) {
     return null;
@@ -68,6 +108,12 @@ export function SocialMediaSection({ items }: { items?: NewsSocialItem[] }) {
             item.platform.toLowerCase().includes("youtube") ||
             item.url.toLowerCase().includes("youtu")
               ? extractYouTubeVideoId(item.url)
+              : null;
+          const facebookEmbedUrl =
+            item.platform.toLowerCase().includes("facebook") ||
+            item.url.toLowerCase().includes("facebook") ||
+            item.url.toLowerCase().includes("fb.watch")
+              ? getFacebookVideoEmbedUrl(item.url)
               : null;
 
           if (ytVideoId) {
@@ -104,6 +150,105 @@ export function SocialMediaSection({ items }: { items?: NewsSocialItem[] }) {
                     className="absolute inset-0 h-full w-full border-0"
                   />
                 </div>
+              </div>
+            );
+          }
+
+          if (facebookEmbedUrl) {
+            const isActive = activeEmbeds.has(item._key);
+
+            return (
+              <div
+                key={item._key}
+                className="overflow-hidden rounded-2xl border border-foreground/10 bg-card p-4 shadow-sm sm:p-6"
+              >
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs font-semibold uppercase tracking-wider text-foreground/50">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1877f2]/10 px-2.5 py-1 text-[#1877f2] dark:text-[#7eb1ff]">
+                    <Play className="h-3 w-3 fill-current" /> Facebook · {item.contentType}
+                  </span>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-red"
+                  >
+                    Ver en Facebook
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+
+                <h4 className="mb-3 font-display text-base font-semibold text-foreground sm:text-lg">
+                  {item.title}
+                </h4>
+
+                {item.description && (
+                  <p className="mb-4 text-sm leading-relaxed text-foreground/70">
+                    {item.description}
+                  </p>
+                )}
+
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-[#141414]">
+                  {isActive ? (
+                    <iframe
+                      src={facebookEmbedUrl}
+                      title={item.title}
+                      loading="lazy"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full border-0"
+                    />
+                  ) : (
+                    <>
+                      {item.thumbnail?.url ? (
+                        <Image
+                          src={item.thumbnail.url}
+                          alt={item.thumbnail.alt || ""}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 760px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div
+                          aria-hidden="true"
+                          className="absolute inset-0 overflow-hidden bg-gradient-to-br from-[#202020] via-[#131313] to-[#30100e]"
+                        >
+                          <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-brand-red/25 blur-2xl" />
+                          <div className="absolute -bottom-24 -left-12 h-64 w-64 rounded-full bg-brand-yellow/20 blur-2xl" />
+                          <div className="absolute inset-x-8 bottom-7 border-t border-white/20 pt-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/55 sm:inset-x-12 sm:bottom-10">
+                            Entrevista · Alfonso Grados
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="absolute inset-0 bg-black/25" />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setActiveEmbeds((current) => {
+                            const next = new Set(current);
+                            next.add(item._key);
+                            return next;
+                          })
+                        }
+                        className="group absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-inset"
+                        aria-label={`Reproducir en Facebook: ${item.title}`}
+                      >
+                        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-red shadow-xl transition-transform duration-200 group-hover:scale-105 sm:h-20 sm:w-20">
+                          <Play className="ml-1 h-7 w-7 fill-current sm:h-9 sm:w-9" />
+                        </span>
+                        <span className="rounded-full bg-black/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm">
+                          Reproducir entrevista
+                        </span>
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                <p className="mt-3 text-xs leading-relaxed text-foreground/50">
+                  Al reproducir, Facebook puede recibir información sobre tu visita
+                  de acuerdo con su política de privacidad.
+                </p>
               </div>
             );
           }
