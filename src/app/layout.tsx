@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +9,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { candidate } from "@/lib/data/candidate";
 
 import "./globals.css";
+
+const googleTagManagerId = "GTM-TTCNSX96";
 
 const gotham = localFont({
   src: [
@@ -162,7 +165,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${myriadPro.variable} ${gotham.variable}`}>
+      <head>
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${googleTagManagerId}');`}
+        </Script>
+      </head>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+            height="0"
+            width="0"
+            className="hidden invisible"
+            title="Google Tag Manager"
+          />
+        </noscript>
         <AppShell
           jsonLd={<JsonLd data={globalSchema} />}
           navbar={<Navbar />}
