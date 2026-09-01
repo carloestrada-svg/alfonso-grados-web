@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
+
 type AppShellProps = {
   jsonLd: ReactNode;
   navbar: ReactNode;
@@ -32,6 +34,7 @@ export function AppShell({ jsonLd, navbar, footer, children }: AppShellProps) {
 
   return (
     <>
+      <AnalyticsEvents />
       {jsonLd}
       <a
         href="#main-content"

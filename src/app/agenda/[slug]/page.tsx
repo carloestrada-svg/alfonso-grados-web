@@ -257,6 +257,8 @@ export default async function EventDetailPage({ params }: Props) {
                   </div>
                   <a
                     href={event.registrationLink}
+                    data-analytics-event="registration_click"
+                    data-analytics-label={event.slug}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-red px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"

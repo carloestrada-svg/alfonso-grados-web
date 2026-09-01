@@ -151,6 +151,8 @@ export function EventCard({ event, headingLevel = "h3", className }: Props) {
           {!isCancelled && event.registrationLink && (
             <a
               href={event.registrationLink}
+              data-analytics-event="registration_click"
+              data-analytics-label={event.slug}
               target="_blank"
               rel="noopener noreferrer"
               className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-opacity hover:opacity-90"
