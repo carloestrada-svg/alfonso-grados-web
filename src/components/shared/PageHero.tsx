@@ -70,13 +70,13 @@ function MetaRow({ index, label, value }: MetaRowProps) {
 
       const onLeave = () => {
         gsap.to(lbl, {
-          color: "rgba(10,31,68,0.55)",
+          clearProps: "color",
           duration: 0.5,
           ease: "expo.out"
         });
         gsap.to(val, {
           x: 0,
-          color: "rgba(10,31,68,0.85)",
+          clearProps: "color",
           duration: 0.5,
           ease: "expo.out"
         });

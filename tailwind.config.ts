@@ -61,7 +61,7 @@ const config: Config = {
           black: "#0A0A0A",
           white: "#FFFFFF",
           navy: "#0A0A0A",
-          cream: "#FAFAF5",
+          cream: "hsl(var(--brand-cream))",
           gold: "#F9D500"
         }
       },

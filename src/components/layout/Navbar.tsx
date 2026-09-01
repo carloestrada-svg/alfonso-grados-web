@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { MobileNav } from "./MobileNav";
+import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { primaryNav } from "@/lib/data/navigation";
 
@@ -162,6 +163,8 @@ export function Navbar() {
             aria-hidden
             className="hidden h-6 w-px bg-black/15 lg:block"
           />
+
+          <ThemeToggle />
 
           <MagneticButton
             href="/sumate"

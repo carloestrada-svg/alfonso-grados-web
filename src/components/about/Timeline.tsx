@@ -57,14 +57,14 @@ function TimelineEvent({ index, year, title, description }: EventProps) {
       };
       const onLeave = () => {
         gsap.to(y, {
-          color: "#0A0A0A",
+          clearProps: "color",
           fontStyle: "normal",
           duration: 0.5,
           ease: "expo.out"
         });
         gsap.to(t, {
           x: 0,
-          color: "#0A0A0A",
+          clearProps: "color",
           duration: 0.5,
           ease: "expo.out"
         });

@@ -31,8 +31,10 @@
     --border: 0 0% 88%;
     --input: 0 0% 88%;
     --ring: 1 78% 51%;
+    --brand-cream: 60 33% 97%;
 
     --radius: 0.75rem;
+    color-scheme: light;
   }
 
   .dark {
@@ -63,6 +65,8 @@
     --border: 0 0% 16%;
     --input: 0 0% 16%;
     --ring: 1 78% 51%;
+    --brand-cream: 0 0% 6%;
+    color-scheme: dark;
   }
 }
 

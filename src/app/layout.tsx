@@ -11,6 +11,16 @@ import { candidate } from "@/lib/data/candidate";
 import "./globals.css";
 
 const googleTagManagerId = "GTM-TTCNSX96";
+const themeInitScript = `
+(function () {
+  try {
+    var storedTheme = window.localStorage.getItem('alfonso-theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+  } catch (_) {}
+})();`;
 
 const gotham = localFont({
   src: [
@@ -164,8 +174,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${myriadPro.variable} ${gotham.variable}`}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={`${myriadPro.variable} ${gotham.variable}`}
+    >
       <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

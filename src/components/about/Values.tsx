@@ -63,7 +63,7 @@ function CommitmentCard({ title, description, columnIndex }: CardProps) {
         });
         gsap.to(r, {
           x: 0,
-          color: "#0A0A0A",
+          clearProps: "color",
           duration: 0.6,
           ease: "expo.out"
         });
