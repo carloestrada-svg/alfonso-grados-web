@@ -17,6 +17,7 @@ type Props = {
   external?: boolean;
   variant?: Variant;
   size?: Size;
+  analyticsLocation?: string;
 };
 
 const variantClasses: Record<Variant, string> = {
@@ -41,7 +42,8 @@ export function MagneticButton({
   className,
   external,
   variant = "solid",
-  size = "lg"
+  size = "lg",
+  analyticsLocation
 }: Props) {
   const rootRef = useRef<HTMLAnchorElement | null>(null);
   const labelRef = useRef<HTMLSpanElement | null>(null);
@@ -101,6 +103,7 @@ export function MagneticButton({
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       data-cursor="button"
+      data-analytics-location={analyticsLocation}
       className={cn(
         "group relative inline-flex items-center rounded-full border font-medium tracking-tight transition-colors duration-500",
         variantClasses[variant],

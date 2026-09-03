@@ -78,6 +78,7 @@ export function NewsletterForm() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Recibir novedades de campaña por WhatsApp"
+          data-analytics-location="footer_newsletter"
           className="group relative inline-flex items-center gap-4 rounded-full border border-brand-black bg-brand-black pl-6 pr-5 py-2.5 text-[16px] font-medium tracking-tight text-white transition-colors duration-500 hover:border-black/85 hover:bg-black/85"
         >
           <span

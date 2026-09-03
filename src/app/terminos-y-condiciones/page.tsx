@@ -178,6 +178,7 @@ export default function TermsPage() {
             href="https://wa.me/51991506516?text=Hola%2C%20quiero%20comunicarme%20con%20la%20campa%C3%B1a%20de%20Alfonso%20Grados."
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-location="terms_contact"
             className="text-brand-red underline-offset-4 hover:underline"
           >
             Escribir por WhatsApp

@@ -181,6 +181,7 @@ export default function PrivacyPage() {
             href="https://wa.me/51991506516?text=Hola%2C%20tengo%20una%20consulta%20sobre%20privacidad%20y%20protecci%C3%B3n%20de%20datos."
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-location="privacy_contact"
             className="text-brand-red underline-offset-4 hover:underline"
           >
             Consulta de privacidad por WhatsApp

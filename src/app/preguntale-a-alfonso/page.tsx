@@ -51,6 +51,7 @@ export default function AskPage() {
             external
             variant="solid"
             size="lg"
+            analyticsLocation="preguntale_hero"
           >
             Quiero hacer una pregunta
           </MagneticButton>
@@ -87,6 +88,7 @@ export default function AskPage() {
                   external
                   variant="solid"
                   size="lg"
+                  analyticsLocation="preguntale_content"
                 >
                   Quiero hacer una pregunta
                 </MagneticButton>

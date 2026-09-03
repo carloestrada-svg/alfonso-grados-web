@@ -62,6 +62,7 @@ export default function ContactPage() {
             external
             variant="solid"
             size="lg"
+            analyticsLocation="contacto_hero"
           >
             Escribir por WhatsApp
           </MagneticButton>
@@ -113,6 +114,7 @@ export default function ContactPage() {
                       external
                       variant="solid"
                       size="lg"
+                      analyticsLocation="contacto_card"
                     >
                       Escribir por WhatsApp
                     </MagneticButton>

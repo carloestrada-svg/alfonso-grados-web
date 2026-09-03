@@ -110,6 +110,9 @@ export function Footer() {
                         aria-label={s.label}
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-analytics-location={
+                          s.label === "WhatsApp" ? "footer_social" : undefined
+                        }
                         className="group flex h-11 w-11 items-center justify-center"
                       >
                         <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/80 transition-colors group-hover:border-black group-hover:bg-black/[0.05] group-hover:text-brand-red">

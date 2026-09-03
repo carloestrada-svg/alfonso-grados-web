@@ -43,8 +43,13 @@ function getSocialPlatform(hostname: string) {
   return socialDomains.find(([domain]) => hostnameMatches(hostname, domain))?.[1];
 }
 
-function getSafeIdentifier(value: string | undefined, fallback: string) {
-  const sanitized = value?.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 80);
+function getSafeIdentifier(value: string | null | undefined, fallback: string) {
+  const sanitized = value
+    ?.trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80);
   return sanitized || fallback;
 }
 
@@ -97,6 +102,16 @@ export function AnalyticsEvents() {
         pushDataLayer({
           event: "contact_click",
           contact_method: "whatsapp",
+          cta_location: getSafeIdentifier(
+            anchor.dataset.analyticsLocation,
+            "unlabeled"
+          ),
+          cta_text: getSafeIdentifier(
+            anchor.dataset.analyticsLabel ||
+              anchor.getAttribute("aria-label") ||
+              anchor.textContent,
+            "whatsapp"
+          ),
           page_path: pagePath
         });
         return;

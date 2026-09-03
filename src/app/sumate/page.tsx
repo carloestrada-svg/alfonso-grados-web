@@ -51,6 +51,7 @@ export default function SumatePage() {
             external
             variant="solid"
             size="lg"
+            analyticsLocation="sumate_hero"
           >
             Quiero sumarme
           </MagneticButton>
@@ -87,6 +88,7 @@ export default function SumatePage() {
                   external
                   variant="solid"
                   size="lg"
+                  analyticsLocation="sumate_content"
                 >
                   Quiero sumarme
                 </MagneticButton>
