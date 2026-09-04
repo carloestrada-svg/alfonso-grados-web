@@ -104,6 +104,7 @@ export function MagneticButton({
       rel={external ? "noopener noreferrer" : undefined}
       data-cursor="button"
       data-analytics-location={analyticsLocation}
+      data-analytics-label={typeof children === "string" ? children : undefined}
       className={cn(
         "group relative inline-flex items-center rounded-full border font-medium tracking-tight transition-colors duration-500",
         variantClasses[variant],

@@ -109,6 +109,7 @@ export function AnalyticsEvents() {
           cta_text: getSafeIdentifier(
             anchor.dataset.analyticsLabel ||
               anchor.getAttribute("aria-label") ||
+              anchor.querySelector<HTMLElement>(".sr-only")?.textContent ||
               anchor.textContent,
             "whatsapp"
           ),
